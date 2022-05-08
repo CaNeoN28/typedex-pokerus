@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import Pokemon from "./pages/Pokemon"
+import PokemonPage from "./pages/Pokemon"
 
 export default function AppRouter(){
   return(
     <Router>
       <Routes>
-        <Route path="pokemon/:id" element={<Pokemon/>}/>
+        <Route path="pokemon/:id" element={<PokemonPage/>}/>
       </Routes>
     </Router>
   )

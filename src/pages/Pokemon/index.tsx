@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { PokemonClient, PokemonSpecies, Pokemon } from "pokenode-ts"
 import Page from "../../components/Page";
@@ -13,20 +13,23 @@ export default function PokemonPage() {
   const [form, setForm] = useState(0)
   const [forms, setForms] = useState<Pokemon[]>()
 
-  if (id) {
-    api.getPokemonSpeciesByName(id)
+  useEffect(() => {
+    api.getPokemonSpeciesByName(id || '')
       .then(res => setSpecies(res))
+  }, [id])
+
+  useEffect(() => { 
     species?.varieties.map(v => {
       api.getPokemonByName(v.pokemon.name)
         .then(res => setForms(oldForms => oldForms ? [...oldForms, res] : [res]))
     })
-  }
+  }, [species])
 
   if (species && forms)
     return (
       <Page>
         <InfoPage>
-          <MainInfo species={species} forms={forms} form={form} setForm={setForm}/>
+          <MainInfo species={species} forms={forms} form={form} setForm={setForm} />
         </InfoPage>
       </Page>
     )

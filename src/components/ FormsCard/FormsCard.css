@@ -1,0 +1,28 @@
+.formsCard{
+  vertical-align: center;
+  width: 450px;
+}
+
+.optionBox{
+  margin-top: 8px;
+  border-radius: 5px;
+  height: 72px;
+  padding: 16px;
+
+  color: #D67F75;
+  border: 3px solid #D67F75;
+
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+
+  font-size: 36px;
+}
+
+img {
+  height: 450px;
+}
+
+a{
+  height: 36px;
+}

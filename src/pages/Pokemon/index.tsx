@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom"
 import { PokemonClient, PokemonSpecies, Pokemon } from "pokenode-ts"
 import Page from "../../components/Page";
 import InfoPage from "../../components/InfoPage";
+import MainInfo from "./Main";
 
 export default function PokemonPage() {
   const { id } = useParams();
@@ -25,7 +26,7 @@ export default function PokemonPage() {
     return (
       <Page>
         <InfoPage>
-          <img src={forms[0].sprites.other["official-artwork"].front_default || ''}/>
+          <MainInfo species={species} forms={forms} form={form} setForm={setForm}/>
         </InfoPage>
       </Page>
     )

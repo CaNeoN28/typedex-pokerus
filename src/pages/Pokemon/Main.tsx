@@ -17,14 +17,16 @@ export default function MainInfo({ species, forms, form, setForm }: Props) {
         index == form &&
           <FormsCard key={index}>
             <img src={f.sprites.other["official-artwork"].front_default || ''} alt={f.name} />
-            <div className='optionBox'>
+            {forms.length > 1 && <div className='optionBox'>
               <a onClick={e => index === 0 ? setForm(forms.length - 1) : setForm(form - 1)}><AiFillCaretLeft /></a>
               <span> {f.name} </span>
               <a onClick={e => index === forms.length - 1 ? setForm(0) : setForm(form + 1)}><AiFillCaretRight /></a>
-            </div>
+            </div>}
           </FormsCard>
       ))}
-      <div>aaaaaaaaaaaaaaaaaaaaaaaaaa</div>
+      <div>
+        
+      </div>
     </InfoPage>
   )
 }

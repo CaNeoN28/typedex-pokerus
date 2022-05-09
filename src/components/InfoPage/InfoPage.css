@@ -1,5 +1,9 @@
 .infoPage{
-  padding: 100px 100px
+  padding: 100px;
+
+  justify-content: space-around;
+  align-items: center;
+  display: flex;
 }
 
 .red{

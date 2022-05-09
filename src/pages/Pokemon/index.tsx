@@ -18,7 +18,7 @@ export default function PokemonPage() {
       .then(res => setSpecies(res))
   }, [id])
 
-  useEffect(() => { 
+  useEffect(() => {
     species?.varieties.map(v => {
       api.getPokemonByName(v.pokemon.name)
         .then(res => setForms(oldForms => oldForms ? [...oldForms, res] : [res]))
@@ -28,9 +28,7 @@ export default function PokemonPage() {
   if (species && forms)
     return (
       <Page>
-        <InfoPage>
-          <MainInfo species={species} forms={forms} form={form} setForm={setForm} />
-        </InfoPage>
+        <MainInfo species={species} forms={forms} form={form} setForm={setForm} />
       </Page>
     )
 

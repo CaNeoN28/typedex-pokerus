@@ -29,11 +29,8 @@
 
 .rowKey{
   text-align: left;
-  width: 200px;
 }
 
 .rowValue{
-  justify-content: space-evenly;
-  align-items: center;
   text-align: center;
 }

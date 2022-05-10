@@ -51,7 +51,7 @@ export default function MainInfo({ species, forms, form, setForm }: Props) {
         ]
       }, {
         label: "Egg groups",
-        values: species.egg_groups.map(e => e.name)
+        values: species.egg_groups.map((e, index) => species.egg_groups.length > 1 && index == 0 ?<a>{e.name}, </a> : <a>{e.name}</a>)
       }, {
         label: "Growth rate",
         values: [species.growth_rate.name]

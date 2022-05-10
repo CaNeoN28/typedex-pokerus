@@ -19,7 +19,7 @@
 
 .tableBody{
   width: 660px;
-  border-spacing: 16px 0px;
+  border-spacing: 32px 0px;
 }
 
 .tableRow{
@@ -28,9 +28,11 @@
 
 .rowKey{
   text-align: left;
+  width: 330px;
 }
 
 .rowValue{
   justify-content: space-evenly;
-  display: flex;
+  align-items: center;
+  text-align: center;
 }

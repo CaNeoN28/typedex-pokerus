@@ -21,7 +21,7 @@ export default function PokemonPage() {
   useEffect(() => {
     species?.varieties.map(v => {
       api.getPokemonByName(v.pokemon.name)
-        .then(res => setForms(oldForms => oldForms ? [...oldForms, res] : [res]))
+        .then(res => setForms(oldForms => oldForms && !oldForms.includes(res) ? [...oldForms, res] : [res]))
     })
   }, [species])
 

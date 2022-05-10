@@ -5,6 +5,7 @@ import InfoPage from "../../components/InfoPage";
 import DataTable from "../../components/DataTable";
 import TableData from "../../types/TableData";
 import { generateKey } from "crypto";
+import missingNo from "../../assets/images/missingNo.png";
 
 interface Props {
   species: PokemonSpecies,
@@ -15,9 +16,7 @@ interface Props {
 
 export default function MainInfo({ species, forms, form, setForm }: Props) {
   const currentForm = forms[form];
-  const img = currentForm.sprites.other["official-artwork"].front_default
-
-
+  const img = currentForm.sprites.other["official-artwork"].front_default || missingNo
 
   const data = {
     title: species.genera.find(g => g.language.name == 'en')?.genus || '',
@@ -44,7 +43,7 @@ export default function MainInfo({ species, forms, form, setForm }: Props) {
   return (
     <InfoPage>
       <FormsCard>
-        <img className="image" src={img || ''} alt={currentForm.name} />
+        <img className="image" src={img} alt={currentForm.name} />
         {forms.length > 1 && <div className='optionBox'>
           <a onClick={e => form === 0 ? setForm(forms.length - 1) : setForm(form - 1)}><AiFillCaretLeft /></a>
           <span> {currentForm.name} </span>

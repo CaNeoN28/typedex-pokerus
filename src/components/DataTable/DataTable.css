@@ -10,6 +10,7 @@
 .tableHeader{
   color: #EDF2F4;
   background-color: #D67F75;
+  border: 3px solid #D67F75;
 
   display: flex;
   align-items: center;

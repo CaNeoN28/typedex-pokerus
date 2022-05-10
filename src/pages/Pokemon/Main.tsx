@@ -6,6 +6,7 @@ import DataTable from "../../components/DataTable";
 import TableData from "../../types/TableData";
 import { generateKey } from "crypto";
 import missingNo from "../../assets/images/missingNo.png";
+import measuring from "common/utils/measuring";
 
 interface Props {
   species: PokemonSpecies,
@@ -17,6 +18,7 @@ interface Props {
 export default function MainInfo({ species, forms, form, setForm }: Props) {
   const currentForm = forms[form];
   const img = currentForm.sprites.other["official-artwork"].front_default || missingNo
+  const actualWeight = currentForm.weight/10
 
   const data = {
     title: species.genera.find(g => g.language.name == 'en')?.genus || '',
@@ -29,7 +31,11 @@ export default function MainInfo({ species, forms, form, setForm }: Props) {
         values: [""]
       },{
         label: "Weight",
-        values: [""]
+        values: [
+          `${measuring.kgToLbs(actualWeight).toFixed(1)}lbs`,
+          ' / ',
+          `${(actualWeight).toFixed(1)}kg`
+        ]
       },{
         label: "Egg groups",
         values: species.egg_groups.map(e => e.name)

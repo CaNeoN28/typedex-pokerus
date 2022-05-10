@@ -5,7 +5,6 @@
 .optionBox{
   margin-top: 8px;
   border-radius: 5px;
-  height: 72px;
   padding: 16px;
 
   color: #D67F75;
@@ -18,7 +17,7 @@
   font-size: 36px;
 }
 
-img {
+.image {
   height: 450px;
 }
 

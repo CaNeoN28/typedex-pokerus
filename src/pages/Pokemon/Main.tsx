@@ -18,7 +18,11 @@ interface Props {
 export default function MainInfo({ species, forms, form, setForm }: Props) {
   const currentForm = forms[form];
   const img = currentForm.sprites.other["official-artwork"].front_default || missingNo
+
+  const actualHeight = currentForm.height/10
   const actualWeight = currentForm.weight/10
+
+  const {feet, inches} = measuring.metersToFootAndInches(actualHeight)
 
   const data = {
     title: species.genera.find(g => g.language.name == 'en')?.genus || '',
@@ -28,7 +32,11 @@ export default function MainInfo({ species, forms, form, setForm }: Props) {
         values: currentForm.types.map(t => t.type.name)
       },{
         label: "Height",
-        values: [""]
+        values: [
+          `${feet}'${String(inches).padStart(2, '0')}"`,
+          ' / ',
+          `${actualHeight.toFixed(1)}m`
+        ]
       },{
         label: "Weight",
         values: [

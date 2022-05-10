@@ -7,6 +7,7 @@ import TableData from "../../types/TableData";
 import { generateKey } from "crypto";
 import missingNo from "../../assets/images/missingNo.png";
 import measuring from "common/utils/measuring";
+import TypeButton from "components/TypeButton";
 
 interface Props {
   species: PokemonSpecies,
@@ -24,13 +25,15 @@ export default function MainInfo({ species, forms, form, setForm }: Props) {
 
   const { feet, inches } = measuring.metersToFootAndInches(actualHeight)
 
+  const types = currentForm.types.map(t => t.type.name)
+
   const data = {
     title: species.genera.find(g => g.language.name == 'en')?.genus || '',
     rows: [
       {
         label: "Types",
-        values: currentForm.types.map(
-          t => <button>{t.type.name}</button>
+        values: types.map(
+          (t, index) => <TypeButton key={index} type={t}/>
         )
       }, {
         label: "Height",

@@ -3,6 +3,6 @@ export default interface TableData{
   rows:
     {
       label: string,
-      values: string[]
+      values: any[]
     }[]
 }

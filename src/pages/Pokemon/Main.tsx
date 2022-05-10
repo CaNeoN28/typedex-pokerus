@@ -19,35 +19,37 @@ export default function MainInfo({ species, forms, form, setForm }: Props) {
   const currentForm = forms[form];
   const img = currentForm.sprites.other["official-artwork"].front_default || missingNo
 
-  const actualHeight = currentForm.height/10
-  const actualWeight = currentForm.weight/10
+  const actualHeight = currentForm.height / 10
+  const actualWeight = currentForm.weight / 10
 
-  const {feet, inches} = measuring.metersToFootAndInches(actualHeight)
+  const { feet, inches } = measuring.metersToFootAndInches(actualHeight)
 
   const data = {
     title: species.genera.find(g => g.language.name == 'en')?.genus || '',
     rows: [
       {
         label: "Types",
-        values: currentForm.types.map(t => t.type.name)
-      },{
+        values: currentForm.types.map(
+          t => <button>{t.type.name}</button>
+        )
+      }, {
         label: "Height",
         values: [
           `${feet}'${String(inches).padStart(2, '0')}"`,
           ' / ',
           `${actualHeight.toFixed(1)}m`
         ]
-      },{
+      }, {
         label: "Weight",
         values: [
           `${measuring.kgToLbs(actualWeight).toFixed(1)}lbs`,
           ' / ',
           `${(actualWeight).toFixed(1)}kg`
         ]
-      },{
+      }, {
         label: "Egg groups",
         values: species.egg_groups.map(e => e.name)
-      },{
+      }, {
         label: "Growth rate",
         values: [species.growth_rate.name]
       }
@@ -64,7 +66,7 @@ export default function MainInfo({ species, forms, form, setForm }: Props) {
           <a onClick={e => form === forms.length - 1 ? setForm(0) : setForm(form + 1)}><AiFillCaretRight /></a>
         </div>}
       </FormsCard>
-      <DataTable data={data}/>
+      <DataTable data={data} />
     </InfoPage>
   )
 }

@@ -68,7 +68,7 @@ export default function MainInfo({ species, forms, form, setForm }: Props) {
         <img src={img} alt={currentForm.name} />
         {forms.length > 1 && <div className='optionBox'>
           <a onClick={e => form === 0 ? setForm(forms.length - 1) : setForm(form - 1)}><AiFillCaretLeft /></a>
-          <span> {currentForm.name} </span>
+          <span> {f.validatingFormName(species.name, currentForm.name)} </span>
           <a onClick={e => form === forms.length - 1 ? setForm(0) : setForm(form + 1)}><AiFillCaretRight /></a>
         </div>}
       </FormsCard>

@@ -8,6 +8,7 @@ import { generateKey } from "crypto";
 import missingNo from "../../assets/images/missingNo.png";
 import measuring from "common/utils/measuring";
 import TypeButton from "components/TypeButton";
+import Formatting from "common/utils/string";
 
 interface Props {
   species: PokemonSpecies,
@@ -17,6 +18,8 @@ interface Props {
 }
 
 export default function MainInfo({ species, forms, form, setForm }: Props) {
+  const f = Formatting
+  
   const currentForm = forms[form];
   const img = currentForm.sprites.other["official-artwork"].front_default || missingNo
 
@@ -25,7 +28,7 @@ export default function MainInfo({ species, forms, form, setForm }: Props) {
 
   const { feet, inches } = measuring.metersToFootAndInches(actualHeight)
 
-  const types = currentForm.types.map(t => t.type.name)
+  const types = currentForm.types.map(t => (t.type.name))
 
   const data = {
     title: species.genera.find(g => g.language.name == 'en')?.genus || '',
@@ -51,10 +54,10 @@ export default function MainInfo({ species, forms, form, setForm }: Props) {
         ]
       }, {
         label: "Egg groups",
-        values: species.egg_groups.map((e, index) => species.egg_groups.length > 1 && index == 0 ?<a>{e.name}, </a> : <a>{e.name}</a>)
+        values: species.egg_groups.map((e, index) => species.egg_groups.length > 1 && index == 0 ?<a>{f.capitalize(e.name)}, </a> : <a>{f.capitalize(e.name)}</a>)
       }, {
         label: "Growth rate",
-        values: [species.growth_rate.name]
+        values: [f.growthRate(species.growth_rate.name)]
       }
     ]
   }
@@ -62,7 +65,7 @@ export default function MainInfo({ species, forms, form, setForm }: Props) {
   return (
     <InfoPage>
       <FormsCard>
-        <img className="image" src={img} alt={currentForm.name} />
+        <img src={img} alt={currentForm.name} />
         {forms.length > 1 && <div className='optionBox'>
           <a onClick={e => form === 0 ? setForm(forms.length - 1) : setForm(form - 1)}><AiFillCaretLeft /></a>
           <span> {currentForm.name} </span>

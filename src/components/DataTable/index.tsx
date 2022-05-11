@@ -12,12 +12,12 @@ export default function DataTable({ data }: Props) {
       <span className="tableHeader">{data.title}</span>
       <table className="tableBody">
         <tbody>
-          {data.rows.map(row => (
-            <tr className="tableRow">
+          {data.rows.map((row, index) => (
+            <tr key={index} className="tableRow">
               <td className="rowKey">{row.label}:</td>
               <td className="rowValue">
-                {row.values.map(value => (
-                  <a>{value}</a>
+                {row.values.map((value, index) => (
+                  <span key={index}>{value}</span>
                 ))}
               </td>
             </tr>

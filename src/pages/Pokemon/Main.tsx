@@ -54,7 +54,7 @@ export default function MainInfo({ species, forms, form, setForm }: Props) {
         ]
       }, {
         label: "Egg groups",
-        values: species.egg_groups.map((e, index) => species.egg_groups.length > 1 && index == 0 ?<a>{f.capitalize(e.name)}, </a> : <a>{f.capitalize(e.name)}</a>)
+        values: species.egg_groups.map((e, index) => species.egg_groups.length > 1 && index == 0 ?<a>{f.formattingEggGroup(e.name)}, </a> : <a>{f.formattingEggGroup(e.name)}</a>)
       }, {
         label: "Growth rate",
         values: [f.growthRate(species.growth_rate.name)]
@@ -68,7 +68,7 @@ export default function MainInfo({ species, forms, form, setForm }: Props) {
         <img src={img} alt={currentForm.name} />
         {forms.length > 1 && <div className='optionBox'>
           <a onClick={e => form === 0 ? setForm(forms.length - 1) : setForm(form - 1)}><AiFillCaretLeft /></a>
-          <span> {f.validatingFormName(species.name, currentForm.name)} </span>
+          <span> {f.formattingFormName(species.name, currentForm.name)} </span>
           <a onClick={e => form === forms.length - 1 ? setForm(0) : setForm(form + 1)}><AiFillCaretRight /></a>
         </div>}
       </FormsCard>

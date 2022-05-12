@@ -9,6 +9,7 @@ import missingNo from "../../assets/images/missingNo.png";
 import measuring from "common/utils/measuring";
 import TypeButton from "components/TypeButton";
 import Formatting from "common/utils/string";
+import OptionBox from "components/OptionBox";
 
 interface Props {
   species: PokemonSpecies,
@@ -19,7 +20,7 @@ interface Props {
 
 export default function MainInfo({ species, forms, form, setForm }: Props) {
   const f = Formatting
-  
+
   const currentForm = forms[form];
   const img = currentForm.sprites.other["official-artwork"].front_default || missingNo
 
@@ -36,7 +37,7 @@ export default function MainInfo({ species, forms, form, setForm }: Props) {
       {
         label: "Types",
         values: types.map(
-          (t, index) => <TypeButton key={index} type={t}/>
+          (t, index) => <TypeButton key={index} type={t} />
         )
       }, {
         label: "Height",
@@ -54,7 +55,7 @@ export default function MainInfo({ species, forms, form, setForm }: Props) {
         ]
       }, {
         label: "Egg groups",
-        values: species.egg_groups.map((e, index) => species.egg_groups.length > 1 && index == 0 ?<a>{f.formattingEggGroup(e.name)}, </a> : <a>{f.formattingEggGroup(e.name)}</a>)
+        values: species.egg_groups.map((e, index) => species.egg_groups.length > 1 && index == 0 ? <a>{f.formattingEggGroup(e.name)}, </a> : <a>{f.formattingEggGroup(e.name)}</a>)
       }, {
         label: "Growth rate",
         values: [f.growthRate(species.growth_rate.name)]
@@ -72,7 +73,10 @@ export default function MainInfo({ species, forms, form, setForm }: Props) {
           <a onClick={e => form === forms.length - 1 ? setForm(0) : setForm(form + 1)}><AiFillCaretRight /></a>
         </div>}
       </FormsCard>
-      <DataTable data={data} />
+      <div>
+        <OptionBox label={[`N° ${String(species.id).padStart(3, '0')}`, species.name]} comparing={897}/>
+        <DataTable data={data} />
+      </div>
     </InfoPage>
   )
 }

@@ -1,0 +1,21 @@
+.optionBox{
+  margin-top: 8px;
+  border-radius: 5px;
+  padding: 16px 25px;
+
+  color: #D67F75;
+  border: 3px solid #D67F75;
+
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+
+  font-size: 36px;
+}
+
+.optionLabel{
+  justify-content: space-between;
+  display: flex;
+
+  width: 488px;
+}

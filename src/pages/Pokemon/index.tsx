@@ -21,9 +21,13 @@ export default function PokemonPage() {
   useEffect(() => {
     species?.varieties.map(v => {
       api.getPokemonByName(v.pokemon.name)
-        .then(res => setForms(oldForms => oldForms && !oldForms.includes(res) ? [...oldForms, res] : [res]))
+        .then(res => setForms(oldForms => oldForms && !oldForms.find(p => res.id == p.id) ? [...oldForms, res] : [res]))
     })
   }, [species])
+
+  useEffect(() => {
+    forms?.sort((a, b) => (a.id < b.id) ? -1: 1)
+  }, [forms])
 
   if (species && forms)
     return (

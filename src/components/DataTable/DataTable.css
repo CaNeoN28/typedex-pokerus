@@ -1,5 +1,6 @@
 .dataTable{
   border: 3px solid #D67F75;
+  background-color: #D67F75;
   width: 660px;
   color: #D67F75;
 
@@ -9,11 +10,8 @@
 
 .tableHeader{
   color: #EDF2F4;
-  background-color: #D67F75;
-  border: 3px solid #D67F75;
 
   display: flex;
-  align-items: center;
   justify-content: space-around;
   padding: 16px;
 }
@@ -21,6 +19,9 @@
 .tableBody{
   width: 660px;
   border-spacing: 32px 0px;
+  border-radius: 0px 0px 10px 10px;
+
+  background-color: #EDF2F4;
 }
 
 .tableRow{

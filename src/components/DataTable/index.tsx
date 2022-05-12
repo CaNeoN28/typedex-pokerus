@@ -9,7 +9,7 @@ interface Props {
 export default function DataTable({ data }: Props) {
   return (
     <div className="dataTable">
-      <span className="tableHeader">{data.title}</span>
+      <div className="tableHeader">{data.title}</div>
       <table className="tableBody">
         <tbody>
           {data.rows.map((row, index) => (

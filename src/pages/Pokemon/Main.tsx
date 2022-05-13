@@ -74,7 +74,7 @@ export default function MainInfo({ species, forms, form, setForm }: Props) {
         </div>}
       </FormsCard>
       <div>
-        <OptionBox label={[`N° ${String(species.id).padStart(3, '0')}`, species.name]} comparing={897}/>
+        <OptionBox label={[`N° ${String(species.id).padStart(3, '0')}`, f.capitalize(species.name)]} comparing={897}/>
         <DataTable data={data} />
       </div>
     </InfoPage>

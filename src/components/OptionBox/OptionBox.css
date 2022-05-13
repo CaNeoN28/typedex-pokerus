@@ -1,7 +1,7 @@
 .optionBox{
   margin-top: 8px;
-  border-radius: 5px;
-  padding: 16px 25px;
+  border-radius: 8px;
+  padding: 16px 0px;
 
   color: #D67F75;
   border: 3px solid #D67F75;
@@ -13,9 +13,13 @@
   font-size: 36px;
 }
 
-.optionLabel{
-  justify-content: space-between;
-  display: flex;
+.optionBox > a {
+  margin: 0px 25px;
+}
 
-  width: 488px;
+.optionLabelGroup{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
 }

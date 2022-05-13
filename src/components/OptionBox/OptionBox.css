@@ -1,5 +1,6 @@
 .optionBox{
   margin-top: 8px;
+  margin-bottom: 32px;
   border-radius: 8px;
   padding: 16px 0px;
 
@@ -22,4 +23,8 @@
   align-items: center;
   width: 100%;
   justify-content: space-between;
+}
+
+.optionLabelGroup > span{
+  margin: auto;
 }

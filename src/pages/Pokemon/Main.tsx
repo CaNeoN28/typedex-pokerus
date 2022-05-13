@@ -10,15 +10,18 @@ import measuring from "common/utils/measuring";
 import TypeButton from "components/TypeButton";
 import Formatting from "common/utils/string";
 import OptionBox from "components/OptionBox";
+import { useEffect, useState } from "react";
 
 interface Props {
+  max_pokemon: number
   species: PokemonSpecies,
   forms: Pokemon[],
   form: number,
   setForm: React.Dispatch<React.SetStateAction<number>>
 }
 
-export default function MainInfo({ species, forms, form, setForm }: Props) {
+export default function MainInfo({ max_pokemon, species, forms, form, setForm }: Props) {
+
   const f = Formatting
 
   const currentForm = forms[form];
@@ -62,6 +65,10 @@ export default function MainInfo({ species, forms, form, setForm }: Props) {
       }
     ]
   }
+
+  useEffect(() => {
+
+  }, [])
 
   return (
     <InfoPage>

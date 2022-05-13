@@ -12,6 +12,12 @@ export default function PokemonPage() {
   const [species, setSpecies] = useState<PokemonSpecies>();
   const [form, setForm] = useState(0)
   const [forms, setForms] = useState<Pokemon[]>()
+  const [max_pokemon, setMaxPokemon] = useState(0)
+
+  useEffect(() => {
+    api.listPokemonSpecies(0, -1)
+      .then(res => setMaxPokemon(res.count))
+  })
 
   useEffect(() => {
     api.getPokemonSpeciesByName(id || '')
@@ -32,7 +38,7 @@ export default function PokemonPage() {
   if (species && forms)
     return (
       <Page>
-        <MainInfo species={species} forms={forms} form={form} setForm={setForm} />
+        <MainInfo max_pokemon={max_pokemon} species={species} forms={forms} form={form} setForm={setForm} />
       </Page>
     )
 

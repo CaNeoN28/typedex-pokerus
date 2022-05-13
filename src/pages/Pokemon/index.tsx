@@ -10,7 +10,7 @@ export default function PokemonPage() {
   const api = new PokemonClient();
 
   const [species, setSpecies] = useState<PokemonSpecies>();
-  const [form, setForm] = useState(0)
+  const [form, setForm] = useState(1)
   const [forms, setForms] = useState<Pokemon[]>()
 
   useEffect(() => {

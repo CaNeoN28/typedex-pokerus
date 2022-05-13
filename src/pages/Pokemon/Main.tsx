@@ -17,10 +17,12 @@ interface Props {
   species: PokemonSpecies,
   forms: Pokemon[],
   form: number,
+  id_copy: number
   setForm: React.Dispatch<React.SetStateAction<number>>
+  setIdCopy: React.Dispatch<React.SetStateAction<number>>
 }
 
-export default function MainInfo({ max_pokemon, species, forms, form, setForm }: Props) {
+export default function MainInfo({ max_pokemon, species, forms, form, id_copy, setForm, setIdCopy }: Props) {
 
   const f = Formatting
 
@@ -83,7 +85,12 @@ export default function MainInfo({ max_pokemon, species, forms, form, setForm }:
         />}
       </FormsCard>
       <div>
-        {/*</InfoPage>OptionBox label={[`N° ${String(species.id).padStart(3, '0')}`, f.capitalize(species.name)]} comparing={897}/>*/}
+        <OptionBox
+          type="species"
+          label={[`N° ${String(species.id).padStart(3, '0')}`, f.capitalize(species.name)]} 
+          comparing={max_pokemon} 
+          parameter={id_copy} 
+          setParameter={setIdCopy}/>
         <DataTable data={data} />
       </div>
     </InfoPage>

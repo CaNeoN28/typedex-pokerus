@@ -67,11 +67,7 @@ export default function MainInfo({ max_pokemon, species, forms, form, id_copy, s
       }
     ]
   }
-
-  useEffect(() => {
-
-  }, [])
-
+  
   return (
     <InfoPage>
       <FormsCard>

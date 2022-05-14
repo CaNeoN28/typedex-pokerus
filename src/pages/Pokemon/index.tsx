@@ -29,25 +29,27 @@ export default function PokemonPage() {
   useEffect(() => {
     species?.varieties.map(v => {
       api.getPokemonByName(v.pokemon.name)
-        .then(res => setForms(oldForms => oldForms && !oldForms.find(p => res.id == p.id) ? [...oldForms, res] : [res]))
+        .then(res => setForms(
+          oldForms => (oldForms && !oldForms.find(p => res.id == p.id) ? [...oldForms, res] : [res])
+            .filter(form => form.species.name === species.name)
+            .sort((a, b) => (a.id < b.id) ? -1 : 1))
+        )
     })
 
     species && setIdCopy(species?.id)
   }, [species])
-
+  
   useEffect(() => {
-    forms?.sort((a, b) => (a.id < b.id) ? -1: 1)
-  }, [forms])
-
-  useEffect(() => {
-    if (id_copy != species?.id && id_copy != 0)
+    setForm(0)
+    if (id_copy != species?.id && id_copy != 0) {
       navigate(`/pokemon/${id_copy}`)
+    }
   }, [id_copy])
 
   if (species && forms)
     return (
       <Page>
-        <MainInfo max_pokemon={max_pokemon} species={species} forms={forms} form={form} id_copy={id_copy} setForm={setForm} setIdCopy={setIdCopy}/>
+        <MainInfo max_pokemon={max_pokemon} species={species} forms={forms} form={form} id_copy={id_copy} setForm={setForm} setIdCopy={setIdCopy} />
       </Page>
     )
 

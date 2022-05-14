@@ -11,6 +11,7 @@ import TypeButton from "components/TypeButton";
 import Formatting from "common/utils/string";
 import OptionBox from "components/OptionBox";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 interface Props {
   max_pokemon: number
@@ -68,26 +69,24 @@ export default function MainInfo({ max_pokemon, species, forms, form, current_fo
       }
     ]
   }
+
+  const previous_pokemon = species.id === 1 ? `/pokemon/${max_pokemon}` : `/pokemon/${species.id - 1}`
+  const next_pokemon = species.id === max_pokemon ? `/pokemon/${1}` : `/pokemon/${species.id + 1}`
   
   return (
     <InfoPage>
       <FormsCard>
         <img src={img} alt={current_form.name} />
-        {forms.length > 1 && <OptionBox
-          type={'form'}
-          label={[f.formattingFormName(species.name, current_form.name)]}
-          comparing={forms.length - 1}
-          parameter={form}
-          setParameter={setForm}
-        />}
       </FormsCard>
       <div>
-        <OptionBox
-          type="species"
-          label={[`N° ${String(species.id).padStart(3, '0')}`, f.capitalize(species.name)]} 
-          comparing={max_pokemon} 
-          parameter={id_copy} 
-          setParameter={setIdCopy}/>
+        <OptionBox>
+          <Link to={previous_pokemon}><AiFillCaretLeft/></Link>
+          <div className="optionLabelGroup">
+            <span>N° {species.id}</span>
+            <span>{species.name}</span>
+          </div>
+          <Link to={next_pokemon}><AiFillCaretRight/></Link>
+        </OptionBox>
         <DataTable data={data} />
       </div>
     </InfoPage>

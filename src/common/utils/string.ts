@@ -44,8 +44,11 @@ function formattingEggGroup(eggGroup: string){
 function formattingSpeciesName(name: string){
   let f_name = capitalize(name)
 
-  f_name = f_name.replace('-f', '♀')
-  f_name = f_name.replace('-m', '♂')
+  if (f_name.endsWith('-f'))
+    f_name = f_name.replace('-f', '♀')
+    
+  if (f_name.endsWith('-m'))
+    f_name = f_name.replace('-m', '♂')
 
   return f_name
 }

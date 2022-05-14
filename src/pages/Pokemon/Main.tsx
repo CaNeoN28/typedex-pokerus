@@ -17,24 +17,25 @@ interface Props {
   species: PokemonSpecies,
   forms: Pokemon[],
   form: number,
+  current_form: Pokemon,
   id_copy: number
   setForm: React.Dispatch<React.SetStateAction<number>>
   setIdCopy: React.Dispatch<React.SetStateAction<number>>
 }
 
-export default function MainInfo({ max_pokemon, species, forms, form, id_copy, setForm, setIdCopy }: Props) {
+export default function MainInfo({ max_pokemon, species, forms, form, current_form,  id_copy, setForm, setIdCopy }: Props) {
 
   const f = Formatting
 
-  const currentForm = forms[form];
-  const img = currentForm.sprites.other["official-artwork"].front_default || missingNo
+  const defaultImg = forms[0].sprites.other["official-artwork"].front_default || ''
+  const img = current_form.sprites.other["official-artwork"].front_default || defaultImg
 
-  const actualHeight = currentForm.height / 10
-  const actualWeight = currentForm.weight / 10
+  const actualHeight = current_form.height / 10
+  const actualWeight = current_form.weight / 10
 
   const { feet, inches } = measuring.metersToFootAndInches(actualHeight)
 
-  const types = currentForm.types.map(t => (t.type.name))
+  const types = current_form.types.map(t => (t.type.name))
 
   const data = {
     title: species.genera.find(g => g.language.name == 'en')?.genus || '',
@@ -71,10 +72,10 @@ export default function MainInfo({ max_pokemon, species, forms, form, id_copy, s
   return (
     <InfoPage>
       <FormsCard>
-        <img src={img} alt={currentForm.name} />
+        <img src={img} alt={current_form.name} />
         {forms.length > 1 && <OptionBox
           type={'form'}
-          label={[f.formattingFormName(species.name, currentForm.name)]}
+          label={[f.formattingFormName(species.name, current_form.name)]}
           comparing={forms.length - 1}
           parameter={form}
           setParameter={setForm}

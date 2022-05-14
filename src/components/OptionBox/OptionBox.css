@@ -16,7 +16,8 @@
 
 .optionBox > a {
   margin: 0px 25px;
-  color: #D67F75
+  color: #D67F75;
+  display: flex;
 }
 
 .optionLabelGroup{
@@ -27,5 +28,5 @@
 }
 
 .optionLabelGroup > span{
-  margin: auto;
+  justify-content: space-between;
 }

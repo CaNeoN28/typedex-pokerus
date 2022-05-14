@@ -17,18 +17,13 @@ export default function PokemonPage() {
   const [max_pokemon, setMaxPokemon] = useState(0)
   const [id_copy, setIdCopy] = useState<number>(0)
 
-  useEffect(() => {
-    api.listPokemonSpecies(0, -1)
-      .then(res => setMaxPokemon(res.count))
-  })
-
-  useEffect(() => {
-    api.getPokemonSpeciesByName(id || '')
+  const getSpecies = async() => {
+    await api.getPokemonSpeciesByName(id || '')
       .then(res => setSpecies(res))
-  }, [id])
+  }
 
-  useEffect(() => {
-    species?.varieties.map(v => {
+  const getForms = async() => {
+    await species?.varieties.map(v => {
       api.getPokemonByName(v.pokemon.name)
         .then(res => setForms(
           oldForms => (oldForms && !oldForms.find(p => res.id == p.id) ? [...oldForms, res] : [res])
@@ -38,6 +33,19 @@ export default function PokemonPage() {
     })
 
     species && setIdCopy(species?.id)
+  }
+
+  useEffect(() => {
+    api.listPokemonSpecies(0, -1)
+      .then(res => setMaxPokemon(res.count))
+  })
+
+  useEffect(() => {
+    getSpecies()
+  }, [id])
+
+  useEffect(() => {
+    getForms()
   }, [species])
   
   useEffect(() => {
@@ -50,7 +58,7 @@ export default function PokemonPage() {
   useEffect(() => {
     if (forms)
       setCurrentForm(forms[form])
-  })
+  }, )
 
   if (species && forms && current_form)
     return (

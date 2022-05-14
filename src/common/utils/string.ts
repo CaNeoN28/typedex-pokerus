@@ -41,11 +41,21 @@ function formattingEggGroup(eggGroup: string){
   return (capitalize(eggGroup))
 }
 
+function formattingSpeciesName(name: string){
+  let f_name = capitalize(name)
+
+  f_name = f_name.replace('-f', '♀')
+  f_name = f_name.replace('-m', '♂')
+
+  return f_name
+}
+
 const Formatting = {
   capitalize,
   growthRate,
   formattingFormName,
-  formattingEggGroup
+  formattingEggGroup,
+  formattingSpeciesName
 }
 
 export default Formatting

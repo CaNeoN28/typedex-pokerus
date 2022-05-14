@@ -83,7 +83,7 @@ export default function MainInfo({ max_pokemon, species, forms, form, current_fo
           <Link to={previous_pokemon}><AiFillCaretLeft/></Link>
           <div className="optionLabelGroup">
             <span>N° {species.id}</span>
-            <span>{species.name}</span>
+            <span>{f.formattingSpeciesName(species.name)}</span>
           </div>
           <Link to={next_pokemon}><AiFillCaretRight/></Link>
         </OptionBox>

@@ -3,28 +3,20 @@ import FormsCard from "../../components/FormsCard";
 import { AiFillCaretLeft, AiFillCaretRight } from 'react-icons/ai'
 import InfoPage from "../../components/InfoPage";
 import DataTable from "../../components/DataTable";
-import TableData from "../../types/TableData";
-import { generateKey } from "crypto";
-import missingNo from "../../assets/images/missingNo.png";
 import measuring from "common/utils/measuring";
 import TypeButton from "components/TypeButton";
 import Formatting from "common/utils/string";
 import OptionBox from "components/OptionBox";
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 interface Props {
   max_pokemon: number
   species: PokemonSpecies,
   forms: Pokemon[],
-  form: number,
-  current_form: Pokemon,
-  id_copy: number
-  setForm: React.Dispatch<React.SetStateAction<number>>
-  setIdCopy: React.Dispatch<React.SetStateAction<number>>
+  current_form: Pokemon
 }
 
-export default function MainInfo({ max_pokemon, species, forms, form, current_form,  id_copy, setForm, setIdCopy }: Props) {
+export default function MainInfo({ max_pokemon, species, forms, current_form}: Props) {
 
   const f = Formatting
 

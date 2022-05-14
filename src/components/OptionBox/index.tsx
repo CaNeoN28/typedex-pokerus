@@ -1,4 +1,3 @@
-import { AiFillCaretLeft, AiFillCaretRight } from "react-icons/ai"
 import './OptionBox.css'
 
 // export default function OptionBox({type, label, comparing, parameter, setParameter} : Props){

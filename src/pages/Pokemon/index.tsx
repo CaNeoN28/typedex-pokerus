@@ -2,7 +2,6 @@ import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { PokemonClient, PokemonSpecies, Pokemon } from "pokenode-ts"
 import Page from "../../components/Page";
-import InfoPage from "../../components/InfoPage";
 import MainInfo from "./Main";
 
 export default function PokemonPage() {
@@ -63,7 +62,7 @@ export default function PokemonPage() {
   if (species && forms && current_form)
     return (
       <Page>
-        <MainInfo max_pokemon={max_pokemon} species={species} forms={forms} form={form} current_form={current_form} id_copy={id_copy} setForm={setForm} setIdCopy={setIdCopy} />
+        <MainInfo max_pokemon={max_pokemon} species={species} forms={forms} current_form={current_form}/>
       </Page>
     )
 

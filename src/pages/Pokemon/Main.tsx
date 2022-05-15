@@ -1,5 +1,4 @@
 import { Pokemon, PokemonSpecies } from "pokenode-ts";
-import FormsCard from "../../components/FormsCard";
 import { AiFillCaretLeft, AiFillCaretRight } from 'react-icons/ai'
 import InfoPage from "../../components/InfoPage";
 import DataTable from "../../components/DataTable";
@@ -67,9 +66,7 @@ export default function MainInfo({ max_pokemon, species, forms, current_form}: P
   
   return (
     <InfoPage>
-      <FormsCard>
-        <img src={img} alt={current_form.name} />
-      </FormsCard>
+      <img src={img} alt={current_form.name} />
       <div>
         <OptionBox>
           <Link to={previous_pokemon}><AiFillCaretLeft/></Link>

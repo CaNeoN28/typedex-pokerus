@@ -6,6 +6,11 @@
   display: flex;
 }
 
+.infoPage > img{
+  width: 450px;
+  height: 450px;
+}
+
 .red{
   background-color: #D67F75;
 }

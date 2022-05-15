@@ -1,0 +1,11 @@
+.navBar{
+  height: 48px;
+  background-color: #D67F75;
+  padding: 24px 48px;
+  vertical-align: center;
+}
+
+.navBar > svg{
+  width: 48px;
+  height: 48px;
+}

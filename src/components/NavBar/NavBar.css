@@ -3,9 +3,28 @@
   background-color: #D67F75;
   padding: 24px 48px;
   vertical-align: center;
+  display: flex;
 }
 
 .navBar > svg{
   width: 48px;
   height: 48px;
+}
+
+.navBarOptionList{
+  align-items: center;
+  display: flex;
+}
+
+.navBarOption{
+  list-style-type: none;
+  padding: 0px 20px;
+}
+
+.navBarOption > a{
+  font-size: 32px;
+  font-weight: bold;
+
+  text-decoration: none;
+  color: #EDF2F4;
 }

@@ -1,0 +1,11 @@
+.formsCard{
+  justify-content: space-between;
+}
+
+.formsCard > img {
+  width: 450px;
+}
+
+a{
+  height: 36px;
+}

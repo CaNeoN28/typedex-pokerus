@@ -1,0 +1,38 @@
+.dataTable{
+  border: 3px solid #D67F75;
+  background-color: #D67F75;
+  width: 660px;
+  color: #D67F75;
+
+  font-size: 36px;
+  border-radius: 10px;
+}
+
+.tableHeader{
+  color: #EDF2F4;
+
+  display: flex;
+  justify-content: space-around;
+  padding: 16px;
+}
+
+.tableBody{
+  width: 660px;
+  border-spacing: 32px 0px;
+  border-radius: 0px 0px 10px 10px;
+
+  background-color: #EDF2F4;
+}
+
+.tableRow{
+  height: 80px;
+}
+
+.rowKey{
+  text-align: left;
+  width: 190px;
+}
+
+.rowValue{
+  text-align: center;
+}

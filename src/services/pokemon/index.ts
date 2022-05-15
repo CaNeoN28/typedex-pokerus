@@ -6,5 +6,5 @@ async function getSpecies(id : String){
 }
 
 export const PokemonServices = {
-
+  getSpecies
 }

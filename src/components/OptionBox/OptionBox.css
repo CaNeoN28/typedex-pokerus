@@ -1,0 +1,32 @@
+.optionBox{
+  margin-top: 8px;
+  margin-bottom: 32px;
+  border-radius: 8px;
+  padding: 16px 0px;
+
+  color: #D67F75;
+  border: 3px solid #D67F75;
+
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+
+  font-size: 36px;
+}
+
+.optionBox > a {
+  margin: 0px 25px;
+  color: #D67F75;
+  display: flex;
+}
+
+.optionLabelGroup{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.optionLabelGroup > span{
+  justify-content: space-between;
+}

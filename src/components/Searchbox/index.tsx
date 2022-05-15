@@ -1,14 +1,27 @@
 import { useState } from "react";
 import './SearchBox.css'
-import {FaSearch} from 'react-icons/fa'
+import { FaSearch } from 'react-icons/fa'
 
-export default function SearchBox(){
-  const [search, setSearch] = useState();
+interface Props{
+  setSearch: React.Dispatch<React.SetStateAction<string>>
+}
 
-  return(
-    <div className="searchBox">
-      <input className="searchInput" type="text" placeholder="Pesquisar Pokémon"/>
-      <button className="searchButton"><FaSearch/></button>
-    </div>
+export default function SearchBox({setSearch}: Props) {
+  const [input, setInput] = useState('');
+
+  return (
+    <form className="searchBox" onSubmit={e => {
+      e.preventDefault()
+      setSearch(input)
+      setInput('')
+    }}>
+      <input 
+        className="searchInput" 
+        type="text" 
+        placeholder="Pesquisar Pokémon" 
+        value={input} 
+        onChange={e => setInput(e.target.value)}/>
+      <button className="searchButton"><FaSearch /></button>
+    </form>
   )
 }

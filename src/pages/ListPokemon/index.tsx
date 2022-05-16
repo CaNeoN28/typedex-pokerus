@@ -2,12 +2,11 @@ import Page from "components/Page";
 import SearchBox from "components/Searchbox";
 import { useEffect, useState } from "react";
 import { Pokemon, PokemonClient, PokemonSpecies } from 'pokenode-ts'
-import FormsCard from "components/FormsCard";
+import LoadButton from "components/LoadButton";
 
 export default function () {
   const api = new PokemonClient();
 
-  const [min, setMin] = useState(0)
   const [max, setMax] = useState(30)
 
   const [search, setSearch] = useState('')
@@ -21,7 +20,7 @@ export default function () {
   }
 
   const getSpeciesList = async () => {
-    await api.listPokemonSpecies(min, max)
+    await api.listPokemonSpecies(0, 10000)
       .then(res => res.results.map(r => {
         api.getPokemonSpeciesByName(r.name)
           .then(species => {
@@ -46,8 +45,9 @@ export default function () {
       <Page>
         <SearchBox setSearch={setSearch} />
         <ul>
-          {pokemon_list.map((species, index) => (<li key={index}>{species.name}</li>))}
+          {pokemon_list.map((species, index) => (index < max) && <li key={index}>{species.name}</li>)}
         </ul>
+        <LoadButton max={max} setMax={setMax} true_max={pokemon_list.length}/>
       </Page>
     )
 

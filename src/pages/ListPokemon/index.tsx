@@ -7,7 +7,7 @@ import LoadButton from "components/LoadButton";
 export default function () {
   const api = new PokemonClient();
 
-  const [max, setMax] = useState(30)
+  const [max, setMax] = useState(16)
 
   const [search, setSearch] = useState('')
   const [pokemon_list, setPokemonList] = useState<PokemonSpecies[]>()

@@ -13,6 +13,7 @@ export default function () {
   const [search, setSearch] = useState('')
   const [pokedex, setPokedex] = useState('national')
   const [pokemon_dict, setPokemonDict] = useState<NamedAPIResource[]>()
+  const [f_pokemon_dict, setPokemonDictFilters] = useState<NamedAPIResource[]>()
   const [pokemon_list, setPokemonList] = useState<Pokemon[]>()
 
   const validateIfHasPokemon = (oldList: PokemonSpecies[], species: PokemonSpecies) => {
@@ -31,13 +32,20 @@ export default function () {
     getPokemonDict()
   }, [])
 
+  useEffect(() => {
+    if (pokemon_dict)
+      setPokemonDictFilters(pokemon_dict.filter(
+        p => p.name.includes(search)
+      ))
+  })
+
     return (
       <Page>
         <SearchBox setSearch={setSearch} />
         <ul>
-          {pokemon_dict && pokemon_dict.map((p , index) => (index < max) && <li key={index}>{p.name}</li>)}
+          {f_pokemon_dict && f_pokemon_dict.map((p , index) => (index < max) && <li key={index}>{p.name}</li>)}
         </ul>
-        {pokemon_dict && <LoadButton max={max} setMax={setMax} true_max={pokemon_dict.length}/>}
+        {f_pokemon_dict && <LoadButton max={max} setMax={setMax} true_max={f_pokemon_dict.length}/>}
       </Page>
     )
 

@@ -14,7 +14,7 @@ export default function () {
   const [pokemon_dict, setPokemonDict] = useState<NamedAPIResource[]>()
   const [pokemon_list, setPokemonList] = useState<Pokemon[]>()
 
-  const validateIfHasPokemon = (oldList: PokemonSpecies[], species: PokemonSpecies) => {
+  const validateIfHasPokemon = (oldList: Pokemon[], species: Pokemon) => {
     if (!oldList.find(p => p.id === species.id))
       return [...oldList, species]
 
@@ -29,7 +29,7 @@ export default function () {
   const getPokemon = async () => {
     pokemon_dict && await pokemon_dict.map(p => (
       api.getPokemonByName(p.name)
-        .then(res => setPokemonList(old_list => old_list && !old_list.includes(res) ? [...old_list, res] : [res]))
+        .then(res => setPokemonList(old_list => old_list ? validateIfHasPokemon(old_list, res) : [res]))
     ))
   }
 

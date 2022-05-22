@@ -45,6 +45,7 @@ export default function () {
 
   useEffect(() => {
     getPokemon()
+    getFilteredPokemonDict()
   }, [pokemon_dict])
 
   useEffect(() => {

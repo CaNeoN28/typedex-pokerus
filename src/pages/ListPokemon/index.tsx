@@ -1,7 +1,7 @@
 import Page from "components/Page";
 import SearchBox from "components/Searchbox";
 import { useEffect, useState } from "react";
-import { Pokemon, PokemonClient, PokemonSpecies, Pokedex, NamedAPIResource } from 'pokenode-ts'
+import { NamedAPIResource, Pokemon, PokemonClient, PokemonSpecies } from 'pokenode-ts';
 import LoadButton from "components/LoadButton";
 
 export default function () {
@@ -11,12 +11,11 @@ export default function () {
   const [max, setMax] = useState(min)
 
   const [search, setSearch] = useState('')
-  const [pokedex, setPokedex] = useState('national')
   const [pokemon_dict, setPokemonDict] = useState<NamedAPIResource[]>()
-  const [f_pokemon_dict, setPokemonDictFilters] = useState<NamedAPIResource[]>()
+  const [f_pokemon_dict, setFilteredPokemonDict] = useState<NamedAPIResource[]>()
   const [pokemon_list, setPokemonList] = useState<Pokemon[]>()
 
-  const validateIfHasPokemon = (oldList: PokemonSpecies[], species: PokemonSpecies) => {
+  const validateIfHasPokemon = (oldList: Pokemon[], species: Pokemon) => {
     if (!oldList.find(p => p.id === species.id))
       return [...oldList, species]
 
@@ -24,8 +23,20 @@ export default function () {
   }
 
   const getPokemonDict = async () => {
-    api.listPokemons(0, 10000)
-      .then(res => setPokemonDict(res.results))
+    await api.listPokemons(0, 10000)
+      .then(pokemon => setPokemonDict(pokemon.results))
+  }
+
+  const getPokemon = async () => {
+    pokemon_dict && await pokemon_dict.map(p => (
+      api.getPokemonByName(p.name)
+        .then(res => setPokemonList(old_list => old_list ? validateIfHasPokemon(old_list, res) : [res]))
+    ))
+  }
+
+  const getFilteredPokemonDict = () => {
+    if (pokemon_dict)
+      setFilteredPokemonDict(pokemon_dict.filter(p => p.name.startsWith(search)))
   }
 
   useEffect(() => {
@@ -33,23 +44,20 @@ export default function () {
   }, [])
 
   useEffect(() => {
-    if (pokemon_dict)
-      setPokemonDictFilters(pokemon_dict.filter(
-        p => p.name.includes(search)
-      ))
-  })
+    getPokemon()
+  }, [pokemon_dict])
 
-    return (
-      <Page>
-        <SearchBox setSearch={setSearch} />
-        <ul>
-          {f_pokemon_dict && f_pokemon_dict.map((p , index) => (index < max) && <li key={index}>{p.name}</li>)}
-        </ul>
-        {f_pokemon_dict && <LoadButton max={max} setMax={setMax} true_max={f_pokemon_dict.length}/>}
-      </Page>
-    )
+  useEffect(() => {
+    getFilteredPokemonDict()
+  }, [search])
 
   return (
-    <></>
+    <Page>
+      <SearchBox setSearch={setSearch} />
+      <ul>
+        {f_pokemon_dict && f_pokemon_dict.map((pokemon, index) => (index < max) && <li key={index}>{pokemon.name}</li>)}
+      </ul>
+      {pokemon_list && <LoadButton max={max} setMax={setMax} true_max={pokemon_list.length}/>}
+    </Page>
   )
 }

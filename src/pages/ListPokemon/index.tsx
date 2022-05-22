@@ -1,7 +1,7 @@
 import Page from "components/Page";
 import SearchBox from "components/Searchbox";
 import { useEffect, useState } from "react";
-import { NamedAPIResource, Pokemon, PokemonClient, PokemonSpecies } from 'pokenode-ts'
+import { NamedAPIResource, Pokemon, PokemonClient, PokemonSpecies } from 'pokenode-ts';
 import LoadButton from "components/LoadButton";
 
 export default function () {
@@ -12,6 +12,7 @@ export default function () {
 
   const [search, setSearch] = useState('')
   const [pokemon_dict, setPokemonDict] = useState<NamedAPIResource[]>()
+  const [f_pokemon_dict, setFilteredPokemonDict] = useState<NamedAPIResource[]>()
   const [pokemon_list, setPokemonList] = useState<Pokemon[]>()
 
   const validateIfHasPokemon = (oldList: Pokemon[], species: Pokemon) => {
@@ -33,19 +34,29 @@ export default function () {
     ))
   }
 
+  const getFilteredPokemonDict = () => {
+    if (pokemon_dict)
+      setFilteredPokemonDict(pokemon_dict.filter(p => p.name.startsWith(search)))
+  }
+
   useEffect(() => {
     getPokemonDict()
   }, [])
 
   useEffect(() => {
     getPokemon()
+    getFilteredPokemonDict()
   }, [pokemon_dict])
+
+  useEffect(() => {
+    getFilteredPokemonDict()
+  }, [search])
 
   return (
     <Page>
       <SearchBox setSearch={setSearch} />
       <ul>
-        {pokemon_list && pokemon_list.map((species, index) => (index < max) && <li key={index}>{species.name}</li>)}
+        {f_pokemon_dict && f_pokemon_dict.map((pokemon, index) => (index < max) && <li key={index}>{pokemon.name}</li>)}
       </ul>
       {pokemon_list && <LoadButton max={max} setMax={setMax} true_max={pokemon_list.length}/>}
     </Page>

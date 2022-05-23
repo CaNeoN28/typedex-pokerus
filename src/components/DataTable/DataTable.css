@@ -26,6 +26,7 @@
 
 .tableRow{
   height: 80px;
+  justify-content: space-around;
 }
 
 .rowKey{

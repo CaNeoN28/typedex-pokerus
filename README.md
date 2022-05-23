@@ -1,4 +1,24 @@
-# Getting Started with Create React App
+# Bem vindo à Typedex: Pokérus
+
+Typedex é uma pokédex criada em React com Typescript, utilizando a pokéapi o pacote Pokenode-ts, que serve como wrapper para a API. O projeto foi desenvolvido com principal foco em aprendizado, priorizando a criação de uma aplicação própria.
+
+Pokérus ou Pokémon Virus é um microorganismo inofensivo que infecta unicamente os pokémon. Uma vez infectado, o pokémon que contrai o virus tem seu processo de treinamento acelerado, permanecendo assim mesmo depois da cura.
+
+## Use o comando <b>npm start</b> para iniciar o ambiente de desenvolvimento
+
+Ao iniciar, a primeira tela que você irá encontrar é a de listagem de pokémon, onde é possível pesquisar pelo pokémon desejado ou rolar a tela para baixo até encontrar um de seu interesse.
+
+<img src='src/assets/preview/lista01.jpg'/>
+
+Após escolher o seu pokémon, basta clicar em seu card e você será redirecionado para a sua página, que contém algumas de suas informações.
+
+<img src='src/assets/preview/pokemon01.jpg'/>
+
+O projeto ainda está em desenvolvimento e com o tempo, mais opções e informações serão adicionadas.
+
+## Obrigado por visitar o projeto, tenha um bom dia!
+
+<!-- # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -43,4 +63,4 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+To learn React, check out the [React documentation](https://reactjs.org/). -->

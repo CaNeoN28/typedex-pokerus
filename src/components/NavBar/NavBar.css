@@ -1,14 +1,13 @@
 .navBar{
-  height: 48px;
   background-color: #D67F75;
-  padding: 24px 48px;
-  vertical-align: center;
+  padding: 0px 20px;
+  align-items: center;
   display: flex;
 }
 
 .navBar > svg{
-  width: 48px;
-  height: 48px;
+  width: 32px;
+  height: 32px;
 }
 
 .navBarOptionList{
@@ -22,7 +21,7 @@
 }
 
 .navBarOption > a{
-  font-size: 32px;
+  font-size: 24px;
   font-weight: bold;
 
   text-decoration: none;

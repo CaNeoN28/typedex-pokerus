@@ -3,6 +3,8 @@ import SearchBox from "components/Searchbox";
 import { useEffect, useState } from "react";
 import { NamedAPIResource, Pokemon, PokemonClient, PokemonSpecies } from 'pokenode-ts';
 import LoadButton from "components/LoadButton";
+import PokemonCard from "components/PokemonCard";
+import PokemonGrid from "components/PokemonGrid";
 
 export default function () {
   const api = new PokemonClient();
@@ -79,9 +81,9 @@ export default function () {
   return (
     <Page>
       <SearchBox setSearch={setSearch} />
-      <ul>
-        {pokemon_list && pokemon_list.map((p, index) => <li key={index}>{p.name}</li>)}
-      </ul>
+      <PokemonGrid>
+        {pokemon_list && pokemon_list.map((p, index) => <PokemonCard key={index} pokemon={p}/>)}
+      </PokemonGrid>
       {next_list && next_list.length > 0 && <LoadButton max={max} setMax={setMax} />}
     </Page>
   )

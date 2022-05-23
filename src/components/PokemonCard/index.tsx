@@ -3,7 +3,7 @@ import './PokemonCard.css'
 import missingNo from 'assets/images/missingNo.png'
 import Formatting from "common/utils/string";
 import TypeButton from "components/TypeButton";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 interface Props {
   pokemon: Pokemon
@@ -21,14 +21,16 @@ export default function PokemonCard({ pokemon }: Props) {
 
   return (
     <div className="cardSpace">
-      <div className="cardMain" onClick={() => navigate(`pokemon/${species_name}`)}>
-        <div className="cardImage">
-          <img src={img} alt={species_name} />
-        </div>
-        <span className="cardCaption">
-          <a>N° {number}</a>
-          <a>{name}</a>
-        </span>
+      <div className="cardMain">
+        <Link to={`pokemon/${species_name}`}>
+          <div className="cardImage">
+            <img src={img} alt={species_name} />
+          </div>
+          <span className="cardCaption">
+            <a>N° {number}</a>
+            <a>{name}</a>
+          </span>
+        </Link>
       </div>
 
       <div className="cardTypes">

@@ -12,6 +12,10 @@
   cursor: pointer;
 }
 
+.cardMain > a {
+  text-decoration: none;
+}
+
 .cardImage{
   background-color: #E7ECEE;
 

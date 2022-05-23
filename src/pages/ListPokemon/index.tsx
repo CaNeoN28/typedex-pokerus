@@ -37,7 +37,7 @@ export default function () {
 
   const getPokemonDict = async () => {
     await api.listPokemons(0, 10000)
-      .then(res => setPokemonDict(res.results.filter(item => item.name.startsWith(search))))
+      .then(res => setPokemonDict(res.results.filter(item => item.name.includes(search))))
   }
 
   const getFirstList = async () => {

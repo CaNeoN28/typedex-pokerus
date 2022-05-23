@@ -38,6 +38,7 @@ export default function () {
   }
 
   useEffect(() => {
+    setPokemonList([])
     getPokemonDict()
   }, [search])
 

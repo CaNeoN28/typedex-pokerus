@@ -8,6 +8,10 @@
   border-radius: 10px;
 }
 
+.cardMain :hover{
+  cursor: pointer;
+}
+
 .cardImage{
   background-color: #E7ECEE;
 

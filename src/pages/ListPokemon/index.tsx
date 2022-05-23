@@ -29,7 +29,8 @@ export default function () {
     res: Pokemon
   ) => {
     setList(oldList => (oldList ? validateIfHasPokemon(oldList, res) : [res])
-      .sort((a, b) => a.id < b.id ? -1 : 1))
+      .sort((a, b) => a.id < b.id ? -1 : 1)
+        .filter(a => a.is_default))
   }
 
   const getPokemonDict = async () => {
@@ -51,7 +52,6 @@ export default function () {
   }
 
   const getNextList = async () => {
-    console.log(next_list)
     setNextList([])
 
     pokemon_list && pokemon_dict && await pokemon_dict.map((p, index) => {

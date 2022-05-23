@@ -32,7 +32,8 @@ export default function () {
 
     pokemon_dict && await pokemon_dict.map((p, index) => {
       index < max && api.getPokemonByName(p.name)
-        .then(res => setPokemonList(oldList => oldList ? validateIfHasPokemon(oldList, res) : [res]))
+        .then(res => setPokemonList(oldList => (oldList ? validateIfHasPokemon(oldList, res) : [res])
+          .sort((a, b) => a.id < b.id ? -1: 1)))
     })
   }
 
@@ -43,10 +44,6 @@ export default function () {
   useEffect(() => {
     getPokemonList()
   }, [pokemon_dict, max])
-
-  useEffect(() => {
-    pokemon_list && pokemon_list.sort((a, b) => a.id < b.id ? -1: 1)
-  })
 
   return (
     <Page>

@@ -53,7 +53,7 @@ export default function MainInfo({ max_pokemon, species, forms, current_form}: P
         ]
       }, {
         label: "Egg groups",
-        values: species.egg_groups.map((e, index) => species.egg_groups.length > 1 && index == 0 ? <a>{f.formattingEggGroup(e.name)}, </a> : <a>{f.formattingEggGroup(e.name)}</a>)
+        values: species.egg_groups.map(e => <a>{f.formattingEggGroup(e.name)}</a>)
       }, {
         label: "Growth rate",
         values: [f.growthRate(species.growth_rate.name)]

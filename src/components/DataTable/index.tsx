@@ -16,9 +16,11 @@ export default function DataTable({ data }: Props) {
             <tr key={index} className="tableRow">
               <td className="rowKey">{row.label}:</td>
               <td className="rowValue">
-                {row.values.map((value, index) => (
-                  <span key={index}>{value}</span>
-                ))}
+                <div className="contentCell">
+                  {row.values.map((value, index) => (
+                    value
+                  ))}
+                </div>
               </td>
             </tr>
           ))}

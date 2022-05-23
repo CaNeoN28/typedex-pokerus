@@ -38,3 +38,8 @@
   text-align: center;
   font-size: 30px;
 }
+
+.contentCell{
+  display: flex;
+  justify-content: space-around;
+}

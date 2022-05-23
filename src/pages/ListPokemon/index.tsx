@@ -17,11 +17,19 @@ export default function () {
   const [pokemon_list, setPokemonList] = useState<Pokemon[]>()
   const [next_list, setNextList] = useState<Pokemon[]>()
 
-  const validateIfHasPokemon = (oldList : Pokemon[], res : Pokemon) => {
+  const validateIfHasPokemon = (oldList: Pokemon[], res: Pokemon) => {
     if (!oldList.find(p => p.id === res.id))
       return [...oldList, res]
-    
+
     return [...oldList]
+  }
+
+  const preparePokemonList = (
+    setList: React.Dispatch<React.SetStateAction<Pokemon[] | undefined>>,
+    res: Pokemon
+  ) => {
+    setList(oldList => (oldList ? validateIfHasPokemon(oldList, res) : [res])
+      .sort((a, b) => a.id < b.id ? -1 : 1))
   }
 
   const getPokemonDict = async () => {
@@ -36,11 +44,9 @@ export default function () {
 
     pokemon_dict && await pokemon_dict.map((p, index) => {
       index < max ? api.getPokemonByName(p.name)
-        .then(res => setPokemonList(oldList => (oldList ? validateIfHasPokemon(oldList, res) : [res])
-          .sort((a, b) => a.id < b.id ? -1: 1))):
-      index < max + min && api.getPokemonByName(p.name)
-        .then(res => setNextList(oldList => (oldList ? validateIfHasPokemon(oldList, res) : [res])
-          .sort((a, b) => a.id < b.id ? -1: 1)))
+        .then(res => preparePokemonList(setPokemonList, res)) :
+        index < max + min && api.getPokemonByName(p.name)
+          .then(res => preparePokemonList(setNextList, res))
     })
   }
 
@@ -50,8 +56,7 @@ export default function () {
 
     pokemon_list && pokemon_dict && await pokemon_dict.map((p, index) => {
       index >= max && index < max + min && api.getPokemonByName(p.name)
-        .then(res => setNextList(oldList => (oldList ? validateIfHasPokemon(oldList, res) : [res])
-          .sort((a, b) => a.id < b.id ? -1 : 1)))
+        .then(res => preparePokemonList(setNextList, res))
     })
   }
 
@@ -64,10 +69,10 @@ export default function () {
   }, [pokemon_dict])
 
   useEffect(() => {
-    if (next_list && pokemon_list){
+    if (next_list && pokemon_list) {
       setPokemonList([...pokemon_list, ...next_list])
     }
-    
+
     getNextList()
   }, [max])
 
@@ -77,7 +82,7 @@ export default function () {
       <ul>
         {pokemon_list && pokemon_list.map((p, index) => <li key={index}>{p.name}</li>)}
       </ul>
-      {next_list && next_list.length > 0 && <LoadButton max={max} setMax={setMax}/>}
+      {next_list && next_list.length > 0 && <LoadButton max={max} setMax={setMax} />}
     </Page>
   )
 }

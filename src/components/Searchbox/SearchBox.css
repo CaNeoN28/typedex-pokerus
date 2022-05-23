@@ -1,27 +1,26 @@
 .searchBox{
-  height: 76px;
-  width: 640px;
+  height: 48px;
   margin: auto;
   margin-top: 40px;
   margin-bottom: 40px;
 
   display: flex;
-  align-self: center;
-
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  justify-content: center;
 }
 
 .searchInput{
-  font-size: 32px;
+  font-size: 18px;
   padding-left: 16px;
   width: 530px;
 }
 
 .searchButton{
-  width: 100px;
-  font-size: 32px;
-  padding: 20px;
+  width: 64px;
+  font-size: 20px;
+
+  display: flex;
   align-items: center;
+  justify-content: center;
 
   color: #EDF2F4;
   background-color: #D67F75;

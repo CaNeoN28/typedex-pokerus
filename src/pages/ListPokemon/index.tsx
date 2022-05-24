@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { NamedAPIResource, Pokemon, PokemonClient, PokemonSpecies } from 'pokenode-ts';
 import LoadButton from "components/LoadButton";
 import PokemonCard from "components/PokemonCard";
-import PokemonGrid from "components/PokemonGrid";
+import PokemonGrid from "./PokemonGrid";
 import SearchBox from "./Searchbox";
 import "./ListPokemon.scss"
 

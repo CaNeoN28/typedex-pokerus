@@ -9,7 +9,7 @@ interface Props{
 
 export default function PokemonGrid({pokemon_list} : Props){
   return(
-    <div className="pokemonGrid">
+    <div className="pokemon-grid">
       {pokemon_list.map(pokemon => <PokemonCard key={pokemon.id} pokemon={pokemon}/>)}
     </div>
   )

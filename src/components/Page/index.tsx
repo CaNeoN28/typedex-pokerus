@@ -1,5 +1,5 @@
 import React from 'react'
-import './Page.css'
+import './Page.scss'
 
 export default function Page({children} : {children?: React.ReactNode}){
   return(

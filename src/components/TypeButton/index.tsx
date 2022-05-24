@@ -1,6 +1,6 @@
 import Formatting from "common/utils/string"
 import { PokemonType, Types } from "pokenode-ts"
-import './TypeButton.css'
+import './TypeButton.scss'
 
 interface Props{
   type: string
@@ -10,7 +10,7 @@ export default function TypeButton({type} : Props){
 
   return(
     <button className={className}>
-      <a className="buttonText">{Formatting.capitalize(type)}</a>
+      <a className="typeButton__text">{Formatting.capitalize(type)}</a>
     </button>
   )
 }

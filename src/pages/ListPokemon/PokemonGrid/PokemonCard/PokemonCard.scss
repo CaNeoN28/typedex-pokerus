@@ -1,0 +1,50 @@
+@import "theme";
+
+.cardSpace {
+  margin: 40px 80px;
+  width: 250px;
+
+  &__cardMain {
+    background-color: $red;
+    border-radius: 10px;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    &__cardImage {
+      background-color: $dark-gray;
+
+      border-radius: 8px;
+      height: 250px;
+
+      img {
+        width: 250px;
+      }
+    }
+
+    &__cardCaption {
+      justify-content: space-between;
+      text-align: center;
+      display: flex;
+
+      padding: 12px;
+      font-size: 16px;
+
+      color: $gray;
+
+      font-weight: 600;
+    }
+  }
+
+  &__cardTypes {
+    display: flex;
+    justify-content: space-around;
+
+    margin: 16px 0px;
+  }
+}

@@ -1,10 +1,16 @@
+import { Pokemon } from "pokenode-ts";
 import React from "react";
+import PokemonCard from "./PokemonCard";
 import './PokemonGrid.scss'
 
-export default function PokemonGrid({children} : {children? : React.ReactNode}){
+interface Props{
+  pokemon_list : Pokemon[]
+}
+
+export default function PokemonGrid({pokemon_list} : Props){
   return(
     <div className="pokemonGrid">
-        {children}
+      {pokemon_list.map(pokemon => <PokemonCard pokemon={pokemon}/>)}
     </div>
   )
 }

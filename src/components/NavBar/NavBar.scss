@@ -1,31 +1,75 @@
 @import "styles/theme";
+@import "styles/sizes";
 
-.navBar{
+.navBar {
   background-color: $red;
-  padding: 0px 20px;
+  color: $gray;
+
   align-items: center;
   display: flex;
 
-  svg{
+  @media (max-width: $lg) {
+    justify-content: space-between;
+    flex-direction: row-reverse;
+  }
+
+  svg {
     width: 32px;
     height: 32px;
+    margin: 16px
   }
+}
 
-  &__optionList{
-    align-items: center;
-    display: flex;
+.dropdown {
+  position: relative;
+  display: inline-block;
 
-    &__option{
-      list-style-type: none;
-      padding: 0px 20px;
+  .optionList {
+    @media (max-width : $lg) {
+      display: none;
+      position: absolute;
+      background-color: $light-gray;
+      min-width: 200px;
+      box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.2);
+      z-index: 1;
 
       a{
-        font-size: 24px;
-        font-weight: bold;
-      
-        text-decoration: none;
-        color: $gray;
+        color: $red;
+        display: block;
       }
     }
+
+    @media (min-width : $lg) {
+      display: flex;
+      justify-content: space-between;
+
+      a{
+        color: $gray
+      }
+    }
+
+    a {
+      font-size: 24px;
+      margin: 8px 16px;
+      font-weight: 600;
+      text-decoration: none;
+    }
   }
+}
+
+.dropbutton {
+  align-items: center;
+
+  @media (max-width: $lg) {
+    display: flex;
+    color: $gray;
+  }
+
+  @media (min-width: $lg) {
+    display: none;
+  }
+}
+
+.dropdown:hover .optionList {
+  display: block;
 }

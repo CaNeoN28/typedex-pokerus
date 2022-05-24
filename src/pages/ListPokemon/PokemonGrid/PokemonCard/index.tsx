@@ -25,16 +25,16 @@ export default function PokemonCard({ pokemon }: Props) {
           <div className="cardSpace__cardMain__cardImage">
             <img src={img} alt={species_name} />
           </div>
-          <span className="cardSpace__cardMain__cardCaption">
-            <a>N° {number}</a>
-            <a>{name}</a>
-          </span>
+          <div className="cardSpace__cardMain__cardCaption">
+            <span>N° {number}</span>
+            <span>{name}</span>
+          </div>
         </Link>
       </div>
 
       <div className="cardSpace__cardTypes">
-        {types.map(type => (
-          <TypeButton type={type.type.name} />
+        {types.map((type, index) => (
+          <TypeButton key={index} type={type.type.name} />
         ))}
       </div>
     </div>

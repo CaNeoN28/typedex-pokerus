@@ -18,7 +18,7 @@ export default function DataTable({ data }: Props) {
               <td className="dataTable__body__row__value">
                 <div className="dataTable__body__row__value__cell">
                   {row.values.map((value, index) => (
-                    value
+                    <span key={index}>{value}</span>
                   ))}
                 </div>
               </td>

@@ -82,7 +82,9 @@ export default function () {
     <Page>
       <SearchBox setSearch={setSearch} />
       <PokemonGrid>
-        {pokemon_list && pokemon_list.map((p, index) => <PokemonCard key={index} pokemon={p}/>)}
+        {pokemon_list && pokemon_list.length > 0 ? 
+          pokemon_list.map((p, index) => <PokemonCard key={index} pokemon={p}/>) : 
+          "Não há pokémons referentes à busca"}
       </PokemonGrid>
       {next_list && next_list.length > 0 && <LoadButton max={max} setMax={setMax} />}
     </Page>

@@ -1,7 +1,7 @@
 import Page from "components/Page";
 import { useEffect, useState } from "react";
 import { NamedAPIResource, Pokemon, PokemonClient, PokemonSpecies } from 'pokenode-ts';
-import LoadButton from "components/LoadButton";
+import LoadButton from "./LoadButton";
 import PokemonGrid from "./PokemonGrid";
 import SearchBox from "./Searchbox";
 import "./ListPokemon.scss"

@@ -1,5 +1,5 @@
 import React from 'react'
-import './InfoPage.css'
+import './InfoPage.scss'
 
 interface Props{
   children? : React.ReactNode,

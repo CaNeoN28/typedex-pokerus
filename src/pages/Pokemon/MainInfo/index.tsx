@@ -1,12 +1,10 @@
 import { Pokemon, PokemonSpecies } from "pokenode-ts";
-import { AiFillCaretLeft, AiFillCaretRight } from 'react-icons/ai'
-import InfoPage from "../../components/InfoPage";
-import DataTable from "../../components/DataTable";
-import measuring from "common/utils/measuring";
+import InfoPage from "components/InfoPage";
+import DataTable from "components/DataTable";
 import TypeButton from "components/TypeButton";
 import Formatting from "common/utils/string";
-import OptionBox from "components/OptionBox";
-import { Link } from "react-router-dom";
+import measuring from "common/utils/measuring";
+import OptionBox from "./OptionBox";
 
 interface Props {
   max_pokemon: number
@@ -68,14 +66,7 @@ export default function MainInfo({ max_pokemon, species, forms, current_form}: P
     <InfoPage>
       <img src={img} alt={current_form.name} />
       <div>
-        <OptionBox>
-          <Link to={previous_pokemon}><AiFillCaretLeft/></Link>
-          <div className="optionLabelGroup">
-            <span>N° {String(species.id).padStart(3, '0')}</span>
-            <span>{f.formattingSpeciesName(species.name)}</span>
-          </div>
-          <Link to={next_pokemon}><AiFillCaretRight/></Link>
-        </OptionBox>
+        <OptionBox previous_pokemon={previous_pokemon} next_pokemon={next_pokemon} species={species}/>
         <DataTable data={data} />
       </div>
     </InfoPage>

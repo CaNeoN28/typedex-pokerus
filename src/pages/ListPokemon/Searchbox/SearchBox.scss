@@ -13,8 +13,7 @@
   }
 
   @media (max-width: $lg){
-    margin-left: $border-small;
-    margin-right: $border-small;
+    margin: $border-small 0px;
   }
 
   &__searchInput{

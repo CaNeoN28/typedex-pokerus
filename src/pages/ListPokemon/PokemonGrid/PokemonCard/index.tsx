@@ -12,6 +12,22 @@ interface Props {
 export default function PokemonCard({ pokemon }: Props) {
   const navigate = useNavigate()
 
+  const [w_width, setWWitdth] = useState(
+    window.innerWidth
+  )
+
+  const detectWidth = () => {
+    setWWitdth(window.innerWidth)
+  }
+
+  useEffect(() => {
+    window.addEventListener('resize', detectWidth)
+
+    return (() => {
+      window.addEventListener('resize', detectWidth)
+    })
+  }, [w_width])
+
   const img = pokemon.sprites.other["official-artwork"].front_default || ""
   const number = String(pokemon.id).padStart(3, '0')
   const species_name = pokemon.species.name
@@ -32,7 +48,7 @@ export default function PokemonCard({ pokemon }: Props) {
             <span>{name}</span>
           </Link>
 
-          {window.innerWidth < 640 && <div className="card-types">
+          {w_width < 640 && <div className="card-types">
             {types.map((type, index) => (
               <TypeButton key={index} type={type.type.name} />
             ))}
@@ -40,7 +56,7 @@ export default function PokemonCard({ pokemon }: Props) {
         </div>
       </div>
 
-      {window.innerWidth > 640 && <div className="card-types">
+      {w_width > 640 && <div className="card-types">
         {types.map((type, index) => (
           <TypeButton key={index} type={type.type.name} />
         ))}

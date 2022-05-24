@@ -1,5 +1,7 @@
+@import "theme";
+
 body{
-  background-color: #EDF2F4;
+  background-color: $gray;
   margin: 0px;
   font-family: "Open Sans", sans-serif;
 }

@@ -1,0 +1,70 @@
+@import 'theme';
+
+.typeButton{
+  width: 110px;
+  padding: 8px;
+
+  border-radius: 8px;
+  border: none;
+
+  &__text{
+    color: white;
+    text-shadow: 0px 0px 2px black;
+    font-size: 16px;
+  }
+}
+
+.normal{
+  background-color: $normal;
+}
+.fire{
+  background-color: $fire;
+}
+.fighting{
+  background-color: $fighting;
+}
+.water{
+  background-color: $water;
+}
+.flying{
+  background-color: $flying;
+}
+.grass{
+  background-color: $grass;
+}
+.poison{
+  background-color: $poison;
+}
+.electric{
+  background-color: $electric;
+}
+.ground{
+  background-color: $ground;
+}
+.psychic{
+  background-color: $psychic;
+}
+.rock{
+  background-color: $rock;
+}
+.ice{
+  background-color: $ice;
+}
+.bug{
+  background-color: $bug;
+}
+.dragon{
+  background-color: $dragon;
+}
+.ghost{
+  background-color: $ghost;
+}
+.dark{
+  background-color: $dark;
+}
+.steel{
+  background-color: $steel;
+}
+.fairy{
+  background-color: $fairy;
+}

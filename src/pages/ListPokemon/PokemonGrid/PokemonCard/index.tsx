@@ -1,6 +1,5 @@
 import { Pokemon, PokemonClient } from "pokenode-ts";
-import './PokemonCard.css'
-import missingNo from 'assets/images/missingNo.png'
+import './PokemonCard.scss'
 import Formatting from "common/utils/string";
 import TypeButton from "components/TypeButton";
 import { Link, useNavigate } from "react-router-dom";
@@ -21,19 +20,19 @@ export default function PokemonCard({ pokemon }: Props) {
 
   return (
     <div className="cardSpace">
-      <div className="cardMain">
+      <div className="cardSpace__cardMain">
         <Link to={`pokemon/${species_name}`}>
-          <div className="cardImage">
+          <div className="cardSpace__cardMain__cardImage">
             <img src={img} alt={species_name} />
           </div>
-          <span className="cardCaption">
+          <span className="cardSpace__cardMain__cardCaption">
             <a>N° {number}</a>
             <a>{name}</a>
           </span>
         </Link>
       </div>
 
-      <div className="cardTypes">
+      <div className="cardSpace__cardTypes">
         {types.map(type => (
           <TypeButton type={type.type.name} />
         ))}

@@ -1,10 +1,10 @@
 import Page from "components/Page";
-import SearchBox from "components/Searchbox";
 import { useEffect, useState } from "react";
 import { NamedAPIResource, Pokemon, PokemonClient, PokemonSpecies } from 'pokenode-ts';
-import LoadButton from "components/LoadButton";
-import PokemonCard from "components/PokemonCard";
-import PokemonGrid from "components/PokemonGrid";
+import LoadButton from "./LoadButton";
+import PokemonGrid from "./PokemonGrid";
+import SearchBox from "./Searchbox";
+import "./ListPokemon.scss"
 
 export default function () {
   const api = new PokemonClient();
@@ -32,7 +32,7 @@ export default function () {
   ) => {
     setList(oldList => (oldList ? validateIfHasPokemon(oldList, res) : [res])
       .sort((a, b) => a.id < b.id ? -1 : 1)
-        .filter(a => a.is_default))
+      .filter(a => a.is_default))
   }
 
   const getPokemonDict = async () => {
@@ -81,11 +81,8 @@ export default function () {
   return (
     <Page>
       <SearchBox setSearch={setSearch} />
-      <PokemonGrid>
-        {pokemon_list && pokemon_list.length > 0 ? 
-          pokemon_list.map((p, index) => <PokemonCard key={index} pokemon={p}/>) : 
-          "Não há pokémons referentes à busca"}
-      </PokemonGrid>
+      {pokemon_list && pokemon_list.length > 0 ? <PokemonGrid pokemon_list={pokemon_list}/> :
+       "Não há pokémon referentes à sua pesquisa"}
       {next_list && next_list.length > 0 && <LoadButton max={max} setMax={setMax} />}
     </Page>
   )

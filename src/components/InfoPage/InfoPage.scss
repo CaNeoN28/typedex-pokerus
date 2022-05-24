@@ -1,0 +1,18 @@
+@import "theme";
+
+.infoPage {
+  padding: 100px;
+
+  justify-content: space-evenly;
+  align-items: center;
+  display: flex;
+
+  img {
+    width: 450px;
+    height: 450px;
+  }
+}
+
+.red {
+  background-color: $red;
+}

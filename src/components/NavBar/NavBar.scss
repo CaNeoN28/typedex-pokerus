@@ -1,0 +1,31 @@
+@import 'theme';
+
+.navBar{
+  background-color: $red;
+  padding: 0px 20px;
+  align-items: center;
+  display: flex;
+
+  svg{
+    width: 32px;
+    height: 32px;
+  }
+
+  &__optionList{
+    align-items: center;
+    display: flex;
+
+    &__option{
+      list-style-type: none;
+      padding: 0px 20px;
+
+      a{
+        font-size: 24px;
+        font-weight: bold;
+      
+        text-decoration: none;
+        color: $gray;
+      }
+    }
+  }
+}

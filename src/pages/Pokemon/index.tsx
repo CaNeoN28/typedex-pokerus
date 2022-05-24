@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
-import { useNavigate, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { PokemonClient, PokemonSpecies, Pokemon } from "pokenode-ts"
 import Page from "../../components/Page";
-import MainInfo from "./Main";
+import MainInfo from "./MainInfo";
 
 export default function PokemonPage() {
   const { id } = useParams();
@@ -45,7 +45,7 @@ export default function PokemonPage() {
   }, [species])
 
   useEffect(() => {
-    if (forms){
+    if (forms) {
       forms.sort((a, b) => a.id < b.id ? -1 : 1)
       setCurrentForm(forms[0])
     }
@@ -54,7 +54,12 @@ export default function PokemonPage() {
   if (species && forms && current_form)
     return (
       <Page>
-        <MainInfo max_pokemon={max_pokemon} species={species} forms={forms} current_form={current_form} />
+        <MainInfo
+          max_pokemon={max_pokemon}
+          species={species}
+          forms={forms}
+          current_form={current_form}
+        />
       </Page>
     )
 

@@ -1,4 +1,4 @@
-import './LoadButton.css'
+import './LoadButton.scss'
 
 interface Props {
   max: number,
@@ -11,7 +11,6 @@ export default function LoadButton({ max, setMax }: Props) {
   return (
     <div className="buttonSpace">
       <button
-        className='loadButton'
         onClick={() => {
           setMax(max + 16)
         }}>

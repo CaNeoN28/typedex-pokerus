@@ -1,5 +1,5 @@
 import { useState } from "react";
-import './SearchBox.css'
+import './SearchBox.scss'
 import { FaSearch } from 'react-icons/fa'
 
 interface Props {
@@ -17,12 +17,12 @@ export default function SearchBox({ setSearch }: Props) {
     }}>
       <span className="searchBox">
         <input
-          className="searchInput"
+          className="searchBox__searchInput"
           type="text"
           placeholder="Search pokémon"
           value={input}
           onChange={e => setInput(e.target.value)} />
-        <button className="searchButton"><FaSearch /></button>
+        <button className="searchBox__searchButton"><FaSearch /></button>
       </span>
     </form>
   )

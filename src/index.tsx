@@ -1,3 +1,4 @@
+import Page from 'components/Page';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import AppRouter from './routes';
@@ -7,6 +8,8 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <AppRouter/>
+    <Page>
+      <AppRouter/>
+    </Page>
   </React.StrictMode>
 );

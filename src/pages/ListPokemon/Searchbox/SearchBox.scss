@@ -1,27 +1,37 @@
 @import "styles/theme";
+@import "styles/sizes";
+@import "styles/spacing";
 
 .searchBox{
-  height: 48px;
-  margin-bottom: 40px;
-
+  height: $box-small;
+  margin: $border-small auto;
   display: flex;
   justify-content: center;
 
+  @media (min-width: $lg){
+    width: 600px;
+  }
+
+  @media (max-width: $lg){
+    margin-left: $border-small;
+    margin-right: $border-small;
+  }
+
   &__searchInput{
-    font-size: 18px;
+    font-size: $font-medium;
     padding-left: 16px;
-    width: 546px;
+    width: 100%;
   }
 
   &__searchButton{
     width: 64px;
-    font-size: 20px;
+    font-size: $font-medium;
   
     display: flex;
     align-items: center;
     justify-content: center;
   
-    color: #EDF2F4;
+    color: $gray;
     background-color: $red;
     border: 1px solid $darker-red;
 
@@ -30,7 +40,7 @@
     }
 
     &:active{
-      box-shadow: inset 0px 1px 1px 1px rgba(0, 0, 0, 0.25)
+      box-shadow: $inner-shadow;
     }
   }
 }

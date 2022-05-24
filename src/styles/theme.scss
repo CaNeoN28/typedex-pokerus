@@ -23,3 +23,9 @@ $ghost: #705898;
 $dark: #705848;
 $steel: #B8B8D0;
 $fairy: #EE99AC;
+
+$shadow: rgba(0,0,0,0.2);
+
+$box-shadow: 2px 2px 2px 2px $shadow;
+$bottom-shadow: 0px 2px 2px 0px $shadow;
+$inner-shadow: inset 0px 1px 1px 0px $shadow;

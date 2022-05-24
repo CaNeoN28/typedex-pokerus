@@ -10,12 +10,11 @@ export default function SearchBox({ setSearch }: Props) {
   const [input, setInput] = useState('');
 
   return (
-    <form onSubmit={e => {
+    <form className="searchBox" onSubmit={e => {
       e.preventDefault()
       setSearch(input.toLowerCase())
       setInput('')
     }}>
-      <span className="searchBox">
         <input
           className="searchBox__searchInput"
           type="text"
@@ -23,7 +22,6 @@ export default function SearchBox({ setSearch }: Props) {
           value={input}
           onChange={e => setInput(e.target.value)} />
         <button className="searchBox__searchButton"><FaSearch /></button>
-      </span>
     </form>
   )
 }

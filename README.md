@@ -2,7 +2,7 @@
 
 Typedex é uma pokédex criada em React com Typescript, utilizando a pokéapi o pacote Pokenode-ts, que serve como wrapper para a API. O projeto foi desenvolvido com principal foco em aprendizado, priorizando a criação de uma aplicação própria.
 
-Pokérus ou Pokémon Virus é um microorganismo inofensivo que infecta unicamente os pokémon. Uma vez infectado, o pokémon que contrai o virus tem seu processo de treinamento acelerado, permanecendo assim mesmo depois da cura.
+Pokérus ou Pokémon Virus é um microorganismo inofensivo que infecta somente os pokémon. Uma vez infectado, o pokémon que contrai o virus tem seu processo de treinamento acelerado, permanecendo assim mesmo depois da cura.
 
 ## Use o comando <b>npm start</b> para iniciar o ambiente de desenvolvimento
 

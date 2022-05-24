@@ -3,6 +3,7 @@ import './PokemonCard.scss'
 import Formatting from "common/utils/string";
 import TypeButton from "components/TypeButton";
 import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 interface Props {
   pokemon: Pokemon
@@ -19,24 +20,31 @@ export default function PokemonCard({ pokemon }: Props) {
   const types = pokemon.types
 
   return (
-    <div className="cardSpace">
-      <div className="cardSpace__cardMain">
-        <Link to={`pokemon/${species_name}`}>
-          <div className="cardSpace__cardMain__cardImage">
-            <img src={img} alt={species_name} />
-          </div>
-          <div className="cardSpace__cardMain__cardCaption">
+    <div className="card-main">
+      <div className="card-space">
+        <Link className="card-image" to={`pokemon/${species_name}`}>
+          <img src={img} alt={species_name} />
+        </Link>
+
+        <div className="card-info">
+          <Link className="card-caption" to={`pokemon/${species_name}`}>
             <span>N° {number}</span>
             <span>{name}</span>
-          </div>
-        </Link>
+          </Link>
+
+          {window.innerWidth < 640 && <div className="card-types">
+            {types.map((type, index) => (
+              <TypeButton key={index} type={type.type.name} />
+            ))}
+          </div>}
+        </div>
       </div>
 
-      <div className="cardSpace__cardTypes">
+      {window.innerWidth > 640 && <div className="card-types">
         {types.map((type, index) => (
           <TypeButton key={index} type={type.type.name} />
         ))}
-      </div>
+      </div>}
     </div>
   )
 }

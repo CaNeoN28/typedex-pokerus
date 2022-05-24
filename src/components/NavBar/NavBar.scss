@@ -55,18 +55,18 @@
       text-decoration: none;
     }
   }
-}
 
-.dropbutton {
-  align-items: center;
-
-  @media (max-width: $lg) {
-    display: flex;
-    color: $gray;
-  }
-
-  @media (min-width: $lg) {
-    display: none;
+  .dropbutton {
+    align-items: center;
+  
+    @media (max-width: $lg) {
+      display: flex;
+      color: $gray;
+    }
+  
+    @media (min-width: $lg) {
+      display: none;
+    }
   }
 }
 

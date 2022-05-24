@@ -1,0 +1,47 @@
+@import 'theme';
+
+.dataTable{
+  border: 3px solid $red;
+  background-color: $red;
+  width: 660px;
+  color: $red;
+
+  font-size: 32px;
+  border-radius: 10px;
+
+  &__header{
+    color: $gray;
+  
+    display: flex;
+    justify-content: space-around;
+    padding: 16px;
+  }
+
+  &__body{
+    width: 660px;
+    border-spacing: 32px 0px;
+    border-radius: 0px 0px 10px 10px;
+  
+    background-color: $gray;
+    
+    &__row{
+      height: 80px;
+      justify-content: space-around;
+  
+      &__key{
+        text-align: left;
+        width: 190px;
+      }
+  
+      &__value{
+        text-align: center;
+        font-size: 30px;
+  
+        &__cell{
+          display: flex;
+          justify-content: space-evenly;
+        }
+      }
+    }
+  }
+}

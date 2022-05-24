@@ -1,6 +1,6 @@
 import React from "react";
 import TableData from "../../types/TableData";
-import "./DataTable.css"
+import "./DataTable.scss"
 
 interface Props {
   data: TableData
@@ -9,14 +9,14 @@ interface Props {
 export default function DataTable({ data }: Props) {
   return (
     <div className="dataTable">
-      <div className="tableHeader">{data.title}</div>
-      <table className="tableBody">
+      <div className="dataTable__header">{data.title}</div>
+      <table className="dataTable__body">
         <tbody>
           {data.rows.map((row, index) => (
-            <tr key={index} className="tableRow">
-              <td className="rowKey">{row.label}:</td>
-              <td className="rowValue">
-                <div className="contentCell">
+            <tr key={index} className="dataTable__body__row">
+              <td className="dataTable__body__row__key">{row.label}:</td>
+              <td className="dataTable__body__row__value">
+                <div className="dataTable__body__row__value__cell">
                   {row.values.map((value, index) => (
                     value
                   ))}

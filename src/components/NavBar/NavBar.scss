@@ -14,9 +14,17 @@
   }
 
   svg {
-    width: 32px;
-    height: 32px;
-    margin: 16px
+    margin: 16px;
+
+    @media (max-width: $lg){
+      width: 24px;
+      height: 24px;
+    }
+
+    @media (min-width: $lg) {
+      width: 36px;
+      height: 36px;
+    }
   }
 }
 
@@ -30,7 +38,7 @@
       position: absolute;
       background-color: $light-gray;
       min-width: 200px;
-      box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.2);
+      box-shadow: $box-shadow;
       z-index: 1;
 
       a{

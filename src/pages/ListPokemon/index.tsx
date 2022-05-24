@@ -80,11 +80,10 @@ export default function () {
 
   return (
     <Page>
-      <main className="listPage">
-        <SearchBox setSearch={setSearch} />
-        {pokemon_list && pokemon_list.length > 0 ? <PokemonGrid pokemon_list={pokemon_list}/> : "Não há pokémon referentes à sua busca"}
-        {next_list && next_list.length > 0 && <LoadButton max={max} setMax={setMax} />}
-      </main>
+      <SearchBox setSearch={setSearch} />
+      {pokemon_list && pokemon_list.length > 0 ? <PokemonGrid pokemon_list={pokemon_list}/> :
+       "Não há pokémon referentes à sua pesquisa"}
+      {next_list && next_list.length > 0 && <LoadButton max={max} setMax={setMax} />}
     </Page>
   )
 }

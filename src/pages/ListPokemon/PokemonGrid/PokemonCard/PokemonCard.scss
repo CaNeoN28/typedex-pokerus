@@ -15,7 +15,7 @@
     }
 
     @media (min-width: $med) {
-      border-radius: 10px;
+      border-radius: $border-radius-outer;
       background-color: $red;
     }
 
@@ -72,7 +72,7 @@
 
 // .card-main {
 //   background-color: $red;
-//   border-radius: 10px;
+//   border-radius: $border-radius-outer;
 
 //   a {
 //     text-decoration: none;

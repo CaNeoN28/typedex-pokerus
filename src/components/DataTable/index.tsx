@@ -8,15 +8,15 @@ interface Props {
 
 export default function DataTable({ data }: Props) {
   return (
-    <div className="dataTable">
-      <div className="dataTable__header">{data.title}</div>
-      <table className="dataTable__body">
+    <div className="data-table">
+      <div className="header">{data.title}</div>
+      <table className="body">
         <tbody>
           {data.rows.map((row, index) => (
-            <tr key={index} className="dataTable__body__row">
-              <td className="dataTable__body__row__key">{row.label}:</td>
-              <td className="dataTable__body__row__value">
-                <div className="dataTable__body__row__value__cell">
+            <tr key={index}>
+              <td className="row-key">{row.label}:</td>
+              <td>
+                <div className="row-value-cell">
                   {row.values.map((value, index) => (
                     <span key={index}>{value}</span>
                   ))}

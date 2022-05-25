@@ -64,7 +64,9 @@ export default function MainInfo({ max_pokemon, species, forms, current_form}: P
   
   return (
     <InfoPage>
-      <img src={img} alt={current_form.name} />
+      <div className="image">
+        <img src={img} alt={current_form.name} />
+      </div>
       <div>
         <OptionBox previous_pokemon={previous_pokemon} next_pokemon={next_pokemon} species={species}/>
         <DataTable data={data} />

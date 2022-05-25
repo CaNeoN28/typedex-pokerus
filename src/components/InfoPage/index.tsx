@@ -7,7 +7,7 @@ interface Props{
 }
 export default function InfoPage({children, red} : Props) {
   
-  const className =`infoPage${red ? ' red' : ''}`
+  const className =`info-page${red ? ' red' : ''}`
   return(
     <div className = {className}>
       {children}

@@ -1,15 +1,43 @@
 @import "styles/theme";
+@import "styles/sizes";
+@import "styles/spacing";
 
-.infoPage {
-  padding: 100px;
-
-  justify-content: space-evenly;
+.info-page {
+  padding: $border-large $border-medium;
+  justify-content: center;
   align-items: center;
-  display: flex;
 
-  img {
-    width: 450px;
-    height: 450px;
+  @media (min-width: $lg){
+    display: grid;   
+    grid-template-columns: 30% 30%;
+    gap: 20%;
+
+    .image {
+      img{
+        width: 100%;
+      }
+    }
+  }
+
+  @media (max-width : $lg) {
+    .image{
+      display: flex;
+      width: 100%;
+
+      img{
+        width: 80%;
+        margin: auto;
+      }
+
+      @media (min-width: $med) {
+        width: 60%;
+        margin: auto;
+
+        img{
+          width: 100%;
+        }
+      }
+    }
   }
 }
 

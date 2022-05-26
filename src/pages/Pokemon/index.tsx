@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom"
 import { PokemonClient, PokemonSpecies, Pokemon } from "pokenode-ts"
 import Page from "../../components/Page";
 import MainInfo from "./MainInfo";
+import OtherInfo from "./OtherInfo";
 
 export default function PokemonPage() {
   const { id } = useParams();
@@ -65,6 +66,7 @@ export default function PokemonPage() {
           forms={forms}
           current_form={current_form}
         />
+        <OtherInfo/>
       </Page>
     )
 

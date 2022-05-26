@@ -1,31 +1,83 @@
-@import 'theme';
+@import "styles/theme";
+@import "styles/sizes";
 
-.navBar{
+.navBar {
   background-color: $red;
-  padding: 0px 20px;
+  color: $gray;
+
   align-items: center;
   display: flex;
 
-  svg{
-    width: 32px;
-    height: 32px;
+  @media (max-width: $lg) {
+    justify-content: space-between;
+    flex-direction: row-reverse;
   }
 
-  &__optionList{
-    align-items: center;
-    display: flex;
+  svg {
+    margin: 16px;
 
-    &__option{
-      list-style-type: none;
-      padding: 0px 20px;
+    @media (max-width: $lg){
+      width: 24px;
+      height: 24px;
+    }
 
-      a{
-        font-size: 24px;
-        font-weight: bold;
-      
-        text-decoration: none;
-        color: $gray;
-      }
+    @media (min-width: $lg) {
+      width: 36px;
+      height: 36px;
     }
   }
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+
+  .optionList {
+    @media (max-width : $lg) {
+      display: none;
+      position: absolute;
+      background-color: $light-gray;
+      min-width: 200px;
+      box-shadow: $box-shadow;
+      z-index: 1;
+
+      a{
+        color: $red;
+        display: block;
+      }
+    }
+
+    @media (min-width : $lg) {
+      display: flex;
+      justify-content: space-between;
+
+      a{
+        color: $gray
+      }
+    }
+
+    a {
+      font-size: 24px;
+      margin: 8px 16px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+  }
+
+  .dropbutton {
+    align-items: center;
+  
+    @media (max-width: $lg) {
+      display: flex;
+      color: $gray;
+    }
+  
+    @media (min-width: $lg) {
+      display: none;
+    }
+  }
+}
+
+.dropdown:hover .optionList {
+  display: block;
 }

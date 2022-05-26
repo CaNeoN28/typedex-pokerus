@@ -1,50 +1,123 @@
-@import "theme";
+@import "styles/theme";
+@import "styles/spacing";
+@import "styles/sizes";
 
-.cardSpace {
-  margin: 40px 80px;
-  width: 250px;
-
-  &__cardMain {
-    background-color: $red;
+.card-main {
+  @media(max-width: $med){
     border-radius: 10px;
+    background-color: $red;
+  }
 
-    &:hover {
-      cursor: pointer;
+  .card-space {
+    @media (max-width: $med) {
+      display: grid;
+      grid-template-columns: 30% 70%;
     }
 
-    a {
-      text-decoration: none;
+    @media (min-width: $med) {
+      border-radius: $border-radius-outer;
+      background-color: $red;
     }
 
-    &__cardImage {
-      background-color: $dark-gray;
-
+    .card-image {
+      background: $dark-gray;
+      display: flex;
+      
       border-radius: 8px;
-      height: 250px;
 
       img {
-        width: 250px;
+        width: 100%;
       }
     }
 
-    &__cardCaption {
-      justify-content: space-between;
-      text-align: center;
-      display: flex;
+    .card-info {
+      @media (max-width: $med) {
+        display: grid;
+        grid-template-rows: auto;
+        align-items: center;
+      }
 
-      padding: 12px;
-      font-size: 16px;
+      .card-caption {
+        text-decoration: none;
+        color: $gray;
+        font-size: $font-medium;
 
-      color: $gray;
-
-      font-weight: 600;
+        display: flex;
+        justify-content: space-between;
+        
+        @media (max-width: $med){
+          padding: 0px $border-small;
+        }
+        
+        @media (min-width: $med){
+          padding: 8px $border-small;
+        }
+        
+        @media (max-width: $lg){
+          font-size: $font-small;
+        }
+      }
     }
   }
 
-  &__cardTypes {
+  .card-types {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
 
-    margin: 16px 0px;
+    @media (min-width: $med){
+      margin-top: $border-extra-small;
+    }
+
+    .type-button {
+      width: 40%;
+    }
   }
 }
+
+// .card-main {
+//   background-color: $red;
+//   border-radius: $border-radius-outer;
+
+//   a {
+//     text-decoration: none;
+
+//     @media (max-width: $med) {
+//       display: grid;
+//       grid-template-columns: 30% 60%;
+//     }
+//   }
+
+//   .card-image {
+//     background-color: $dark-gray;
+//     display: flex;
+
+//     border-radius: 8px;
+//     height: 250px;
+
+//     img {
+//       @media (max-width: $med) {
+//         width: 100%;
+//       }
+//     }
+//   }
+
+//   .card-caption {
+//     justify-content: space-between;
+//     text-align: center;
+//     display: flex;
+
+//     padding: 12px;
+//     font-size: 16px;
+
+//     color: $gray;
+
+//     font-weight: 600;
+//   }
+// }
+
+// .card-types {
+//   display: flex;
+//   justify-content: space-around;
+
+//   margin: 16px 0px;
+// }

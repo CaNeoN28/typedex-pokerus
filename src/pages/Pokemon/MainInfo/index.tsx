@@ -39,14 +39,12 @@ export default function MainInfo({ max_pokemon, species, forms, current_form}: P
         label: "Height",
         values: [
           `${feet}'${String(inches).padStart(2, '0')}"`,
-          ' | ',
           `${actualHeight.toFixed(1)}m`
         ]
       }, {
         label: "Weight",
         values: [
           `${measuring.kgToLbs(actualWeight).toFixed(1)}lbs`,
-          ' | ',
           `${(actualWeight).toFixed(1)}kg`
         ]
       }, {
@@ -64,8 +62,10 @@ export default function MainInfo({ max_pokemon, species, forms, current_form}: P
   
   return (
     <InfoPage>
-      <img src={img} alt={current_form.name} />
-      <div>
+      <div className="image">
+        <img src={img} alt={current_form.name} />
+      </div>
+      <div className="info">
         <OptionBox previous_pokemon={previous_pokemon} next_pokemon={next_pokemon} species={species}/>
         <DataTable data={data} />
       </div>

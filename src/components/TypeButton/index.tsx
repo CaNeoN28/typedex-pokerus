@@ -6,11 +6,11 @@ interface Props{
   type: string
 }
 export default function TypeButton({type} : Props){
-  const className = `typeButton ${type}`
+  const className = `type-button ${type}`
 
   return(
     <button className={className}>
-      <a className="typeButton__text">{Formatting.capitalize(type)}</a>
+      <a className="text">{Formatting.capitalize(type)}</a>
     </button>
   )
 }

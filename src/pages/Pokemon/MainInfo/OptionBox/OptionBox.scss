@@ -1,34 +1,37 @@
-@import "theme";
+@import "styles/theme";
+@import "styles/spacing";
+@import "styles/sizes";
 
-.optionBox{
-  margin-top: 8px;
-  margin-bottom: 32px;
-  border-radius: 8px;
-  padding: 16px 0px;
+.option-box {
+  width: 100%;
+  padding: $border-small 0px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
   color: $red;
   border: 3px solid $red;
+  border-radius: 8px;
 
-  justify-content: space-between;
-  align-items: center;
-  display: flex;
+  font-size: $font-medium;
 
-  font-size: 36px;
+  a {
+    @media (min-width: $xs) {
+      margin: 0px $border-small;
+    }
 
-  a{
-    margin: 0px 25px;
+    @media (max-width: $xs) {
+      margin: 0px $border-extra-small;
+    }
+
     color: $red;
     display: flex;
   }
 
-  &__labelGroup{
+  .label-group {
     display: flex;
-    align-items: center;
     width: 100%;
     justify-content: space-between;
-
-    span{
-      justify-content: space-between;
-    }
   }
 }

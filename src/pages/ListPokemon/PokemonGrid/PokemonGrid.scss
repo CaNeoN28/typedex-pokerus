@@ -1,5 +1,30 @@
-.pokemonGrid{
+@import "styles/spacing";
+@import "styles/sizes";
+
+.pokemon-grid{
   display: grid;
-  grid-template-columns: auto auto auto auto;
-  justify-content: center;
+  align-content: center;
+
+  gap: $border-medium;
+
+  @media (max-width: $med) {
+    grid-template-rows: auto;
+    margin: $border-medium 0px;
+  };
+
+  @media (min-width: $med){
+    grid-template-columns: 200px 200px;
+    justify-content: center;
+    
+    margin: $border-medium 200px;
+    gap: $border-large;
+
+    @media (min-width: $lg) {
+      grid-template-columns: 225px 225px 225px;
+
+      @media (min-width: $xl) {
+        grid-template-columns: 250px 250px 250px 250px;
+      }
+    }
+  }
 }

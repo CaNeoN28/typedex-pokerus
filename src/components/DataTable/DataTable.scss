@@ -1,47 +1,97 @@
-@import 'theme';
+@import "styles/theme";
+@import "styles/spacing";
+@import "styles/sizes";
 
-.dataTable{
+.data-table {
+  width: 100%;
+
   border: 3px solid $red;
   background-color: $red;
-  width: 660px;
   color: $red;
+  border-radius: $border-radius-outer;
 
-  font-size: 32px;
-  border-radius: 10px;
+  font-size: $font-medium;
 
-  &__header{
+  .header {
     color: $gray;
-  
-    display: flex;
-    justify-content: space-around;
-    padding: 16px;
+    text-align: center;
+    padding: $border-small;
   }
 
-  &__body{
-    width: 660px;
-    border-spacing: 32px 0px;
-    border-radius: 0px 0px 10px 10px;
-  
-    background-color: $gray;
-    
-    &__row{
-      height: 80px;
-      justify-content: space-around;
-  
-      &__key{
-        text-align: left;
-        width: 190px;
+  .body {
+    width: 100%;
+    background: $gray;
+    border-spacing: $border-small;
+    border-radius: 0px 0px $border-radius-outer $border-radius-outer;
+
+    .row-key {
+      width: 30%;
+
+      @media (max-width: $sm) {
+        width: 50%;
       }
-  
-      &__value{
-        text-align: center;
-        font-size: 30px;
-  
-        &__cell{
-          display: flex;
-          justify-content: space-evenly;
-        }
+    }
+
+    .row-value-cell {
+      display: grid;
+      gap: 10%;
+      justify-content: center;
+      text-align: center;
+
+      @media (min-width: $med) {
+        display: flex;
+        justify-content: space-evenly;
+      }
+
+      .type-button {
+        width: 90px;
       }
     }
   }
 }
+
+// .dataTable{
+//   border: 3px solid $red;
+//   background-color: $red;
+//   width: 660px;
+//   color: $red;
+
+//   font-size: 32px;
+//   border-radius: $border-radius-outer;
+
+//   &__header{
+//     color: $gray;
+
+//     display: flex;
+//     justify-content: space-around;
+//     padding: 16px;
+//   }
+
+//   &__body{
+//     width: 660px;
+//     border-spacing: 32px 0px;
+//     border-radius: 0px 0px $border-radius-outer $border-radius-outer;
+
+//     background-color: $gray;
+
+//     &__row{
+//       height: 80px;
+//       justify-content: space-around;
+
+//       &__key{
+//         text-align: left;
+//         width: 190px;
+//       }
+
+//       &__value{
+//         text-align: center;
+//         font-size: 30px;
+
+//         &__cell{
+//           display: flex;
+//           justify-content: space-evenly;
+//         }
+//       }
+//     }
+//   }
+// }

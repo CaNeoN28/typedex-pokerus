@@ -3,6 +3,7 @@ import './PokemonCard.scss'
 import Formatting from "common/utils/string";
 import TypeButton from "components/TypeButton";
 import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 interface Props {
   pokemon: Pokemon
@@ -10,6 +11,22 @@ interface Props {
 
 export default function PokemonCard({ pokemon }: Props) {
   const navigate = useNavigate()
+
+  const [w_width, setWWitdth] = useState(
+    window.innerWidth
+  )
+
+  const detectWidth = () => {
+    setWWitdth(window.innerWidth)
+  }
+
+  useEffect(() => {
+    window.addEventListener('resize', detectWidth)
+
+    return (() => {
+      window.addEventListener('resize', detectWidth)
+    })
+  }, [w_width])
 
   const img = pokemon.sprites.other["official-artwork"].front_default || ""
   const number = String(pokemon.id).padStart(3, '0')
@@ -19,24 +36,31 @@ export default function PokemonCard({ pokemon }: Props) {
   const types = pokemon.types
 
   return (
-    <div className="cardSpace">
-      <div className="cardSpace__cardMain">
-        <Link to={`pokemon/${species_name}`}>
-          <div className="cardSpace__cardMain__cardImage">
-            <img src={img} alt={species_name} />
-          </div>
-          <div className="cardSpace__cardMain__cardCaption">
+    <div className="card-main">
+      <div className="card-space">
+        <Link className="card-image" to={`pokemon/${species_name}`}>
+          <img src={img} alt={species_name} />
+        </Link>
+
+        <div className="card-info">
+          <Link className="card-caption" to={`pokemon/${species_name}`}>
             <span>N° {number}</span>
             <span>{name}</span>
-          </div>
-        </Link>
+          </Link>
+
+          {w_width < 640 && <div className="card-types">
+            {types.map((type, index) => (
+              <TypeButton key={index} type={type.type.name} />
+            ))}
+          </div>}
+        </div>
       </div>
 
-      <div className="cardSpace__cardTypes">
+      {w_width > 640 && <div className="card-types">
         {types.map((type, index) => (
           <TypeButton key={index} type={type.type.name} />
         ))}
-      </div>
+      </div>}
     </div>
   )
 }

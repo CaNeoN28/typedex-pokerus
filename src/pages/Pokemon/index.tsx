@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import { PokemonClient, PokemonSpecies, Pokemon } from "pokenode-ts"
 import Page from "../../components/Page";
 import MainInfo from "./MainInfo";
 
 export default function PokemonPage() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const api = new PokemonClient();
 
   const [species, setSpecies] = useState<PokemonSpecies>();
@@ -42,6 +43,10 @@ export default function PokemonPage() {
 
   useEffect(() => {
     getForms()
+
+    if (id && !isNaN(Number(id)) && species)
+      navigate(`/pokemon/${species.name}`)
+
   }, [species])
 
   useEffect(() => {

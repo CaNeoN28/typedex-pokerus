@@ -84,7 +84,7 @@ export default function () {
         <SearchBox setSearch={setSearch} />
         {pokemon_list && pokemon_list.length > 0 ? <PokemonGrid pokemon_list={pokemon_list} /> :
           "Não há pokémon referentes à sua pesquisa"}
-        {next_list && next_list.length > 0 && <LoadButton max={max} setMax={setMax} />}
+        {next_list && next_list.length > 0 && <LoadButton min={min} max={max} setMax={setMax} />}
       </main>
     </Page>
   )

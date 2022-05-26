@@ -7,24 +7,30 @@
   justify-content: center;
   align-items: center;
 
-  @media (min-width: $lg){
-    display: grid;   
-    grid-template-columns: 30% 30%;
+  @media (min-width: $lg) {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 30% 48%;
     gap: 20%;
 
-    .image {
-      img{
-        width: 100%;
+    @media (min-width: $xl) {
+      display: grid;
+      grid-template-columns: 30% 35%;
+
+      .image {
+        img {
+          width: 100%;
+        }
       }
     }
   }
 
   @media (max-width : $lg) {
-    .image{
+    .image {
       display: flex;
       width: 100%;
 
-      img{
+      img {
         width: 80%;
         margin: auto;
       }
@@ -33,7 +39,7 @@
         width: 60%;
         margin: auto;
 
-        img{
+        img {
           width: 100%;
         }
       }

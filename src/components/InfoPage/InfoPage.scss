@@ -3,9 +3,16 @@
 @import "styles/spacing";
 
 .info-page {
-  padding: $border-large $border-medium;
   justify-content: center;
   align-items: center;
+
+  @media (min-width: $xs) {
+    padding: $border-large $border-medium;
+  }
+
+  @media (max-width: $xs) {
+    padding: $border-medium $border-small;
+  }
 
   .info{
     display: grid;

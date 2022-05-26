@@ -1,7 +1,8 @@
 @import "styles/theme";
 @import "styles/spacing";
+@import "styles/sizes";
 
-.option-box{
+.option-box {
   width: 100%;
   padding: $border-small 0px;
 
@@ -12,16 +13,23 @@
   color: $red;
   border: 3px solid $red;
   border-radius: 8px;
-  
+
   font-size: $font-medium;
 
-  a{
-    margin: 0px $border-small;
+  a {
+    @media (min-width: $xs) {
+      margin: 0px $border-small;
+    }
+
+    @media (max-width: $xs) {
+      margin: 0px $border-extra-small;
+    }
+
     color: $red;
     display: flex;
   }
 
-  .label-group{
+  .label-group {
     display: flex;
     width: 100%;
     justify-content: space-between;

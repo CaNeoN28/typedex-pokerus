@@ -7,10 +7,11 @@ interface Props {
 }
 
 export default function DataTable({ data }: Props) {
+
   return (
     <div className="data-table">
-      <div className="header">{data.title}</div>
-      <table className="body">
+      {data.title && <div className="header">{data.title}</div>}
+      <table className={`body${!data.title ? ' no-title': ''}`}>
         <tbody>
           {data.rows.map((row, index) => (
             <tr key={index}>

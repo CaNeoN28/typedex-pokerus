@@ -9,7 +9,7 @@ import "./ListPokemon.scss"
 export default function () {
   const api = new PokemonClient();
 
-  const min = 16
+  const min = 12
   const [max, setMax] = useState(min)
 
   const [search, setSearch] = useState('')
@@ -53,10 +53,10 @@ export default function () {
     })
   }
 
-  const getNextList = async () => {
+  const getNextList = () => {
     setNextList([])
 
-    pokemon_list && pokemon_dict && await pokemon_dict.map((p, index) => {
+    pokemon_list && pokemon_dict && pokemon_dict.map((p, index) => {
       index >= max && index < max + min && api.getPokemonByName(p.name)
         .then(res => preparePokemonList(setNextList, res))
     })
@@ -84,7 +84,7 @@ export default function () {
         <SearchBox setSearch={setSearch} />
         {pokemon_list && pokemon_list.length > 0 ? <PokemonGrid pokemon_list={pokemon_list} /> :
           "Não há pokémon referentes à sua pesquisa"}
-        {next_list && next_list.length > 0 && <LoadButton max={max} setMax={setMax} />}
+        {next_list && next_list.length > 0 && <LoadButton min={min} max={max} setMax={setMax} />}
       </main>
     </Page>
   )

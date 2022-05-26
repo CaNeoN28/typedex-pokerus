@@ -13,9 +13,9 @@ export default function OptionBox({previous_pokemon, next_pokemon, species} : Pr
   const f = Formatting
 
   return (
-    <div className="optionBox">
+    <div className="option-box">
       <Link to={previous_pokemon}><AiFillCaretLeft /></Link>
-      <div className="optionBox__labelGroup">
+      <div className="label-group">
         <span>N° {String(species.id).padStart(3, '0')}</span>
         <span>{f.formattingSpeciesName(species.name)}</span>
       </div>

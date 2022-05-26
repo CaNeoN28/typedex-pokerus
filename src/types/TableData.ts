@@ -1,5 +1,5 @@
 export default interface TableData{
-  title: string,
+  title?: string
   rows:
     {
       label: string,

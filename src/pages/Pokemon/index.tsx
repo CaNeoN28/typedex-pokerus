@@ -66,7 +66,10 @@ export default function PokemonPage() {
           forms={forms}
           current_form={current_form}
         />
-        <OtherInfo/>
+        <OtherInfo
+          pokemonForm={current_form}
+          pokemonSpecies={species}
+        />
       </Page>
     )
 

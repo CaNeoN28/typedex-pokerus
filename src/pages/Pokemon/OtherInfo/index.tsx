@@ -11,19 +11,19 @@ export default function OtherInfo({pokemonForm, pokemonSpecies} : Props) {
   const data = {
     rows:[{
       label: 'Abilities',
-      values: ['']
+      values: pokemonForm.abilities.map(a => a.ability.name)
     },{
       label: 'Color',
-      values: ['']
+      values: [pokemonSpecies.color.name]
     },{
       label: 'Gender rate',
-      values: ['']
+      values: [pokemonSpecies.gender_rate]
     },{
       label: 'Egg cycles',
-      values: ['']
+      values: [pokemonSpecies.hatch_counter]
     },{
       label: 'Catch rate',
-      values: ['']
+      values: [pokemonSpecies.capture_rate]
     }]
   }
 

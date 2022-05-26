@@ -1,6 +1,10 @@
 @import "styles/spacing";
 @import "styles/sizes";
 
+$size-med: 200px;
+$size-lg: 225px;
+$size-xl: 250px;
+
 .pokemon-grid{
   display: grid;
   align-content: center;
@@ -13,17 +17,17 @@
   };
 
   @media (min-width: $med){
-    grid-template-columns: 200px 200px;
+    grid-template-columns: $size-med $size-med;
     justify-content: center;
     
     margin: $border-medium 200px;
     gap: $border-large;
 
     @media (min-width: $lg) {
-      grid-template-columns: 225px 225px 225px;
+      grid-template-columns: $size-lg $size-lg $size-lg;
 
       @media (min-width: $xl) {
-        grid-template-columns: 250px 250px 250px 250px;
+        grid-template-columns: $size-xl $size-xl $size-xl $size-xl;
       }
     }
   }

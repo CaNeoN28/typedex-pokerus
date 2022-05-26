@@ -1,20 +1,20 @@
-import { Pokemon, PokemonClient } from "pokenode-ts";
+import { Pokemon } from "pokenode-ts";
 import './PokemonCard.scss'
 import Formatting from "common/utils/string";
 import TypeButton from "components/TypeButton";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { ReactComponent as Logo} from "assets/logo.svg";
 
 interface Props {
   pokemon: Pokemon
 }
 
 export default function PokemonCard({ pokemon }: Props) {
-  const navigate = useNavigate()
-
   const [w_width, setWWitdth] = useState(
     window.innerWidth
   )
+  const [loaded, setLoaded] = useState(false);
 
   const detectWidth = () => {
     setWWitdth(window.innerWidth)
@@ -39,7 +39,14 @@ export default function PokemonCard({ pokemon }: Props) {
     <div className="card-main">
       <div className="card-space">
         <Link className="card-image" to={`pokemon/${species_name}`}>
-          <img src={img} alt={species_name} />
+          <div className="dummy"/>
+          {!loaded && <Logo/>}
+          <img 
+            src={img} 
+            alt={species_name}
+            hidden={!loaded}
+            onLoad={() => setLoaded(true)}
+          />
         </Link>
 
         <div className="card-info">

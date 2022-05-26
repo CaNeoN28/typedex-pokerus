@@ -1,6 +1,7 @@
 @import "styles/theme";
 @import "styles/spacing";
 @import "styles/sizes";
+@import "../PokemonGrid.scss";
 
 .card-main {
   @media(max-width: $med){
@@ -21,12 +22,35 @@
 
     .card-image {
       background: $dark-gray;
-      display: flex;
+      display: inline-block;
+      position: relative;
       
-      border-radius: 8px;
+      width: 100%;
+      border-radius: $border-radius-inner;
+
+      .dummy {
+        margin-top: 100%;
+      }
+
+      svg {
+        margin: auto;
+        width: 100%;
+        
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+      }
 
       img {
         width: 100%;
+        
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
       }
     }
 

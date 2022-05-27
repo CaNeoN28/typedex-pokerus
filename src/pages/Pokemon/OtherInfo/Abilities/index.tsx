@@ -10,7 +10,7 @@ export default function(props : {abilities : PokemonAbility[]}){
   return(
     <div className="abilities">
       {abilities.map((a, index) => 
-        <a key={index} className='ability'>
+        <a key={index}>
           {f.capitalize(f.compostString(a.ability.name))} {a.is_hidden && <AiFillStar/>}
         </a>
       )}

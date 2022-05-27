@@ -1,4 +1,5 @@
 import React from "react";
+import { Value } from "sass";
 import TableData from "../../types/TableData";
 import "./DataTable.scss"
 
@@ -16,10 +17,10 @@ export default function DataTable({ data }: Props) {
           {data.rows.map((row, index) => (
             <tr key={index}>
               <td className="row-key">{row.label}:</td>
-              <td  className="row-value-cell">
-                  {row.values.map((value, index) => (
+              <td className="row-value-cell">
+                  {Array.isArray(row.value) ? row.value.map((value, index) => (
                     <div key={index}>{value}</div>
-                  ))}
+                  )) : row.value}
               </td>
             </tr>
           ))}

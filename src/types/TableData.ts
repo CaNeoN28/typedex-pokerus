@@ -3,6 +3,6 @@ export default interface TableData{
   rows:
     {
       label: string,
-      values: any[]
+      value: any[] | JSX.Element
     }[]
 }

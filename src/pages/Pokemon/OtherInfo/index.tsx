@@ -5,6 +5,7 @@ import TableData from "types/TableData";
 import Abilities from "./Abilities";
 import ColorButton from "./ColorButton";
 import GenderRate from "./GenderRate";
+import GenderChart from "./GenderRate/GenderChart";
 import './OtherInfo.scss'
 
 interface Props{
@@ -21,24 +22,24 @@ export default function OtherInfo({pokemonForm, pokemonSpecies} : Props) {
   const data = {
     rows:[{
       label: 'Abilities',
-      values: 
+      value: 
         ha.length > 0 ? 
         [<Abilities abilities={na}/>, <Abilities abilities={ha}/>] : 
         [<Abilities abilities={na}/>]
     },{
       label: 'Color',
-      values: [
+      value: [
         <ColorButton color={pokemonSpecies.color}/>
       ]
     },{
       label: 'Gender rate',
-      values: [<GenderRate gender_rate={gender_rate}/>]
+      value: [<GenderRate gender_rate={gender_rate}/>]
     },{
       label: 'Egg cycles',
-      values: [pokemonSpecies.hatch_counter]
+      value: [pokemonSpecies.hatch_counter]
     },{
       label: 'Catch rate',
-      values: [pokemonSpecies.capture_rate]
+      value: [pokemonSpecies.capture_rate]
     }]
   }
 

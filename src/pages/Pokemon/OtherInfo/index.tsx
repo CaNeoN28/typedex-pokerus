@@ -3,6 +3,7 @@ import InfoPage from "components/InfoPage";
 import { Pokemon, PokemonSpecies } from "pokenode-ts";
 import TableData from "types/TableData";
 import Abilities from "./Abilities";
+import ColorButton from "./ColorButton";
 import './OtherInfo.scss'
 
 interface Props{
@@ -23,7 +24,9 @@ export default function OtherInfo({pokemonForm, pokemonSpecies} : Props) {
       ]
     },{
       label: 'Color',
-      values: [pokemonSpecies.color.name]
+      values: [
+        <ColorButton color={pokemonSpecies.color}/>
+      ]
     },{
       label: 'Gender rate',
       values: [pokemonSpecies.gender_rate]

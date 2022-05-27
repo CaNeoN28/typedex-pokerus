@@ -4,6 +4,7 @@ import { Pokemon, PokemonSpecies } from "pokenode-ts";
 import TableData from "types/TableData";
 import Abilities from "./Abilities";
 import ColorButton from "./ColorButton";
+import GenderRate from "./GenderRate";
 import './OtherInfo.scss'
 
 interface Props{
@@ -14,6 +15,8 @@ export default function OtherInfo({pokemonForm, pokemonSpecies} : Props) {
   const abilities = pokemonForm.abilities
   const na = abilities.filter(a => !a.is_hidden)
   const ha = abilities.filter(a => a.is_hidden)
+
+  const gender_rate = pokemonSpecies.gender_rate
 
   const data = {
     rows:[{
@@ -29,7 +32,7 @@ export default function OtherInfo({pokemonForm, pokemonSpecies} : Props) {
       ]
     },{
       label: 'Gender rate',
-      values: [pokemonSpecies.gender_rate]
+      values: [<GenderRate gender_rate={gender_rate}/>]
     },{
       label: 'Egg cycles',
       values: [pokemonSpecies.hatch_counter]

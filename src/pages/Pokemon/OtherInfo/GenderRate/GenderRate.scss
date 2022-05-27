@@ -1,10 +1,16 @@
 @import "styles/theme";
+@import "styles/spacing";
 
 .gender-rate {
   display: grid;
-  grid-template-columns: 10% 85% 10%;
-  gap: 5%;
+  grid-template-columns: auto 80% auto;
 
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
+
+  div{
+    display: flex;
+    align-items: center;
+    margin: $border-extra-small;
+  }
 }

@@ -1,5 +1,6 @@
 import { Chart, ChartItem, ChartConfiguration, ChartData, registerables } from 'chart.js'
 import { useEffect } from 'react'
+import './GenderChart.scss'
 
 export default function GenderChart({ gender_rate }: { gender_rate: { male: number, female: number } }) {
   const { male, female } = gender_rate
@@ -12,12 +13,14 @@ export default function GenderChart({ gender_rate }: { gender_rate: { male: numb
     labels: [''],
     datasets: [{
       data: [male],
+      minBarLength: 2,
       maxBarThickness : 16,
       backgroundColor: theme_color
     },
     {
       data: [female],
       borderWidth: 2,
+      minBarLength: 2,
       maxBarThickness : 16,
       backgroundColor: '#EDF2F4',
       borderColor: theme_color
@@ -44,7 +47,7 @@ export default function GenderChart({ gender_rate }: { gender_rate: { male: numb
           grid: {
             display: false
           },
-          display: false
+          display: false,
         }
       },
       plugins:{
@@ -66,7 +69,7 @@ export default function GenderChart({ gender_rate }: { gender_rate: { male: numb
   })
 
   return (
-    <div>
+    <div style={{height: '24px'}}>
       <canvas id='gender-canvas' />
     </div>
   )

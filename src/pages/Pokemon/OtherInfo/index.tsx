@@ -2,16 +2,24 @@ import DataTable from "components/DataTable";
 import InfoPage from "components/InfoPage";
 import { Pokemon, PokemonSpecies } from "pokenode-ts";
 import TableData from "types/TableData";
+import Abilities from "./Abilities";
 
 interface Props{
   pokemonForm : Pokemon,
   pokemonSpecies: PokemonSpecies
 }
 export default function OtherInfo({pokemonForm, pokemonSpecies} : Props) {
+  const abilities = pokemonForm.abilities
+  const na = abilities.filter(a => !a.is_hidden)
+  const ha = abilities.filter(a => a.is_hidden)
+
   const data = {
     rows:[{
       label: 'Abilities',
-      values: pokemonForm.abilities.map(a => a.ability.name)
+      values: [
+        <Abilities abilities={na}/>,
+        <Abilities abilities={ha}/>
+      ]
     },{
       label: 'Color',
       values: [pokemonSpecies.color.name]

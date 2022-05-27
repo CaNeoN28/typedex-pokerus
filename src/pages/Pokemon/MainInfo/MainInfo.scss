@@ -1,0 +1,51 @@
+@import "styles/theme";
+@import "styles/sizes";
+@import "styles/spacing";
+
+.main-page{
+
+  .info{
+    display: grid;
+    gap: 24px;
+    width: 100%;
+  }
+  
+  @media (min-width: $lg) {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 30% 48%;
+    gap: 20%;
+  
+    @media (min-width: $xl) {
+      display: grid;
+      grid-template-columns: 30% 35%;
+  
+      .image {
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+  
+  @media (max-width : $lg) {
+    .image {
+      display: flex;
+      width: 100%;
+  
+      img {
+        width: 80%;
+        margin: auto;
+      }
+  
+      @media (min-width: $med) {
+        width: 60%;
+        margin: auto;
+  
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

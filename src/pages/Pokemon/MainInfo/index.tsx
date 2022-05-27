@@ -5,6 +5,7 @@ import TypeButton from "components/TypeButton";
 import Formatting from "common/utils/string";
 import measuring from "common/utils/measuring";
 import OptionBox from "./OptionBox";
+import './MainInfo.scss';
 
 interface Props {
   max_pokemon: number
@@ -62,12 +63,14 @@ export default function MainInfo({ max_pokemon, species, forms, current_form}: P
   
   return (
     <InfoPage>
-      <div className="image">
-        <img src={img} alt={current_form.name} />
-      </div>
-      <div className="info">
-        <OptionBox previous_pokemon={previous_pokemon} next_pokemon={next_pokemon} species={species}/>
-        <DataTable data={data} />
+      <div className="main-page">
+        <div className="image">
+          <img src={img} alt={current_form.name} />
+        </div>
+        <div className="info">
+          <OptionBox previous_pokemon={previous_pokemon} next_pokemon={next_pokemon} species={species}/>
+          <DataTable data={data} />
+        </div>
       </div>
     </InfoPage>
   )

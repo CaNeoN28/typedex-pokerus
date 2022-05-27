@@ -21,8 +21,13 @@
   .body {
     width: 100%;
     background: $gray;
-    border-spacing: $border-small;
     border-radius: 0px 0px $border-radius-outer $border-radius-outer;
+
+    border-spacing: $border-extra-small;
+
+    @media (min-width: $xs){
+      border-spacing: $border-small;
+    }
 
     .row-key {
       width: 30%;

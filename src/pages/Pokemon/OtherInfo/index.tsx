@@ -3,6 +3,7 @@ import InfoPage from "components/InfoPage";
 import { Pokemon, PokemonSpecies } from "pokenode-ts";
 import TableData from "types/TableData";
 import Abilities from "./Abilities";
+import './OtherInfo.scss'
 
 interface Props{
   pokemonForm : Pokemon,
@@ -36,8 +37,8 @@ export default function OtherInfo({pokemonForm, pokemonSpecies} : Props) {
   }
 
   return (
-    <InfoPage red>
+    <div className="secondary-page">
       <DataTable data={data}/>
-    </InfoPage>
+    </div>
   )
 }

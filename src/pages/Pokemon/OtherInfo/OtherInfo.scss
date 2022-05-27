@@ -1,0 +1,23 @@
+@import "styles/theme";
+@import "styles/sizes";
+@import "styles/spacing";
+
+.secondary-page{
+  background-color: $red;
+
+  justify-content: center;
+  align-items: center;
+
+  @media (min-width: $xs){
+    padding: $border-large $border-medium;
+  }
+
+  @media (max-width: $xs){
+    padding: $border-medium $border-small;
+  }
+
+  @media (min-width: $lg){
+    display: grid;
+    grid-template-columns: 45%;
+  }
+}

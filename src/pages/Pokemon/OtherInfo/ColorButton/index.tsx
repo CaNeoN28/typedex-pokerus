@@ -1,5 +1,6 @@
 import Formatting from "common/utils/string";
 import { NamedAPIResource, PokemonColor } from "pokenode-ts";
+import './ColorButton.scss'
 
 export default function ColorButton({color}: {color: NamedAPIResource}){
   const f = Formatting.capitalize

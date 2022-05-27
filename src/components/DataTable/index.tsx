@@ -16,12 +16,10 @@ export default function DataTable({ data }: Props) {
           {data.rows.map((row, index) => (
             <tr key={index}>
               <td className="row-key">{row.label}:</td>
-              <td>
-                <div className="row-value-cell">
+              <td  className="row-value-cell">
                   {row.values.map((value, index) => (
-                    <span key={index}>{value}</span>
+                    <div key={index}>{value}</div>
                   ))}
-                </div>
               </td>
             </tr>
           ))}

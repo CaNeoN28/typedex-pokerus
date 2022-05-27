@@ -34,9 +34,8 @@ export default function GenderChart({ gender_rate }: { gender_rate: { male: numb
   })
 
   return (
-    <>
-      <canvas id='gender-canvas'>
-      </canvas>
-    </>
+    <div>
+      <canvas id='gender-canvas' />
+    </div>
   )
 }

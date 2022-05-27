@@ -8,11 +8,11 @@ export default function GenderRate({ gender_rate }: { gender_rate: number }) {
 
   if (gender_rate >= 0)
     return(
-      <>
+      <div className="gender-rate">
         {male > 0 && <BsGenderMale/>}
         <GenderChart gender_rate = {{male, female}}/>
         {female > 0 && <BsGenderFemale/>}
-      </>
+      </div>
     )
 
   return (

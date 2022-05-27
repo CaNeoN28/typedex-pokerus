@@ -33,7 +33,7 @@ export default function OtherInfo({pokemonForm, pokemonSpecies} : Props) {
       ]
     },{
       label: 'Gender rate',
-      value: [<GenderRate gender_rate={gender_rate}/>]
+      value: <GenderRate gender_rate={gender_rate}/>
     },{
       label: 'Egg cycles',
       value: [pokemonSpecies.hatch_counter]

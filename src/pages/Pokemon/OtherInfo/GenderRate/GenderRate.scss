@@ -1,6 +1,10 @@
 @import "styles/theme";
 
 .gender-rate {
-  width: 100%;
-  background-color: $theme;
+  display: grid;
+  grid-template-columns: 10% 85% 10%;
+  gap: 10%;
+
+  align-items: center;
+  justify-content: center;
 }

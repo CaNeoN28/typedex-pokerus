@@ -18,10 +18,10 @@ export default function OtherInfo({pokemonForm, pokemonSpecies} : Props) {
   const data = {
     rows:[{
       label: 'Abilities',
-      values: [
-        <Abilities abilities={na}/>,
-        <Abilities abilities={ha}/>
-      ]
+      values: 
+        ha.length > 0 ? 
+        [<Abilities abilities={na}/>, <Abilities abilities={ha}/>] : 
+        [<Abilities abilities={na}/>]
     },{
       label: 'Color',
       values: [

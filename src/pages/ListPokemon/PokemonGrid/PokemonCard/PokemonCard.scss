@@ -6,7 +6,7 @@
 .card-main {
   @media(max-width: $med){
     border-radius: 10px;
-    background-color: $red;
+    background-color: $theme;
   }
 
   .card-space {
@@ -17,11 +17,11 @@
 
     @media (min-width: $med) {
       border-radius: $border-radius-outer;
-      background-color: $red;
+      background-color: $theme;
     }
 
     .card-image {
-      background: $dark-gray;
+      background: $dark-aux;
       display: inline-block;
       position: relative;
       
@@ -63,7 +63,7 @@
 
       .card-caption {
         text-decoration: none;
-        color: $gray;
+        color: $aux;
         font-size: $font-medium;
 
         display: flex;

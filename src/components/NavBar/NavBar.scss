@@ -2,8 +2,8 @@
 @import "styles/sizes";
 
 .navBar {
-  background-color: $red;
-  color: $gray;
+  background-color: $theme;
+  color: $aux;
 
   align-items: center;
   display: flex;
@@ -36,13 +36,13 @@
     @media (max-width : $lg) {
       display: none;
       position: absolute;
-      background-color: $light-gray;
+      background-color: $light-aux;
       min-width: 200px;
       box-shadow: $box-shadow;
       z-index: 1;
 
       a{
-        color: $red;
+        color: $theme;
         display: block;
       }
     }
@@ -52,7 +52,7 @@
       justify-content: space-between;
 
       a{
-        color: $gray
+        color: $aux
       }
     }
 
@@ -69,7 +69,7 @@
   
     @media (max-width: $lg) {
       display: flex;
-      color: $gray;
+      color: $aux;
     }
   
     @media (min-width: $lg) {

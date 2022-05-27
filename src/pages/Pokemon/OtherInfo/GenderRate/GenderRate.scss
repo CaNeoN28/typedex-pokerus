@@ -1,4 +1,6 @@
-.gender-rate{
-  display: flex;
-  justify-content: space-between;
+@import "styles/theme";
+
+.gender-rate {
+  width: 100%;
+  background-color: $theme;
 }

@@ -18,6 +18,8 @@
 
   @media (min-width: $lg){
     display: grid;
-    grid-template-columns: 45%;
+    grid-template-columns: 45% 45%;
+
+    justify-content: space-between;
   }
 }

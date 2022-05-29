@@ -19,6 +19,9 @@ export default function OtherInfo({pokemonForm, pokemonSpecies} : Props) {
 
   const gender_rate = pokemonSpecies.gender_rate
 
+  const hatch_counter = pokemonSpecies.hatch_counter
+  const f_hatch_counter = `${hatch_counter} (${hatch_counter * 256} steps)`
+
   const data = {
     rows:[{
       label: 'Abilities',
@@ -36,7 +39,7 @@ export default function OtherInfo({pokemonForm, pokemonSpecies} : Props) {
       value: <GenderRate gender_rate={gender_rate}/>
     },{
       label: 'Egg cycles',
-      value: [pokemonSpecies.hatch_counter]
+      value: [f_hatch_counter]
     },{
       label: 'Catch rate',
       value: [pokemonSpecies.capture_rate]

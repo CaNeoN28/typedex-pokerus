@@ -30,12 +30,12 @@
     align-items: center;
     justify-content: center;
   
-    color: $gray;
-    background-color: $red;
-    border: 1px solid $darker-red;
+    color: $aux;
+    background-color: $theme;
+    border: 1px solid $darker-theme;
 
     &:hover{
-      background-color: $dark-red;
+      background-color: $dark-theme;
     }
 
     &:active{

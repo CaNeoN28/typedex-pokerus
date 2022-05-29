@@ -33,27 +33,27 @@ export default function MainInfo({ max_pokemon, species, forms, current_form}: P
     rows: [
       {
         label: "Types",
-        values: types.map(
+        value: types.map(
           (t, index) => <TypeButton key={index} type={t} />
         )
       }, {
         label: "Height",
-        values: [
+        value: [
           `${feet}'${String(inches).padStart(2, '0')}"`,
           `${actualHeight.toFixed(1)}m`
         ]
       }, {
         label: "Weight",
-        values: [
+        value: [
           `${measuring.kgToLbs(actualWeight).toFixed(1)}lbs`,
           `${(actualWeight).toFixed(1)}kg`
         ]
       }, {
         label: "Egg groups",
-        values: species.egg_groups.map(e => <a>{f.formattingEggGroup(e.name)}</a>)
+        value: species.egg_groups.map(e => <a>{f.formattingEggGroup(e.name)}</a>)
       }, {
         label: "Growth rate",
-        values: [f.growthRate(species.growth_rate.name)]
+        value: [f.growthRate(species.growth_rate.name)]
       }
     ]
   }

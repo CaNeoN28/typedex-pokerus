@@ -2,19 +2,24 @@
 @import "styles/sizes";
 @import "styles/spacing";
 
-.info-page {
+.secondary-page{
+  background-color: $theme;
+
   justify-content: center;
   align-items: center;
 
-  @media (min-width: $xs) {
+  @media (min-width: $xs){
     padding: $border-large $border-medium;
   }
 
-  @media (max-width: $xs) {
+  @media (max-width: $xs){
     padding: $border-medium $border-small;
   }
-}
 
-.red {
-  background-color: $theme;
+  @media (min-width: $lg){
+    display: grid;
+    grid-template-columns: 45% 45%;
+
+    justify-content: space-between;
+  }
 }

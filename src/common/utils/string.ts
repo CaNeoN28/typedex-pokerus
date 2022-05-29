@@ -4,13 +4,13 @@ function capitalize(str: string){
   return(list.join(''))
 }
 
-function compostString(str: string){
+function compostStringToArray(str: string){
   return str.split('-')
 }
 
 
 function growthRate(gr: string){
-  let list = compostString(gr)
+  let list = compostStringToArray(gr)
   list = list.map(str => capitalize(str))
 
   return list.join('-')
@@ -18,7 +18,7 @@ function growthRate(gr: string){
 
 function formattingFormName(species_name: string, form_name: string){
   let f_form_name = form_name.replace(species_name, '')
-  let f_form_name_l = compostString(f_form_name)
+  let f_form_name_l = compostStringToArray(f_form_name)
 
   f_form_name = f_form_name_l.map(f_name => f_name && capitalize(f_name)).join(" ").replace('Gmax', 'G-Max')
 
@@ -53,12 +53,17 @@ function formattingSpeciesName(name: string){
   return f_name
 }
 
+function compostString(str: string){
+  return (compostStringToArray(str).join(' '))
+}
+
 const Formatting = {
   capitalize,
   growthRate,
   formattingFormName,
   formattingEggGroup,
-  formattingSpeciesName
+  formattingSpeciesName,
+  compostString
 }
 
 export default Formatting

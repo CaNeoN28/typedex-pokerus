@@ -1,4 +1,5 @@
 import React from "react";
+import { Value } from "sass";
 import TableData from "../../types/TableData";
 import "./DataTable.scss"
 
@@ -7,20 +8,19 @@ interface Props {
 }
 
 export default function DataTable({ data }: Props) {
+
   return (
     <div className="data-table">
-      <div className="header">{data.title}</div>
-      <table className="body">
+      {data.title && <div className="header">{data.title}</div>}
+      <table className={`body${!data.title ? ' no-title': ''}`}>
         <tbody>
           {data.rows.map((row, index) => (
             <tr key={index}>
               <td className="row-key">{row.label}:</td>
-              <td>
-                <div className="row-value-cell">
-                  {row.values.map((value, index) => (
-                    <span key={index}>{value}</span>
-                  ))}
-                </div>
+              <td className="row-value-cell">
+                  {Array.isArray(row.value) ? row.value.map((value, index) => (
+                    <div key={index}>{value}</div>
+                  )) : row.value}
               </td>
             </tr>
           ))}

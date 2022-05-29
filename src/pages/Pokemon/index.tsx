@@ -3,11 +3,14 @@ import { useParams, useNavigate } from "react-router-dom"
 import { PokemonClient, PokemonSpecies, Pokemon } from "pokenode-ts"
 import Page from "../../components/Page";
 import MainInfo from "./MainInfo";
+import OtherInfo from "./OtherInfo";
+import Formatting from "common/utils/string";
 
 export default function PokemonPage() {
   const { id } = useParams();
   const navigate = useNavigate();
   const api = new PokemonClient();
+  const f = Formatting.formattingSpeciesName
 
   const [species, setSpecies] = useState<PokemonSpecies>();
   const [forms, setForms] = useState<Pokemon[]>()
@@ -44,8 +47,13 @@ export default function PokemonPage() {
   useEffect(() => {
     getForms()
 
-    if (id && !isNaN(Number(id)) && species)
-      navigate(`/pokemon/${species.name}`)
+
+    if (species){
+      if (id && !isNaN(Number(id)) && species)
+        navigate(`/pokemon/${species.name}`)
+
+      document.title=(f(species.name))
+    }
 
   }, [species])
 
@@ -64,6 +72,10 @@ export default function PokemonPage() {
           species={species}
           forms={forms}
           current_form={current_form}
+        />
+        <OtherInfo
+          pokemonForm={current_form}
+          pokemonSpecies={species}
         />
       </Page>
     )

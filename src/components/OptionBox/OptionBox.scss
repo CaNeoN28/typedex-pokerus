@@ -6,8 +6,8 @@
   border-radius: 8px;
   padding: 16px 0px;
 
-  color: $red;
-  border: 3px solid $red;
+  color: $theme;
+  border: 3px solid $theme;
 
   justify-content: space-between;
   align-items: center;
@@ -18,7 +18,7 @@
 
 .optionBox > a {
   margin: 0px 25px;
-  color: $red;
+  color: $theme;
   display: flex;
 }
 

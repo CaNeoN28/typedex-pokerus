@@ -1,5 +1,5 @@
 import { Chart, ChartItem, ChartConfiguration, ChartData, registerables } from 'chart.js'
-import { useEffect } from 'react'
+import { useEffect, useLayoutEffect } from 'react'
 import './GenderChart.scss'
 
 export default function GenderChart({ gender_rate }: { gender_rate: { male: number, female: number } }) {
@@ -12,12 +12,14 @@ export default function GenderChart({ gender_rate }: { gender_rate: { male: numb
   const data: ChartData = {
     labels: [''],
     datasets: [{
+      label: 'Male',
       data: [male],
       minBarLength: 2,
       maxBarThickness : 16,
       backgroundColor: theme_color
     },
     {
+      label: "Female",
       data: [female],
       borderWidth: 2,
       minBarLength: 2,
@@ -41,13 +43,11 @@ export default function GenderChart({ gender_rate }: { gender_rate: { male: numb
           display: false
         },
         x: {
-          min: 0,
-          max: 100,
           stacked: true,
           grid: {
             display: false
           },
-          display: false,
+          display: false
         }
       },
       plugins:{
@@ -58,7 +58,7 @@ export default function GenderChart({ gender_rate }: { gender_rate: { male: numb
     },
   }
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const canvas = document.getElementById('gender-canvas') as HTMLCanvasElement
     const ctx = canvas?.getContext('2d') as ChartItem
 
@@ -66,6 +66,8 @@ export default function GenderChart({ gender_rate }: { gender_rate: { male: numb
       Chart.getChart('gender-canvas')?.destroy()
 
     const gender_chart = new Chart(ctx, config)
+
+    gender_chart.update('show')
   })
 
   return (

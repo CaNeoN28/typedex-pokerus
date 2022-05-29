@@ -1,14 +1,35 @@
 @import "styles/theme";
 @import "styles/spacing";
+@import "styles/sizes";
 
 .gender-rate {
   display: grid;
-  grid-template-columns: auto 80% auto;
+  grid-template-columns: 0px 110px 0px;
+
+  @media (min-width: $xs) {
+    grid-template-columns: 0px 120px 0px;
+
+    @media (min-width: $sm) {
+      grid-template-columns: auto 130px auto;
+
+      @media (min-width: $med) {
+        grid-template-columns: auto 200px auto;
+
+        @media (min-width: $lg) {
+          grid-template-columns: auto 140px auto;
+
+          @media (min-width: $xl) {
+            grid-template-columns: auto 220px auto;
+          }
+        }
+      }
+    }
+  }
 
   align-items: center;
   justify-content: space-evenly;
 
-  div{
+  div {
     display: flex;
     align-items: center;
     margin: $border-extra-small;

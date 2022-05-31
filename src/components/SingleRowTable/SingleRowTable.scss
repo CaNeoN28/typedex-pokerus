@@ -1,6 +1,22 @@
 @import "styles/spacing.scss";
+@import "styles/theme.scss";
 
 .srt{
-  border-radius: $border-radius-outer;
   width: 100%;
+  border: $default-border;
+  border-spacing: 0px;
+
+  thead{
+    color: $aux
+  }
+
+  tbody{
+    background-color: $aux;
+    color: $theme;
+    text-align: center;
+  }
+
+  td, th{
+    padding: $border-extra-small;
+  }
 }

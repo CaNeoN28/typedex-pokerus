@@ -9,7 +9,7 @@ interface Props {
 
 export default function SingleRowTable({ data }: Props) {
   return (
-    <table className='str'>
+    <table className='srt'>
       <thead>
         <tr>
           {data.map((d, index) => (
@@ -17,7 +17,7 @@ export default function SingleRowTable({ data }: Props) {
           ))}
         </tr>
       </thead>
-      <tbody>
+      <tbody className='table-data'>
         <tr>
           {data.map((d, index) => (
             <td key={index}>{d.data}</td>

@@ -59,7 +59,7 @@ function compostString(str: string) {
 
 function statAbbreviation(str: string) {
   str = str.replace('special', 'sp')
-  str = str.replace('speed', 'sp.')
+  str = str.replace('speed', 'spe.')
   str = str.replace('attack', 'atk.')
   str = str.replace('defense', 'def.')
 

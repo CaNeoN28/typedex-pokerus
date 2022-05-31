@@ -1,3 +1,5 @@
+import './SingleRowTable.scss'
+
 interface Props {
   data: {
     label: String,
@@ -7,7 +9,7 @@ interface Props {
 
 export default function SingleRowTable({ data }: Props) {
   return (
-    <table>
+    <table className='str'>
       <thead>
         <tr>
           {data.map((d, index) => (

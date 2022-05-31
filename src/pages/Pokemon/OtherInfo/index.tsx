@@ -7,6 +7,7 @@ import ColorButton from "./ColorButton";
 import GenderRate from "./GenderRate";
 import GenderChart from "./GenderRate/GenderChart";
 import './OtherInfo.scss'
+import Stats from "./Stats";
 
 interface Props{
   pokemonForm : Pokemon,
@@ -21,6 +22,8 @@ export default function OtherInfo({pokemonForm, pokemonSpecies} : Props) {
 
   const hatch_counter = pokemonSpecies.hatch_counter
   const f_hatch_counter = `${hatch_counter} (${hatch_counter * 256} steps)`
+
+  const stats = pokemonForm.stats
 
   const data = {
     rows:[{
@@ -49,6 +52,7 @@ export default function OtherInfo({pokemonForm, pokemonSpecies} : Props) {
   return (
     <div className="secondary-page">
       <DataTable data={data}/>
+      <Stats stats={stats}/>
     </div>
   )
 }

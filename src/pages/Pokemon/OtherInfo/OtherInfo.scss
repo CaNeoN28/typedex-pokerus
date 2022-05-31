@@ -18,8 +18,13 @@
 
   @media (min-width: $lg){
     display: grid;
-    grid-template-columns: 40% 30%;
-    gap: 10%;
+    grid-template-columns: 50% 30%;
+    gap: 15%;
+
+    @media (min-width: $xl){
+      grid-template-columns: 40% 30%;
+      gap: 10%;
+    }
 
     justify-content: center;
   }

@@ -2,7 +2,7 @@ import { Chart, ChartConfiguration, ChartData, ChartItem } from "chart.js";
 import { PokemonStat } from "pokenode-ts";
 import { useEffect } from "react";
 
-export default function Stats({stats} : {stats : PokemonStat[]})
+export default function StatChart({stats} : {stats : PokemonStat[]})
 {
   const label = ["HP", "ATK", "SP.ATK", "DEF", "SP.DEF", "SPE"]
 

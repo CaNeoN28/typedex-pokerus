@@ -10,7 +10,9 @@ export default function StatChart({stats} : {stats : PokemonStat[]})
     labels: label,
     datasets: [{
       data: stats.map(s => s.base_stat),
-      backgroundColor: '#F2F2F2'
+      backgroundColor: '#EDF2F4',
+      pointRadius: 0,
+      borderColor: "#EDF2F4"
     }]
   }
 
@@ -27,12 +29,18 @@ export default function StatChart({stats} : {stats : PokemonStat[]})
           },
           angleLines:{
             display: false
+          },
+          pointLabels:{
+            color: "#EDF2F4"
           }
         }
       },
       plugins: {
         legend:{
-          display: false
+          display: false,
+          labels: {
+            color: '#EDF2F4'
+          }
         }
       }
     }

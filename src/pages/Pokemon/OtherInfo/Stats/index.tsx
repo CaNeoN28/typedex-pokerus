@@ -22,7 +22,10 @@ export default function Stats({stats} : {stats : PokemonStat[]})
       scales: {
         r:{
           max: 255,
-          min: 0
+          min: 0,
+          ticks: {
+            display: false
+          }
         }
       },
       plugins: {

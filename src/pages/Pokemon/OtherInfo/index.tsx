@@ -7,7 +7,7 @@ import ColorButton from "./ColorButton";
 import GenderRate from "./GenderRate";
 import GenderChart from "./GenderRate/GenderChart";
 import './OtherInfo.scss'
-import Stats from "./Stats/StatChart";
+import Stats from "./Stats";
 
 interface Props{
   pokemonForm : Pokemon,

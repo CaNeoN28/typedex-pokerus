@@ -14,10 +14,18 @@ export default function Stats({stats} : {stats : PokemonStat[]}){
     })
   })
 
+  const total = () => {
+    let sum = 0
+    stats.map(s => sum += s.base_stat)
+
+    return sum
+  }
+
   return(
     <div className="stats">
       <SingleRowTable data={data}/>
       <StatChart stats={stats}/>
+      <SingleRowTable data={[{label: 'Total', data: total()}]}/>
     </div>
   )
 }

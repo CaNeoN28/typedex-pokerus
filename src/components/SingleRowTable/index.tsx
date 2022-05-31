@@ -2,7 +2,7 @@ import './SingleRowTable.scss'
 
 interface Props {
   data: {
-    label: String,
+    label: string,
     data: any
   }[]
 }

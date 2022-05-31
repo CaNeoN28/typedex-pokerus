@@ -13,6 +13,8 @@
     text-align: center;
     grid-template-columns: 25% 25%;
 
+    font-size: $font-small;
+
     .label{
       color: $aux;
       padding: $border-extra-small;
@@ -23,6 +25,7 @@
       color: $theme;
 
       padding: $border-extra-small;
+      border-radius: 0 $border-radius-inner $border-radius-inner 0;
     }
   }
 }

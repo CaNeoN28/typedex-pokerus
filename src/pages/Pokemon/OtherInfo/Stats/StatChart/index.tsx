@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 export default function StatChart({stats} : {stats : PokemonStat[]})
 {
-  const label = ["HP", "ATK", "SP.ATK", "DEF", "SP.DEF", "SPE"]
+  const label = ["HP", "ATK", "DEF", "SP.ATK", "SP.DEF", "SPE"]
 
   const chartData : ChartData = {
     labels: label,

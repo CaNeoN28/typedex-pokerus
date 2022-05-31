@@ -1,5 +1,28 @@
+@import 'styles/theme.scss';
+@import 'styles/spacing.scss';
+
 .stats{
   display: grid;
   align-items: center;
   justify-content: center;
+
+  .total-stats{
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    grid-template-columns: 25% 25%;
+
+    .label{
+      color: $aux;
+      padding: $border-extra-small;
+    }
+
+    .value{
+      background-color: $aux;
+      color: $theme;
+
+      padding: $border-extra-small;
+    }
+  }
 }

@@ -9,11 +9,10 @@ export default function Stats({stats} : {stats : PokemonStat[]})
   const chartData : ChartData = {
     labels: label,
     datasets: [{
-      data: stats.map(s => s.base_stat)
+      data: stats.map(s => s.base_stat),
+      backgroundColor: '#F2F2F2'
     }]
   }
-
-  console.log(stats)
 
   const chartConfig : ChartConfiguration = {
     type: 'radar',
@@ -24,6 +23,9 @@ export default function Stats({stats} : {stats : PokemonStat[]})
           max: 255,
           min: 0,
           ticks: {
+            display: false
+          },
+          angleLines:{
             display: false
           }
         }
@@ -47,8 +49,8 @@ export default function Stats({stats} : {stats : PokemonStat[]})
   })
 
   return(
-    <>
+    <div>
       <canvas id='stats-canvas'/>
-    </>
+    </div>
   )
 }

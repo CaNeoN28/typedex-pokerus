@@ -71,6 +71,10 @@
         
         @media (max-width: $med){
           padding: 0px $border-small;
+
+          @media (max-width: $xs){
+            padding: 0 4px;
+          }
         }
         
         @media (min-width: $med){

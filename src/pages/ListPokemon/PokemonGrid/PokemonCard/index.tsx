@@ -52,8 +52,8 @@ export default function PokemonCard({ pokemon }: Props) {
 
           <div className="card-info">
             <div className="card-caption">
-              <a>N° {number}</a>
-              <a>{name}</a>
+              <span>N° {number}</span>
+              <span>{name}</span>
             </div>
 
             {w_width < 640 && <div className="card-types">

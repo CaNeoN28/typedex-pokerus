@@ -39,6 +39,10 @@
       svg {
         margin: auto;
         width: 100%;
+
+        @media(max-width:  $med){
+          width: 80%;
+        }
         
         position: absolute;
         top: 0;

@@ -62,7 +62,7 @@ export default function StatChart({stats} : {stats : PokemonStat[]})
   })
 
   return(
-    <div>
+    <div className="stat-chart">
       <canvas id='stats-canvas'/>
     </div>
   )

@@ -3,6 +3,7 @@ import SingleRowTable from "components/SingleRowTable";
 import { PokemonStat } from "pokenode-ts";
 import StatChart from "./StatChart";
 import './Stats.scss'
+import StatTable from "./StatTable";
 
 export default function Stats({stats} : {stats : PokemonStat[]}){
   const f = Formatting
@@ -25,7 +26,7 @@ export default function Stats({stats} : {stats : PokemonStat[]}){
 
   return(
     <div className="stats">
-      <SingleRowTable data={data}/>
+      <StatTable data={data}/>
       <StatChart stats={stats}/>
       <div className="total-stats">
         <span className="label">Total</span>

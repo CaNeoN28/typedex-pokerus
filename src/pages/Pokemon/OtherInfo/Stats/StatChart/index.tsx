@@ -1,10 +1,13 @@
-import { Chart, ChartConfiguration, ChartData, ChartItem } from "chart.js";
+import { Chart, ChartConfiguration, ChartData, ChartItem, registerables } from "chart.js";
 import { PokemonStat } from "pokenode-ts";
 import { useEffect } from "react";
+import "./StatChart.scss"
 
 export default function StatChart({stats} : {stats : PokemonStat[]})
 {
   const label = ["HP", "ATK", "SP.ATK", "DEF", "SP.DEF", "SPE"]
+
+  Chart.register(...registerables )
 
   const chartData : ChartData = {
     labels: label,
@@ -38,7 +41,7 @@ export default function StatChart({stats} : {stats : PokemonStat[]})
       plugins: {
         legend:{
           display: false,
-          labels: {
+          labels: {  
             color: '#EDF2F4'
           }
         }

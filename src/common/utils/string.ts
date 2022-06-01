@@ -1,22 +1,22 @@
-function capitalize(str: string){
+function capitalize(str: string) {
   let list = str.split('')
   list[0] = list[0].toUpperCase()
-  return(list.join(''))
+  return (list.join(''))
 }
 
-function compostStringToArray(str: string){
-  return str.split('-')
+function compostStringToArray(str: string, char = '-') {
+  return str.split(char)
 }
 
 
-function growthRate(gr: string){
+function growthRate(gr: string) {
   let list = compostStringToArray(gr)
   list = list.map(str => capitalize(str))
 
   return list.join('-')
 }
 
-function formattingFormName(species_name: string, form_name: string){
+function formattingFormName(species_name: string, form_name: string) {
   let f_form_name = form_name.replace(species_name, '')
   let f_form_name_l = compostStringToArray(f_form_name)
 
@@ -28,7 +28,7 @@ function formattingFormName(species_name: string, form_name: string){
   return f_form_name
 }
 
-function formattingEggGroup(eggGroup: string){
+function formattingEggGroup(eggGroup: string) {
   let f_egg_group = eggGroup
 
   if (eggGroup == 'humanshape')
@@ -36,25 +36,38 @@ function formattingEggGroup(eggGroup: string){
   else if (eggGroup == 'indeterminate')
     return 'Amorphous'
   else if (eggGroup == 'no-eggs')
-    return 'Undiscovered'    
+    return 'Undiscovered'
 
   return (capitalize(eggGroup))
 }
 
-function formattingSpeciesName(name: string){
+function formattingSpeciesName(name: string) {
   let f_name = capitalize(name)
 
   if (f_name.endsWith('-f'))
     f_name = f_name.replace('-f', '♀')
-    
+
   if (f_name.endsWith('-m'))
     f_name = f_name.replace('-m', '♂')
 
   return f_name
 }
 
-function compostString(str: string){
+function compostString(str: string) {
   return (compostStringToArray(str).join(' '))
+}
+
+function statAbbreviation(str: string) {
+  str = str.replace('special', 'sp')
+  str = str.replace('speed', 'spe.')
+  str = str.replace('attack', 'atk.')
+  str = str.replace('defense', 'def.')
+
+  const str_array = compostStringToArray(str).map(s => capitalize(s))
+
+  const f_str = str_array.join('.')
+
+  return (f_str)
 }
 
 const Formatting = {
@@ -63,7 +76,8 @@ const Formatting = {
   formattingFormName,
   formattingEggGroup,
   formattingSpeciesName,
-  compostString
+  compostString,
+  statAbbreviation
 }
 
 export default Formatting

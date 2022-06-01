@@ -1,0 +1,41 @@
+@import "styles/theme";
+@import "styles/spacing";
+@import "styles/sizes";
+
+.stat-table {
+  display: grid;
+  align-items: center;
+  justify-content: space-between;
+
+  font-size: $font-small;
+
+  .table-item {
+    list-style-type: none;
+    text-align: center;
+
+    padding-inline-start: 0;
+
+    .item-key{
+      color: $aux;
+    }
+
+    .item-data{
+      background-color: $aux;
+      color: $theme;
+      
+      border-radius: $border-radius-inner;
+    }
+
+    li{
+      padding: $border-extra-small;
+    }
+  }
+
+  @media(max-width: $sm){
+    grid-template-columns: 30% 30% 30%;
+  }
+
+  @media(min-width: $sm){
+    grid-template-columns: 15% 15% 15% 15% 15% 15%;
+  }
+}

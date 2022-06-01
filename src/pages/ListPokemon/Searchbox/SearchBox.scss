@@ -2,7 +2,7 @@
 @import "styles/sizes";
 @import "styles/spacing";
 
-.searchBox{
+.search-box{
   height: $box-small;
   margin: $border-small auto;
   display: flex;
@@ -16,13 +16,16 @@
     margin: $border-small 0px;
   }
 
-  &__searchInput{
+  .input{
     font-size: $font-medium;
     padding-left: 16px;
     width: 100%;
+
+    border: 1px solid black;
+    border-radius:  $border-radius-inner 0 0  $border-radius-inner;
   }
 
-  &__searchButton{
+  .button{
     width: 64px;
     font-size: $font-medium;
   
@@ -32,7 +35,9 @@
   
     color: $aux;
     background-color: $theme;
-    border: 1px solid $darker-theme;
+    border: none;
+
+    border-radius:  0  $border-radius-inner  $border-radius-inner  0;
 
     &:hover{
       background-color: $dark-theme;

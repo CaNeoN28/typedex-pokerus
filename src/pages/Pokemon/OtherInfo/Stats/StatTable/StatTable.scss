@@ -8,7 +8,6 @@
   justify-content: space-between;
 
   font-size: $font-small;
-  margin: auto;
 
   .table-item {
     list-style-type: none;
@@ -22,6 +21,8 @@
 
     .item-data{
       background-color: $aux;
+      color: $theme;
+      
       border-radius: $border-radius-inner;
     }
 
@@ -30,12 +31,11 @@
     }
   }
 
-  @media(max-width: $med){
+  @media(max-width: $sm){
     grid-template-columns: 30% 30% 30%;
   }
 
-  @media(min-width: $med){
+  @media(min-width: $sm){
     grid-template-columns: 15% 15% 15% 15% 15% 15%;
-    gap: 10%
   }
 }

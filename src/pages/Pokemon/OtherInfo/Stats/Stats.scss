@@ -14,18 +14,13 @@
     grid-template-columns: 25% 25%;
 
     font-size: $font-small;
+    
+    background-color: $aux;
+    color: $theme;
+    border-radius: $border-radius-inner;
 
-    .label{
-      color: $aux;
+    span{
       padding: $border-extra-small;
-    }
-
-    .value{
-      background-color: $aux;
-      color: $theme;
-
-      padding: $border-extra-small;
-      border-radius: 0 $border-radius-inner $border-radius-inner 0;
     }
   }
 }

@@ -7,15 +7,17 @@ export default function StatChart({stats} : {stats : PokemonStat[]})
 {
   const label = ["HP", "ATK", "SP.ATK", "DEF", "SP.DEF", "SPE"]
 
+  const auxTheme="#EDF2F4"
+
   Chart.register(...registerables )
 
   const chartData : ChartData = {
     labels: label,
     datasets: [{
       data: stats.map(s => s.base_stat),
-      backgroundColor: '#EDF2F4',
+      backgroundColor: auxTheme,
       pointRadius: 0,
-      borderColor: "#EDF2F4"
+      borderColor: auxTheme
     }]
   }
 
@@ -34,7 +36,7 @@ export default function StatChart({stats} : {stats : PokemonStat[]})
             display: false
           },
           pointLabels:{
-            color: "#EDF2F4"
+            color: auxTheme
           }
         }
       },
@@ -42,7 +44,7 @@ export default function StatChart({stats} : {stats : PokemonStat[]})
         legend:{
           display: false,
           labels: {  
-            color: '#EDF2F4'
+            color: auxTheme
           }
         }
       }

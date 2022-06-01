@@ -12,7 +12,7 @@
     align-items: center;
     justify-content: center;
 
-    grid-template-columns: 25% 25%;
+    grid-template-columns: auto auto;
     gap: 10%;
 
     font-size: $font-small;

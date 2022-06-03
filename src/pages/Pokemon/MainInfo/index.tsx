@@ -10,23 +10,21 @@ import './MainInfo.scss';
 interface Props {
   max_pokemon: number
   species: PokemonSpecies,
-  forms: Pokemon[],
-  current_form: Pokemon
+  form: Pokemon
 }
 
-export default function MainInfo({ max_pokemon, species, forms, current_form}: Props) {
+export default function MainInfo({ max_pokemon, species, form}: Props) {
 
   const f = Formatting
 
-  const defaultImg = forms[0].sprites.other["official-artwork"].front_default || ''
-  const img = current_form.sprites.other["official-artwork"].front_default || defaultImg
+  const img = form.sprites.other["official-artwork"].front_default || ''
 
-  const actualHeight = current_form.height / 10
-  const actualWeight = current_form.weight / 10
+  const actualHeight = form.height / 10
+  const actualWeight = form.weight / 10
 
   const { feet, inches } = measuring.metersToFootAndInches(actualHeight)
 
-  const types = current_form.types.map(t => (t.type.name))
+  const types = form.types.map(t => (t.type.name))
 
   const data = {
     title: species.genera.find(g => g.language.name == 'en')?.genus || '',
@@ -65,7 +63,7 @@ export default function MainInfo({ max_pokemon, species, forms, current_form}: P
     <InfoPage>
       <div className="main-page">
         <div className="image">
-          <img src={img} alt={current_form.name} />
+          <img src={img} alt={form.name} />
         </div>
         <div className="info">
           <OptionBox previous_pokemon={previous_pokemon} next_pokemon={next_pokemon} species={species}/>

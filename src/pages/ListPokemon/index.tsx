@@ -35,21 +35,26 @@ export default function () {
       .filter(a => a.is_default))
   }
 
+  const getPokemon = async (
+    name: string,
+    setList: React.Dispatch<React.SetStateAction<Pokemon[] | undefined>>) => {
+      await api.getPokemonByName(name)
+        .then(res => preparePokemonList(setList, res))
+  }
+
   const getPokemonDict = async () => {
     await api.listPokemons(0, 10000)
       .then(res => setPokemonDict(res.results.filter(item => item.name.includes(search))))
   }
 
-  const getFirstList = async () => {
+  const getFirstList = () => {
     setMax(min)
     setPokemonList([])
     setNextList([])
 
-    pokemon_dict && await pokemon_dict.map((p, index) => {
-      index < max ? api.getPokemonByName(p.name)
-        .then(res => preparePokemonList(setPokemonList, res)) :
-        index < max + min && api.getPokemonByName(p.name)
-          .then(res => preparePokemonList(setNextList, res))
+    pokemon_dict && pokemon_dict.map((p, index) => {
+      index < max ? getPokemon(p.name, setPokemonList) :
+        index < max + min && getPokemon(p.name, setNextList)
     })
   }
 
@@ -57,8 +62,7 @@ export default function () {
     setNextList([])
 
     pokemon_list && pokemon_dict && pokemon_dict.map((p, index) => {
-      index >= max && index < max + min && api.getPokemonByName(p.name)
-        .then(res => preparePokemonList(setNextList, res))
+      index >= max && index < max + min && getPokemon(p.name, setNextList)
     })
   }
 
@@ -82,8 +86,8 @@ export default function () {
     <Page>
       <main className="listPage">
         <SearchBox setSearch={setSearch} />
-        {pokemon_list && pokemon_list.length > 0 ? <PokemonGrid pokemon_list={pokemon_list} /> :
-          "Não há pokémon referentes à sua pesquisa"}
+        {pokemon_list && pokemon_dict ? <PokemonGrid pokemon_list={pokemon_list} /> :
+          "There is no Pokémon!"}
         {next_list && next_list.length > 0 && <LoadButton min={min} max={max} setMax={setMax} />}
       </main>
     </Page>

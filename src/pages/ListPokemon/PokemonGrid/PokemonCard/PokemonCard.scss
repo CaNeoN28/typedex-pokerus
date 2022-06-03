@@ -5,8 +5,12 @@
 
 .card-main {
   @media(max-width: $med){
-    border-radius: 10px;
+    border-radius: $border-radius-outer;
     background-color: $theme;
+  }
+
+  a{
+    text-decoration: none;
   }
 
   .card-space {
@@ -35,6 +39,10 @@
       svg {
         margin: auto;
         width: 100%;
+
+        @media(max-width:  $med){
+          width: 80%;
+        }
         
         position: absolute;
         top: 0;
@@ -62,7 +70,6 @@
       }
 
       .card-caption {
-        text-decoration: none;
         color: $aux;
         font-size: $font-medium;
 
@@ -71,10 +78,14 @@
         
         @media (max-width: $med){
           padding: 0px $border-small;
+
+          @media (max-width: $xs){
+            padding: 0 4px;
+          }
         }
         
         @media (min-width: $med){
-          padding: 8px $border-small;
+          padding: $border-extra-small $border-small;
         }
         
         @media (max-width: $lg){
@@ -93,7 +104,7 @@
     }
 
     .type-button {
-      width: 40%;
+      width: 45%;
     }
   }
 }

@@ -5,6 +5,7 @@
 .info-page {
   justify-content: center;
   align-items: center;
+  min-height: 640px;
 
   @media (min-width: $xs) {
     padding: $border-large $border-medium;

@@ -12,6 +12,10 @@
 
   font-size: $font-small;
 
+  @media (min-width: $xs){
+    font-size: $font-medium;
+  }
+
   .header {
     color: $aux;
     text-align: center;
@@ -23,10 +27,10 @@
     background: $aux;
     border-radius: 0px 0px $border-radius-outer $border-radius-outer;
 
-    border-spacing: $border-extra-small;
+    border-spacing: $border-extra-small $border-small;
 
     @media (min-width: $xs){
-      border-spacing: $border-small;
+      border-spacing: $border-small $border-medium;
     }
 
     .row-key {
@@ -36,13 +40,17 @@
         width: 40%;
       }
     }
-
+    
     .row-value-cell {
       display: grid;
       gap: 10%;
       justify-content: center;
-      text-align: center;
       align-items: center;
+      text-align: center;
+
+      @media (max-width: $xs){
+        height: 40px;
+      }
 
       @media (min-width: $med) {
         display: flex;

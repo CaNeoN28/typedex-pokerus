@@ -63,18 +63,21 @@ export default function MainInfo({ max_pokemon, species, form}: Props) {
   const [next, setNext] = useState("")
 
   const getNextAndPrevious = async () => {
-    let previous_pokemon = "", next_pokemon = ""
-
-      await api.getPokemonSpeciesById(species.id === 1 ? max_pokemon : species.id + 1)
+      await api.getPokemonSpeciesById(species.id === max_pokemon ? 1 : species.id + 1)
         .then(res => setNext(res.name)) 
 
-      await api.getPokemonSpeciesById(species.id === max_pokemon ? 1 : species.id - 1)
+      await api.getPokemonSpeciesById(species.id === 1 ? max_pokemon : species.id - 1)
         .then(res => setPrevious(res.name))
   }
 
   useEffect(() => {
+    console.log(max_pokemon)
     getNextAndPrevious()
   }, [species])
+
+  useEffect(() => {
+    console.log(next, previous)
+  }, [previous, next])
 
   return (
     <InfoPage>

@@ -11,8 +11,8 @@ interface Props {
 export default function StatTable({ data }: Props) {
   return (
     <div className="stat-table">
-      {data.map(d => (
-        <ul className="table-item">
+      {data.map((d, index) => (
+        <ul key={index} className="table-item">
           <li className="item-key">
             {d.label}
           </li>

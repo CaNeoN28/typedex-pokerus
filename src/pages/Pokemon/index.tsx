@@ -22,7 +22,7 @@ export default function PokemonPage() {
   }
 
   const getForm = async () => {
-    await api.getPokemonByName(id || '')
+    species && await api.getPokemonById(species.id)
       .then(res => setPokemonForm(res))
   }
 
@@ -33,8 +33,11 @@ export default function PokemonPage() {
 
   useEffect(() => {
     getSpecies()
-    getForm()
   }, [id])
+
+  useEffect(() => {
+    getForm()
+  }, [species])
 
   useEffect(() => {
     if (species){

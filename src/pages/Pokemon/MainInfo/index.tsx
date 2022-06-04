@@ -71,14 +71,9 @@ export default function MainInfo({ max_pokemon, species, form}: Props) {
   }
 
   useEffect(() => {
-    console.log(max_pokemon)
     getNextAndPrevious()
   }, [species])
-
-  useEffect(() => {
-    console.log(next, previous)
-  }, [previous, next])
-
+  
   return (
     <InfoPage>
       <div className="main-page">

@@ -14,12 +14,12 @@ export default function OptionBox({previous_pokemon, next_pokemon, species} : Pr
 
   return (
     <div className="option-box">
-      <Link to={previous_pokemon}><AiFillCaretLeft /></Link>
+      <Link to={`/pokemon/${previous_pokemon}`}><AiFillCaretLeft /></Link>
       <div className="label-group">
         <span>N° {String(species.id).padStart(3, '0')}</span>
         <span>{f.formattingSpeciesName(species.name)}</span>
       </div>
-      <Link to={next_pokemon}><AiFillCaretRight /></Link>
+      <Link to={`/pokemon/${next_pokemon}`}><AiFillCaretRight /></Link>
     </div>
   )
 }

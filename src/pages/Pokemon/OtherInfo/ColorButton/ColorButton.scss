@@ -1,0 +1,65 @@
+@import "styles/spacing";
+@import "styles/theme";
+
+.color-button{
+  width: 90px;
+  padding: $border-extra-small;
+  border-radius: $border-radius-inner;
+  border: 1px solid;
+  font-size: $font-small;
+  font-weight: $demi-bold;
+  color: $light-aux;
+}
+
+.black{
+  background-color: $black;
+}
+
+.blue{
+  background-color: $blue;
+  border-color: $dark-blue;
+}
+
+.brown{
+  background-color: $brown;
+  border-color: $dark-brown;
+}
+
+.gray{
+  background-color: $gray;
+  border-color: $dark-gray;
+}
+
+.green{
+  background-color: $green;
+  border-color: $dark-green;
+}
+
+.pink {
+  background-color: $pink;
+  border-color: $dark-pink;
+}
+
+.purple{
+  background-color: $purple;
+  border-color: $dark-purple;
+}
+
+.red{
+  background-color: $red;
+  border-color: $dark-red;
+}
+
+.white{
+  background-color: white;
+  border-color:  white;
+  color: black;
+  font-weight: normal;
+}
+
+.yellow{
+  background-color: $yellow;
+  border-color: $dark-yellow;
+  color: black;
+  font-weight: normal;
+}

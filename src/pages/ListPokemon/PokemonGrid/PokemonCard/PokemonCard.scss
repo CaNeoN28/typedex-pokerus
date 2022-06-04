@@ -5,8 +5,12 @@
 
 .card-main {
   @media(max-width: $med){
-    border-radius: 10px;
-    background-color: $red;
+    border-radius: $border-radius-outer;
+    background-color: $theme;
+  }
+
+  a{
+    text-decoration: none;
   }
 
   .card-space {
@@ -17,11 +21,11 @@
 
     @media (min-width: $med) {
       border-radius: $border-radius-outer;
-      background-color: $red;
+      background-color: $theme;
     }
 
     .card-image {
-      background: $dark-gray;
+      background: $dark-aux;
       display: inline-block;
       position: relative;
       
@@ -35,6 +39,10 @@
       svg {
         margin: auto;
         width: 100%;
+
+        @media(max-width:  $med){
+          width: 80%;
+        }
         
         position: absolute;
         top: 0;
@@ -62,8 +70,7 @@
       }
 
       .card-caption {
-        text-decoration: none;
-        color: $gray;
+        color: $aux;
         font-size: $font-medium;
 
         display: flex;
@@ -71,10 +78,14 @@
         
         @media (max-width: $med){
           padding: 0px $border-small;
+
+          @media (max-width: $xs){
+            padding: 0 4px;
+          }
         }
         
         @media (min-width: $med){
-          padding: 8px $border-small;
+          padding: $border-extra-small $border-small;
         }
         
         @media (max-width: $lg){
@@ -93,55 +104,7 @@
     }
 
     .type-button {
-      width: 40%;
+      width: 45%;
     }
   }
 }
-
-// .card-main {
-//   background-color: $red;
-//   border-radius: $border-radius-outer;
-
-//   a {
-//     text-decoration: none;
-
-//     @media (max-width: $med) {
-//       display: grid;
-//       grid-template-columns: 30% 60%;
-//     }
-//   }
-
-//   .card-image {
-//     background-color: $dark-gray;
-//     display: flex;
-
-//     border-radius: 8px;
-//     height: 250px;
-
-//     img {
-//       @media (max-width: $med) {
-//         width: 100%;
-//       }
-//     }
-//   }
-
-//   .card-caption {
-//     justify-content: space-between;
-//     text-align: center;
-//     display: flex;
-
-//     padding: 12px;
-//     font-size: 16px;
-
-//     color: $gray;
-
-//     font-weight: 600;
-//   }
-// }
-
-// .card-types {
-//   display: flex;
-//   justify-content: space-around;
-
-//   margin: 16px 0px;
-// }

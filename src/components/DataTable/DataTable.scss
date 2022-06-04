@@ -5,38 +5,52 @@
 .data-table {
   width: 100%;
 
-  border: 3px solid $red;
-  background-color: $red;
-  color: $red;
+  border: 3px solid $theme;
+  background-color: $theme;
+  color: $theme;
   border-radius: $border-radius-outer;
 
-  font-size: $font-medium;
+  font-size: $font-small;
+
+  @media (min-width: $xs){
+    font-size: $font-medium;
+  }
 
   .header {
-    color: $gray;
+    color: $aux;
     text-align: center;
     padding: $border-small;
   }
 
   .body {
     width: 100%;
-    background: $gray;
-    border-spacing: $border-small;
+    background: $aux;
     border-radius: 0px 0px $border-radius-outer $border-radius-outer;
+
+    border-spacing: $border-extra-small $border-small;
+
+    @media (min-width: $xs){
+      border-spacing: $border-small $border-medium;
+    }
 
     .row-key {
       width: 30%;
 
       @media (max-width: $sm) {
-        width: 50%;
+        width: 40%;
       }
     }
-
+    
     .row-value-cell {
       display: grid;
       gap: 10%;
       justify-content: center;
+      align-items: center;
       text-align: center;
+
+      @media (max-width: $xs){
+        height: 40px;
+      }
 
       @media (min-width: $med) {
         display: flex;
@@ -48,50 +62,8 @@
       }
     }
   }
+
+  .no-title {
+    border-radius: 8px;
+  }
 }
-
-// .dataTable{
-//   border: 3px solid $red;
-//   background-color: $red;
-//   width: 660px;
-//   color: $red;
-
-//   font-size: 32px;
-//   border-radius: $border-radius-outer;
-
-//   &__header{
-//     color: $gray;
-
-//     display: flex;
-//     justify-content: space-around;
-//     padding: 16px;
-//   }
-
-//   &__body{
-//     width: 660px;
-//     border-spacing: 32px 0px;
-//     border-radius: 0px 0px $border-radius-outer $border-radius-outer;
-
-//     background-color: $gray;
-
-//     &__row{
-//       height: 80px;
-//       justify-content: space-around;
-
-//       &__key{
-//         text-align: left;
-//         width: 190px;
-//       }
-
-//       &__value{
-//         text-align: center;
-//         font-size: 30px;
-
-//         &__cell{
-//           display: flex;
-//           justify-content: space-evenly;
-//         }
-//       }
-//     }
-//   }
-// }

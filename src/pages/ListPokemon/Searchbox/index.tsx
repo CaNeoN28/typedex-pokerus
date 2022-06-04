@@ -10,18 +10,18 @@ export default function SearchBox({ setSearch }: Props) {
   const [input, setInput] = useState('');
 
   return (
-    <form className="searchBox" onSubmit={e => {
+    <form className="search-box" onSubmit={e => {
       e.preventDefault()
       setSearch(input.toLowerCase())
       setInput('')
     }}>
         <input
-          className="searchBox__searchInput"
+          className="input"
           type="text"
           placeholder="Search pokémon"
           value={input}
           onChange={e => setInput(e.target.value)} />
-        <button className="searchBox__searchButton"><FaSearch /></button>
+        <button className="button"><FaSearch /></button>
     </form>
   )
 }

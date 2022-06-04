@@ -1,0 +1,36 @@
+@import "styles/spacing.scss";
+@import "styles/theme.scss";
+@import "styles/sizes.scss";
+
+.srt{
+  display: flex;
+  justify-content: center;
+  border-radius: $border-radius-outer;
+  
+  font-size: $font-small;
+
+  table{
+    border-spacing: 0px;
+    border: $default-border;
+    border-radius: $border-radius-inner;
+    background-color: $aux;
+  }
+
+  thead{
+    background-color: $theme;
+    color: $aux;
+  }
+
+  tbody{
+    color: $theme;
+    text-align: center;
+  }
+
+  td, th{
+    padding: $border-extra-small;
+    
+    @media (min-width: $med){
+      width: 40px;
+    }
+  }
+}

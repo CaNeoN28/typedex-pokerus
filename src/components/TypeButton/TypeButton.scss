@@ -2,75 +2,86 @@
 @import "styles/spacing";
 @import "styles/sizes";
 
-.type-button{
+.type-button {
   width: 100%;
   padding: 8px $border-extra-small;
 
   border-radius: $border-radius-inner;
   border: none;
 
-  .text{
-    color: white;
-    text-shadow: 0px 0px 2px black;
-    font-size: $font-small;
-    
-    @media (max-width: $lg) {
-      font-size: $font-small;
-    }
-  }
+  color: $aux;
+  text-shadow: $text-shadow;
+  font-size: $font-small
 }
 
-.normal{
+.normal {
   background-color: $normal;
 }
-.fire{
+
+.fire {
   background-color: $fire;
 }
-.fighting{
+
+.fighting {
   background-color: $fighting;
 }
-.water{
+
+.water {
   background-color: $water;
 }
-.flying{
+
+.flying {
   background-color: $flying;
 }
-.grass{
+
+.grass {
   background-color: $grass;
 }
-.poison{
+
+.poison {
   background-color: $poison;
 }
-.electric{
+
+.electric {
   background-color: $electric;
 }
-.ground{
+
+.ground {
   background-color: $ground;
 }
-.psychic{
+
+.psychic {
   background-color: $psychic;
 }
-.rock{
+
+.rock {
   background-color: $rock;
 }
-.ice{
+
+.ice {
   background-color: $ice;
 }
-.bug{
+
+.bug {
   background-color: $bug;
 }
-.dragon{
+
+.dragon {
   background-color: $dragon;
 }
-.ghost{
+
+.ghost {
   background-color: $ghost;
 }
-.dark{
+
+.dark {
   background-color: $dark;
 }
-.steel{
+
+.steel {
   background-color: $steel;
 }
-.fairy{
+
+.fairy {
   background-color: $fairy;
 }

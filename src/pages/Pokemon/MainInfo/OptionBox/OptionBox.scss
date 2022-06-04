@@ -10,11 +10,11 @@
   justify-content: space-between;
   align-items: center;
 
-  color: $red;
-  border: 3px solid $red;
+  color: $theme;
+  border: 3px solid $theme;
   border-radius: 8px;
 
-  font-size: $font-medium;
+  font-size: $font-small;
 
   a {
     @media (min-width: $xs) {
@@ -25,7 +25,7 @@
       margin: 0px $border-extra-small;
     }
 
-    color: $red;
+    color: $theme;
     display: flex;
   }
 

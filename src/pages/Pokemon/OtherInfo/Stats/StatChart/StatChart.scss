@@ -1,0 +1,10 @@
+@import "styles/sizes";
+@import "styles/spacing";
+
+.stat-chart{
+  display: block;
+  @media (max-width: $med) {
+    width: 80%;
+    margin: auto;
+  }
+}

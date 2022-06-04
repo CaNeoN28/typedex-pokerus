@@ -1,0 +1,41 @@
+@import 'styles/theme';
+@import 'styles/spacing';
+@import 'styles/sizes';
+
+.stats{
+  display: grid;
+  align-items: center;
+  gap: $border-medium;
+
+  .total-stats{
+    display: grid;
+    align-items: center;
+    justify-content: center;
+
+    grid-template-columns: auto auto;
+    gap: 10%;
+
+    font-size: $font-small;
+    
+    background-color: $aux;
+    color: $theme;
+    border-radius: $border-radius-inner;
+
+    span{
+      padding: $border-extra-small;
+    }
+
+    @media (min-width: $xs){
+      width: 45%;
+      margin: auto;
+
+      @media (min-width:$med){
+        width: 25%;
+
+        @media (min-width:$lg){
+          width: 30%;
+        }
+      }
+    }
+  }
+}

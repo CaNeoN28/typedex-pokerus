@@ -10,7 +10,7 @@ export default function TypeButton({type} : Props){
 
   return(
     <button className={className}>
-      <a className="text">{Formatting.capitalize(type)}</a>
+      {Formatting.capitalize(type)}
     </button>
   )
 }

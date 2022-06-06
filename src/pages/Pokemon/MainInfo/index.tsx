@@ -7,6 +7,7 @@ import measuring from "common/utils/measuring";
 import OptionBox from "./OptionBox";
 import './MainInfo.scss';
 import { useEffect, useState } from "react";
+import FormBox from "./FormBox";
 
 interface Props {
   max_pokemon: number
@@ -14,8 +15,7 @@ interface Props {
   form: Pokemon
 }
 
-
-export default function MainInfo({ max_pokemon, species, form}: Props) {
+export default function MainInfo({ max_pokemon, species, form }: Props) {
 
   const f = Formatting
   const api = new PokemonClient()
@@ -63,22 +63,25 @@ export default function MainInfo({ max_pokemon, species, form}: Props) {
   const [next, setNext] = useState("")
 
   const getNextAndPrevious = async () => {
-      await api.getPokemonSpeciesById(species.id === max_pokemon ? 1 : species.id + 1)
-        .then(res => setNext(res.name)) 
+    await api.getPokemonSpeciesById(species.id === max_pokemon ? 1 : species.id + 1)
+      .then(res => setNext(res.name))
 
-      await api.getPokemonSpeciesById(species.id === 1 ? max_pokemon : species.id - 1)
-        .then(res => setPrevious(res.name))
+    await api.getPokemonSpeciesById(species.id === 1 ? max_pokemon : species.id - 1)
+      .then(res => setPrevious(res.name))
   }
 
   useEffect(() => {
     getNextAndPrevious()
   }, [species])
-  
+
   return (
     <InfoPage>
       <div className="main-page">
-        <div className="image">
-          <img src={img} alt={form.name} />
+        <div>
+          <div className="image">
+            <img src={img} alt={form.name} />
+          </div>
+          <FormBox/>
         </div>
         <div className="info">
           <OptionBox previous_pokemon={previous} next_pokemon={next} species={species} />

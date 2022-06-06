@@ -87,7 +87,7 @@ export default function MainInfo({ max_pokemon, species, form, forms, setForm }:
             {forms.map(f => (
               <button
                 onClick={() => setForm(f)}
-                disabled={form === f}
+                disabled={form.id === f.id}
                 key={f.id}>{f.name}</button>
             ))}
           </FormBox>

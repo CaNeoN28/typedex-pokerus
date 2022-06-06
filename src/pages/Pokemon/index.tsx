@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import { PokemonClient, PokemonSpecies, Pokemon } from "pokenode-ts"
 import Page from "../../components/Page";
@@ -14,7 +14,18 @@ export default function PokemonPage() {
 
   const [species, setSpecies] = useState<PokemonSpecies>();
   const [form, setPokemonForm] = useState<Pokemon>();
-  const [max_pokemon, setMaxPokemon] = useState(0)
+  const [forms, setForms] = useState<Pokemon[]>();
+  const [max_pokemon, setMaxPokemon] = useState(0);
+
+  const validateIfHasPokemon = (
+    old_list: Pokemon[],
+    value: Pokemon
+  ) => {
+    if (!old_list.find(v => v.name === value.name))
+      return [...old_list, value]
+
+    return [...old_list]
+  }
 
   const getSpecies = async () => {
     await api.getPokemonSpeciesByName(id || '')
@@ -24,6 +35,16 @@ export default function PokemonPage() {
   const getForm = async () => {
     species && await api.getPokemonById(species.id)
       .then(res => setPokemonForm(res))
+  }
+
+  const getForms = async () => {
+    species && await species.varieties.map(
+      s => api.getPokemonByName(s.pokemon.name)
+        .then(res =>
+          setForms(old_l => old_l ? validateIfHasPokemon(old_l, res) : [res]
+          )
+        )
+    )
   }
 
   useEffect(() => {
@@ -37,14 +58,19 @@ export default function PokemonPage() {
 
   useEffect(() => {
     getForm()
+    getForms()
   }, [species])
 
   useEffect(() => {
-    if (species){
+    console.log(forms)
+  }, [forms])
+
+  useEffect(() => {
+    if (species) {
       if (id && !isNaN(Number(id)) && species)
         navigate(`/pokemon/${species.name}`)
 
-      document.title=(f(species.name))
+      document.title = (f(species.name))
     }
   }, [species])
 

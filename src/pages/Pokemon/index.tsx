@@ -41,7 +41,8 @@ export default function PokemonPage() {
     species && await species.varieties.map(
       s => api.getPokemonByName(s.pokemon.name)
         .then(res =>
-          setForms(old_l => old_l ? validateIfHasPokemon(old_l, res) : [res]
+          setForms(old_l => (old_l ? validateIfHasPokemon(old_l, res) : [res])
+            .sort((a, b) => a.id < b.id ? -1 : 1 )
           )
         )
     )
@@ -60,10 +61,6 @@ export default function PokemonPage() {
     getForm()
     getForms()
   }, [species])
-
-  useEffect(() => {
-    console.log(forms)
-  }, [forms])
 
   useEffect(() => {
     if (species) {

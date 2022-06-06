@@ -37,8 +37,10 @@ export default function PokemonPage() {
       .then(res => setPokemonForm(res))
   }
 
-  const getForms = async () => {
-    species && await species.varieties.map(
+  const getForms = () => {
+    forms && setForms([])
+
+    species && species.varieties.map(
       s => api.getPokemonByName(s.pokemon.name)
         .then(res =>
           setForms(old_l => (old_l ? validateIfHasPokemon(old_l, res) : [res])
@@ -78,13 +80,15 @@ export default function PokemonPage() {
   //   }
   // }, [forms])
 
-  if (species && form)
+  if (species && form && forms)
     return (
       <Page>
         <MainInfo
           max_pokemon={max_pokemon}
           species={species}
           form={form}
+          forms={forms}
+          setForm={setPokemonForm}
         />
         <OtherInfo
           pokemonForm={form}

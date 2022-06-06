@@ -1,16 +1,9 @@
 import { Pokemon } from "pokenode-ts"
 
-interface Props{
-  setForm?: React.Dispatch<React.SetStateAction<Pokemon>>
-  forms?: Pokemon[]
-}
-
-export default function FormBox({setForm, forms} : Props){
+export default function FormBox({children} : {children? : React.ReactNode}){
   return(
     <div>
-      {forms && forms?.map(f => (
-        <button key={f.id}>{f.name}</button>
-      ))}
+      {children}
     </div>
   )
 }

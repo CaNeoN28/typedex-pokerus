@@ -6,16 +6,18 @@ import Formatting from "common/utils/string";
 import measuring from "common/utils/measuring";
 import OptionBox from "./OptionBox";
 import './MainInfo.scss';
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import FormBox from "./FormBox";
 
 interface Props {
   max_pokemon: number
-  species: PokemonSpecies,
+  species: PokemonSpecies
   form: Pokemon
+  forms: Pokemon[]
+  setForm: React.Dispatch<React.SetStateAction<Pokemon | undefined>>
 }
 
-export default function MainInfo({ max_pokemon, species, form }: Props) {
+export default function MainInfo({ max_pokemon, species, form, forms, setForm }: Props) {
 
   const f = Formatting
   const api = new PokemonClient()
@@ -81,7 +83,11 @@ export default function MainInfo({ max_pokemon, species, form }: Props) {
           <div className="image">
             <img src={img} alt={form.name} />
           </div>
-          <FormBox/>
+          <FormBox>
+            {forms.map(f => (
+              <button key={f.id}>{f.name}</button>
+            ))}
+          </FormBox>
         </div>
         <div className="info">
           <OptionBox previous_pokemon={previous} next_pokemon={next} species={species} />

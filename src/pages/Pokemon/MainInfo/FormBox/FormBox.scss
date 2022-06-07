@@ -1,5 +1,6 @@
 @import "styles/spacing";
 @import "styles/theme";
+@import "styles/sizes";
 
 .form-box {
   display: flex;
@@ -15,6 +16,10 @@
 
     outline: none;
     justify-content: space-between;
+
+    @media(min-width: $lg){
+      width: 60%;
+    }
 
     option {
       background-color: $aux;

@@ -7,6 +7,7 @@ import measuring from "common/utils/measuring";
 import './MainInfo.scss';
 import React, { useEffect, useState } from "react";
 import FormBox from "./FormBox";
+import Logo from "assets/logo-red.svg"
 
 interface Props {
   max_pokemon: number
@@ -83,6 +84,8 @@ export default function MainInfo({ max_pokemon, species, form, forms, setForm }:
       <div className="main-page">
         <div className="form-space">
           <div className="image">
+            <div className="dummy"/>
+            <img className={"bg"} src={Logo}/>
             <img src={img} alt={form.name} />
           </div>
           <span className="species-name">

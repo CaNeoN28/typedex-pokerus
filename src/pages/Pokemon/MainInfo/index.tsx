@@ -84,8 +84,8 @@ export default function MainInfo({ max_pokemon, species, form, forms, setForm }:
       <div className="main-page">
         <div className="form-space">
           <div className="image">
-            <div className="dummy"/>
-            <img className={"bg"} src={Logo}/>
+            <div className="dummy" />
+            <img className={"bg"} src={Logo} />
             <img src={img} alt={form.name} />
           </div>
           <span className="species-name">

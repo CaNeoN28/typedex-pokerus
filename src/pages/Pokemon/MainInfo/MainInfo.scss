@@ -4,14 +4,13 @@
 
 .main-page {
   display: grid;
-  justify-content: center;
   align-items: center;
   min-height: 640px;
   gap: $border-medium;
 
   .form-space {
     display: grid;
-    gap: $border-small;
+    gap: $border-small; 
 
     .species-name {
       border: $default-border;
@@ -20,6 +19,7 @@
 
       text-align: center;
       color: $theme;
+      font-size: $font-small;
 
       @media (min-width: $lg) {
         margin: auto;
@@ -33,16 +33,30 @@
       display: inline-block;
       position: relative;
 
+      @media (max-width: $lg) {
+        width: 50%;
+        margin: auto;
+
+        @media (max-width: $med){
+          width: 80%;
+        }
+      }
+
       .dummy {
         margin-top: 100%;
       }
 
-      .bg{
+      .bg {
         margin: auto;
         width: 50%;
-        img{
+
+        @media (max-width: $lg) {
+          width: 60%;
+        }
+
+        img {
           position: absolute;
-  
+
           top: 0;
           bottom: 0;
           left: 0;
@@ -51,41 +65,13 @@
       }
 
       img {
-        width: 100%;
         position: absolute;
+        width: 100%;
 
         top: 0;
         bottom: 0;
         left: 0;
         right: 0;
-      }
-
-      @media (min-width: $lg) {
-        img {
-          width: 100%;
-        }
-
-        svg {
-          width: 100%;
-        }
-      }
-
-      @media (max-width: $lg) {
-        width: 100%;
-
-        img {
-          width: 80%;
-          margin: auto;
-        }
-
-        @media (max-width: $med) {
-          width: 60%;
-          margin: auto;
-
-          img {
-            width: 100%;
-          }
-        }
       }
     }
   }
@@ -98,6 +84,7 @@
 
   @media (min-width: $lg) {
     display: grid;
+    justify-content: center;
     grid-template-columns: 30% 50%;
     gap: 15%;
 

@@ -9,15 +9,24 @@
   min-height: 640px;
   gap: $border-medium;
 
-  .form-space{
+  .form-space {
     display: grid;
     justify-content: center;
     gap: $border-small;
 
-    .species-name{
+    .species-name {
+      border: $default-border;
+      padding: $border-extra-small;
+      border-radius: $border-radius-inner;
+
       text-align: center;
-      font-size: $font-small;
-      color: $theme
+      color: $theme;
+
+      @media (min-width: $lg) {
+        margin: auto;
+        font-size: $font-medium;
+        width: 60%;
+      }
     }
   }
 

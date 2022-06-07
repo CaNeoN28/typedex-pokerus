@@ -48,10 +48,6 @@
       align-items: center;
       text-align: center;
 
-      @media (max-width: $xs){
-        height: 40px;
-      }
-
       @media (min-width: $med) {
         display: flex;
         justify-content: space-evenly;

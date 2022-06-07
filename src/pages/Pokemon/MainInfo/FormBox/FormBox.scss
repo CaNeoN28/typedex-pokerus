@@ -1,5 +1,19 @@
+@import "styles/spacing";
+@import "styles/theme";
+
 .form-box{
   display: flex;
   justify-content: center;
-  gap: 24px 
+  gap: $border-small; 
+
+  button{
+    border: $default-border;
+    width: 64px;
+    height: 24px;
+    border-radius: $border-radius-small;
+
+    &:disabled{
+      background-color: $theme;
+    }
+  }
 }

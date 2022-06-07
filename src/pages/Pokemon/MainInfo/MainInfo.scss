@@ -3,9 +3,11 @@
 @import "styles/spacing";
 
 .main-page {
+  display: grid;
   justify-content: center;
   align-items: center;
   min-height: 640px;
+  gap: $border-medium;
 
   .info {
     display: grid;

@@ -22,7 +22,10 @@ export default function MainInfo({ max_pokemon, species, form, forms, setForm }:
   const f = Formatting
   const api = new PokemonClient()
 
-  const img = form.sprites.other["official-artwork"].front_default || ''
+  const img = form.sprites.other.home.front_default ||
+              form.sprites.other["official-artwork"].front_default || 
+              forms[0].sprites.other.home.front_default ||
+              ''
 
   const actualHeight = form.height / 10
   const actualWeight = form.weight / 10

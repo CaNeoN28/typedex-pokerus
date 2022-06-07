@@ -5,12 +5,33 @@
   display: flex;
 
   select {
-    min-width: 120px;
+    width: 100%;
     padding: $border-extra-small;
     border: $default-border;
     margin: auto;
 
     background-color: $theme;
     color: $aux;
+
+    outline: none;
+    justify-content: space-between;
+
+    option {
+      background-color: $aux;
+      color: $theme;
+    }
+
+    .selected {
+      background-color: $theme;
+      color: $aux;
+    }
+
+    &:disabled {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+
+      text-align: center;
+      mask: none;
+    }
   }
 }

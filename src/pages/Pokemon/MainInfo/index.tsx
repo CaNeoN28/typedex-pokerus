@@ -89,11 +89,13 @@ export default function MainInfo({ max_pokemon, species, form, forms, setForm }:
           <FormBox>
             <select
               defaultValue={form.id}
-              onChange={e => setForm(forms.find(f => f.id === Number(e.target.value)))}>
+              onChange={e => setForm(forms.find(f => f.id === Number(e.target.value)))}
+              disabled={forms.length === 1}>
               {forms.map(f_form => (
                 <option
                   value={f_form.id}
-                  key={f_form.id}>
+                  key={f_form.id}
+                  className={`${f_form.id === form.id ? ' selected': ''}`}>
                     {f.formattingFormName(species.name, f_form.name)}
                 </option>
               ))}

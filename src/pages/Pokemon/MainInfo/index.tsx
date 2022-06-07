@@ -23,9 +23,9 @@ export default function MainInfo({ max_pokemon, species, form, forms, setForm }:
   const api = new PokemonClient()
 
   const img = form.sprites.other.home.front_default ||
-              form.sprites.other["official-artwork"].front_default || 
-              forms[0].sprites.other.home.front_default ||
-              ''
+    form.sprites.other["official-artwork"].front_default ||
+    forms[0].sprites.other.home.front_default ||
+    ''
 
   const actualHeight = form.height / 10
   const actualWeight = form.weight / 10
@@ -87,12 +87,17 @@ export default function MainInfo({ max_pokemon, species, form, forms, setForm }:
             <img src={img} alt={form.name} />
           </div>
           <FormBox>
-            {forms.map(f => (
-              <button
-                onClick={() => setForm(f)}
-                disabled={form.id === f.id}
-                key={f.id}></button>
-            ))}
+            <select
+              defaultValue={form.id}
+              onChange={e => setForm(forms.find(f => f.id === Number(e.target.value)))}>
+              {forms.map(f_form => (
+                <option
+                  value={f_form.id}
+                  key={f_form.id}>
+                    {f.formattingFormName(species.name, f_form.name)}
+                </option>
+              ))}
+            </select>
           </FormBox>
         </div>
         <div className="info">

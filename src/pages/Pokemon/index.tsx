@@ -45,6 +45,7 @@ export default function PokemonPage() {
         .then(res =>
           setForms(old_l => (old_l ? validateIfHasPokemon(old_l, res) : [res])
             .sort((a, b) => a.id < b.id ? -1 : 1 )
+              .filter(f => !f.name.includes('totem'))
           )
         )
     )

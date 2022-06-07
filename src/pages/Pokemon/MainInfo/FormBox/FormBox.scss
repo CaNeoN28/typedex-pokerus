@@ -1,7 +1,16 @@
 @import "styles/spacing";
 @import "styles/theme";
 
-.form-box{
+.form-box {
   display: flex;
-  justify-content: center;
+
+  select {
+    min-width: 120px;
+    padding: $border-extra-small;
+    border: $default-border;
+    margin: auto;
+
+    background-color: $theme;
+    color: $aux;
+  }
 }

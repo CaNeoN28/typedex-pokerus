@@ -9,6 +9,18 @@
   min-height: 640px;
   gap: $border-medium;
 
+  .form-space{
+    display: grid;
+    justify-content: center;
+    gap: $border-small;
+
+    .species-name{
+      text-align: center;
+      font-size: $font-small;
+      color: $theme
+    }
+  }
+
   .info {
     display: grid;
     gap: 24px;

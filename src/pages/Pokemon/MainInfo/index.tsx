@@ -82,10 +82,13 @@ export default function MainInfo({ max_pokemon, species, form, forms, setForm }:
   return (
     <InfoPage>
       <div className="main-page">
-        <div>
+        <div className="form-space">
           <div className="image">
             <img src={img} alt={form.name} />
           </div>
+          <span className="species-name">
+            {f.capitalize(species.name)}
+          </span>
           <FormBox>
             <select
               defaultValue={form.id}
@@ -95,8 +98,8 @@ export default function MainInfo({ max_pokemon, species, form, forms, setForm }:
                 <option
                   value={f_form.id}
                   key={f_form.id}
-                  className={`${f_form.id === form.id ? ' selected': ''}`}>
-                    {f.formattingFormName(species.name, f_form.name)}
+                  className={`${f_form.id === form.id ? ' selected' : ''}`}>
+                  {f.formattingFormName(species.name, f_form.name)}
                 </option>
               ))}
             </select>

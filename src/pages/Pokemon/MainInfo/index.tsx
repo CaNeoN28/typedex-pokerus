@@ -4,23 +4,28 @@ import DataTable from "components/DataTable";
 import TypeButton from "components/TypeButton";
 import Formatting from "common/utils/string";
 import measuring from "common/utils/measuring";
-import OptionBox from "./OptionBox";
 import './MainInfo.scss';
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import FormBox from "./FormBox";
+import Logo from "assets/logo-red.svg"
 
 interface Props {
   max_pokemon: number
-  species: PokemonSpecies,
+  species: PokemonSpecies
   form: Pokemon
+  forms: Pokemon[]
+  setForm: React.Dispatch<React.SetStateAction<Pokemon | undefined>>
 }
 
-
-export default function MainInfo({ max_pokemon, species, form}: Props) {
+export default function MainInfo({ max_pokemon, species, form, forms, setForm }: Props) {
 
   const f = Formatting
   const api = new PokemonClient()
 
-  const img = form.sprites.other["official-artwork"].front_default || ''
+  const img = form.sprites.other.home.front_default ||
+    form.sprites.other["official-artwork"].front_default ||
+    forms[0].sprites.other.home.front_default ||
+    ''
 
   const actualHeight = form.height / 10
   const actualWeight = form.weight / 10
@@ -63,25 +68,47 @@ export default function MainInfo({ max_pokemon, species, form}: Props) {
   const [next, setNext] = useState("")
 
   const getNextAndPrevious = async () => {
-      await api.getPokemonSpeciesById(species.id === max_pokemon ? 1 : species.id + 1)
-        .then(res => setNext(res.name)) 
+    await api.getPokemonSpeciesById(species.id === max_pokemon ? 1 : species.id + 1)
+      .then(res => setNext(res.name))
 
-      await api.getPokemonSpeciesById(species.id === 1 ? max_pokemon : species.id - 1)
-        .then(res => setPrevious(res.name))
+    await api.getPokemonSpeciesById(species.id === 1 ? max_pokemon : species.id - 1)
+      .then(res => setPrevious(res.name))
   }
 
   useEffect(() => {
     getNextAndPrevious()
   }, [species])
-  
+
   return (
     <InfoPage>
       <div className="main-page">
-        <div className="image">
-          <img src={img} alt={form.name} />
+        <div className="form-space">
+          <div className="image">
+            <div className="dummy" />
+            <img className={"bg"} src={Logo} />
+            <img src={img} alt={form.name} />
+          </div>
+          <span className="species-name">
+            {f.capitalize(species.name)}
+          </span>
+          <FormBox>
+            <select
+              defaultValue={form.id}
+              onChange={e => setForm(forms.find(f => f.id === Number(e.target.value)))}
+              disabled={forms.length === 1}>
+              {forms.map(f_form => (
+                <option
+                  value={f_form.id}
+                  key={f_form.id}
+                  className={`${f_form.id === form.id ? ' selected' : ''}`}>
+                  {f.formattingFormName(species.name, f_form.name)}
+                </option>
+              ))}
+            </select>
+          </FormBox>
         </div>
         <div className="info">
-          <OptionBox previous_pokemon={previous} next_pokemon={next} species={species} />
+          {/* <OptionBox previous_pokemon={previous} next_pokemon={next} species={species} /> */}
           <DataTable data={data} />
         </div>
       </div>

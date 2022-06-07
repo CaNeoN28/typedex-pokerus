@@ -4,7 +4,6 @@ import DataTable from "components/DataTable";
 import TypeButton from "components/TypeButton";
 import Formatting from "common/utils/string";
 import measuring from "common/utils/measuring";
-import OptionBox from "./OptionBox";
 import './MainInfo.scss';
 import React, { useEffect, useState } from "react";
 import FormBox from "./FormBox";
@@ -106,7 +105,7 @@ export default function MainInfo({ max_pokemon, species, form, forms, setForm }:
           </FormBox>
         </div>
         <div className="info">
-          <OptionBox previous_pokemon={previous} next_pokemon={next} species={species} />
+          {/* <OptionBox previous_pokemon={previous} next_pokemon={next} species={species} /> */}
           <DataTable data={data} />
         </div>
       </div>

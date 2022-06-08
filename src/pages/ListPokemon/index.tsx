@@ -16,7 +16,7 @@ export default function () {
 
   const [search, setSearch] = useState('')
 
-  const [pokemon_dict, setPokemonDict] = useState<NamedAPIResource[]>();
+  const [pokemon_dict, setPokemonDict] = useState<NamedAPIResource[]>([]);
 
   const [pokemon_list, setPokemonList] = useState<Pokemon[]>()
   const [next_list, setNextList] = useState<Pokemon[]>()
@@ -39,6 +39,22 @@ export default function () {
     setList(oldList => (oldList ? validateIfHasDex(oldList, res) : [res])
       .sort((a, b) => a.id < b.id ? -1 : 1)
     )
+  }
+
+
+  const filterDict = (pokemon_dict: NamedAPIResource[]) => {
+    let dict = pokemon_dict
+
+    if (pokedex)
+      dict = dict.filter(item =>
+        pokedex.pokemon_entries.find(p =>
+          p.pokemon_species.name === item.name
+        )
+      )
+
+    dict = dict.filter(item => item.name.includes(search.toLowerCase()))
+
+    return dict
   }
 
 
@@ -81,10 +97,13 @@ export default function () {
   }
 
   const getPokemonDict = async () => {
+    setMax(min)
+    setPokemonList([])
+    setNextList([])
+
     await pokemonClient.listPokemons(0, 10000)
       .then(res => setPokemonDict(
-        res.results
-          .filter(item => item.name.includes(search))
+        filterDict(res.results)
       ))
   }
 
@@ -94,7 +113,7 @@ export default function () {
     setPokemonList([])
     setNextList([])
 
-    pokemon_dict && pokemon_dict.map((p, index) => {
+    pokemon_dict.map((p, index) => {
       index < max ? getPokemon(p.name, setPokemonList) :
         index < max + min && getPokemon(p.name, setNextList)
     })
@@ -103,7 +122,7 @@ export default function () {
   const getNextList = () => {
     setNextList([])
 
-    pokemon_list && pokemon_dict && pokemon_dict.map((p, index) => {
+    pokemon_list && pokemon_dict.map((p, index) => {
       index >= max && index < max + min && getPokemon(p.name, setNextList)
     })
   }
@@ -116,7 +135,7 @@ export default function () {
 
   useEffect(() => {
     getPokemonDict()
-  }, [search])
+  }, [search, pokedex])
 
   useEffect(() => {
     getFirstList()

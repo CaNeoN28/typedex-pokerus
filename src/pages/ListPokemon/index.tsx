@@ -81,13 +81,11 @@ export default function () {
   }
 
   const getPokemonDict = async () => {
-
-    pokedex &&
-      await pokemonClient.listPokemons(0, 10000)
-        .then(res => setPokemonDict(
-          res.results
-            .filter(item => item.name.includes(search))
-        ))
+    await pokemonClient.listPokemons(0, 10000)
+      .then(res => setPokemonDict(
+        res.results
+          .filter(item => item.name.includes(search))
+      ))
   }
 
 
@@ -118,7 +116,7 @@ export default function () {
 
   useEffect(() => {
     getPokemonDict()
-  }, [search]) 
+  }, [search])
 
   useEffect(() => {
     getFirstList()

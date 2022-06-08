@@ -10,6 +10,7 @@
     "@types/node": "^16.11.33",
     "@types/react": "^18.0.9",
     "@types/react-dom": "^18.0.3",
+    "axios": "^0.27.2",
     "chart.js": "^3.8.0",
     "pokenode-ts": "^1.13.1",
     "react": "^18.1.0",

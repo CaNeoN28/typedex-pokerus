@@ -1,10 +1,11 @@
 import Page from "components/Page";
 import { useEffect, useState } from "react";
-import { NamedAPIResource, Pokemon, PokemonClient, PokemonSpecies } from 'pokenode-ts';
+import { NamedAPIResource, Pokedex, Pokemon, PokemonClient, PokemonSpecies } from 'pokenode-ts';
 import LoadButton from "./LoadButton";
 import PokemonGrid from "./PokemonGrid";
 import SearchBox from "./Searchbox";
 import "./ListPokemon.scss"
+import PokedexServices from "services/pokedex";
 
 export default function () {
   const api = new PokemonClient();
@@ -18,6 +19,8 @@ export default function () {
 
   const [pokemon_list, setPokemonList] = useState<Pokemon[]>()
   const [next_list, setNextList] = useState<Pokemon[]>()
+
+  const [dexList, setDexList] = useState<Pokedex[]>()
 
   const validateIfHasPokemon = (oldList: Pokemon[], res: Pokemon) => {
     if (!oldList.find(p => p.id === res.id))
@@ -38,8 +41,8 @@ export default function () {
   const getPokemon = async (
     name: string,
     setList: React.Dispatch<React.SetStateAction<Pokemon[] | undefined>>) => {
-      await api.getPokemonByName(name)
-        .then(res => preparePokemonList(setList, res))
+    await api.getPokemonByName(name)
+      .then(res => preparePokemonList(setList, res))
   }
 
   const getPokemonDict = async () => {
@@ -67,8 +70,15 @@ export default function () {
   }
 
   useEffect(() => {
+    setDexList(
+      PokedexServices.prepareList()
+    )
+  }, [])
+
+  useEffect(() => {
     getPokemonDict()
-  }, [search])
+    console.log(dexList)
+  }, [search, dexList])
 
   useEffect(() => {
     getFirstList()

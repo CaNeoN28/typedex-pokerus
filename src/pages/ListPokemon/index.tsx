@@ -126,13 +126,13 @@ export default function () {
 
         <div>
           <select
-            defaultValue={1}
-            onChange={(e) => setPokedex(dexList.filter(d => String(d.id) === e.target.value)[0])}
+            value={pokedex ? pokedex.name : 'national'}
+            onChange={(e) => setPokedex(dexList.filter(d => (d.name) === e.target.value)[0])}
           >
             {dexList.sort((a, b) => a.id < b.id ? -1 : 1).map((dex) => (
               <option
                 key={dex.id}
-                value={dex.id}>
+                value={dex.name}>
                 {dex.names[dex.names.length - 1].name}
               </option>
             ))}

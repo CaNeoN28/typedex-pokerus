@@ -1,6 +1,6 @@
 import Page from "components/Page";
 import { useEffect, useState } from "react";
-import { NamedAPIResource, Pokedex, Pokedexes, Pokemon, PokemonClient, PokemonSpecies } from 'pokenode-ts';
+import { GameClient, NamedAPIResource, Pokedex, Pokedexes, Pokemon, PokemonClient, PokemonSpecies } from 'pokenode-ts';
 import LoadButton from "./LoadButton";
 import PokemonGrid from "./PokemonGrid";
 import SearchBox from "./Searchbox";
@@ -8,7 +8,8 @@ import "./ListPokemon.scss"
 import PokedexServices from "services/pokedex";
 
 export default function () {
-  const api = new PokemonClient();
+  const pokemonClient = new PokemonClient();
+  const gameClient = new GameClient()
 
   const min = 12
   const [max, setMax] = useState(min)
@@ -22,6 +23,7 @@ export default function () {
 
   const [pokedex, setPokedex] = useState<Pokedex>()
   const [dexList, setDexList] = useState<Pokedex[]>([])
+
 
   const validateIfHasDex = (oldList: Pokedex[], res: Pokedex) => {
     if (!oldList.find(pokedex => pokedex.id === res.id))
@@ -39,6 +41,7 @@ export default function () {
     )
   }
 
+
   const validateIfHasPokemon = (oldList: Pokemon[], res: Pokemon) => {
     if (!oldList.find(p => p.id === res.id))
       return [...oldList, res]
@@ -54,6 +57,7 @@ export default function () {
       .sort((a, b) => a.id < b.id ? -1 : 1)
       .filter(a => a.is_default))
   }
+
 
   const getDex = () => {
     PokedexServices.getById(1)
@@ -72,14 +76,20 @@ export default function () {
   const getPokemon = async (
     name: string,
     setList: React.Dispatch<React.SetStateAction<Pokemon[] | undefined>>) => {
-    await api.getPokemonByName(name)
+    await pokemonClient.getPokemonByName(name)
       .then(res => preparePokemonList(setList, res))
   }
 
   const getPokemonDict = async () => {
-    await api.listPokemons(0, 10000)
-      .then(res => setPokemonDict(res.results.filter(item => item.name.includes(search))))
+
+    pokedex &&
+      await pokemonClient.listPokemons(0, 10000)
+        .then(res => setPokemonDict(
+          res.results
+            .filter(item => item.name.includes(search))
+        ))
   }
+
 
   const getFirstList = () => {
     setMax(min)
@@ -100,18 +110,15 @@ export default function () {
     })
   }
 
+
   useEffect(() => {
     getDex()
     getDexList()
   }, [])
 
   useEffect(() => {
-    console.log(pokedex)
-  }, [pokedex])
-
-  useEffect(() => {
     getPokemonDict()
-  }, [search])
+  }, [search]) 
 
   useEffect(() => {
     getFirstList()

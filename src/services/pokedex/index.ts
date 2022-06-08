@@ -7,6 +7,11 @@ async function getList() {
   return response
 }
 
+async function getById(id : number) {
+  const response = await axios.get(`https://pokeapi.co/api/v2/pokedex/${id}`)
+  return response
+}
+
 async function get(url : string) {
   const response = await axios.get(url)
   return response
@@ -14,6 +19,7 @@ async function get(url : string) {
 
 const PokedexServices = {
   getList,
+  getById,
   get
 }
 

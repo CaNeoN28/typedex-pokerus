@@ -55,6 +55,11 @@ export default function () {
       .filter(a => a.is_default))
   }
 
+  const getDex = () => {
+    PokedexServices.getById(1)
+      .then(res => setPokedex(res.data))
+  }
+
   const getDexList = async () => {
     await PokedexServices.getList()
       .then(res => res.data.results.map(
@@ -96,6 +101,7 @@ export default function () {
   }
 
   useEffect(() => {
+    getDex()
     getDexList()
   }, [])
 

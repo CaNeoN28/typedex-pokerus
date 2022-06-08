@@ -5,7 +5,7 @@ import "./StatChart.scss"
 
 export default function StatChart({stats} : {stats : PokemonStat[]})
 {
-  const label = ["HP", "ATK", "SP.ATK", "DEF", "SP.DEF", "SPE"]
+  const label = ["HP", "ATK", "DEF", "SP.ATK", "SP.DEF", "SPE"]
 
   const auxTheme="#EDF2F4"
 
@@ -16,7 +16,7 @@ export default function StatChart({stats} : {stats : PokemonStat[]})
     datasets: [{
       data: stats.map(s => s.base_stat),
       backgroundColor: auxTheme,
-      pointRadius: 0,
+      pointRadius: 2,
       borderColor: auxTheme
     }]
   }
@@ -30,9 +30,6 @@ export default function StatChart({stats} : {stats : PokemonStat[]})
           max: 255,
           min: 0,
           ticks: {
-            display: false
-          },
-          angleLines:{
             display: false
           },
           pointLabels:{

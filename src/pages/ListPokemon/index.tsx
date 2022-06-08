@@ -20,7 +20,7 @@ export default function () {
   const [pokemon_list, setPokemonList] = useState<Pokemon[]>()
   const [next_list, setNextList] = useState<Pokemon[]>()
 
-  const [dexList, setDexList] = useState<Pokedex[]>()
+  const [dexList, setDexList] = useState<Pokedex[]>([])
 
   const validateIfHasPokemon = (oldList: Pokemon[], res: Pokemon) => {
     if (!oldList.find(p => p.id === res.id))
@@ -96,6 +96,15 @@ export default function () {
     <Page>
       <main className="listPage">
         <SearchBox setSearch={setSearch} />
+        
+        <div>
+          <select>
+            {dexList.map((dex) => (
+              <option key={dex.id}>{dex.names[dex.names.length - 1].name}</option>
+            ))}
+          </select>
+        </div>
+
         {pokemon_list && pokemon_dict ? <PokemonGrid pokemon_list={pokemon_list} /> :
           "There is no Pokémon!"}
         {next_list && next_list.length > 0 && <LoadButton min={min} max={max} setMax={setMax} />}

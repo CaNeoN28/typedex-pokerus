@@ -28,7 +28,8 @@ export default function PokemonCard({ pokemon }: Props) {
     })
   }, [w_width])
 
-  const img = pokemon.sprites.other["official-artwork"].front_default || ""
+  const img = pokemon.sprites.other.home.front_default || ''
+
   const number = String(pokemon.id).padStart(3, '0')
   const species_name = pokemon.species.name
   const name = Formatting.formattingSpeciesName(species_name)

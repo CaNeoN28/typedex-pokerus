@@ -1,6 +1,6 @@
 import Page from "components/Page";
 import { useEffect, useState } from "react";
-import { NamedAPIResource, Pokedex, Pokemon, PokemonClient, PokemonSpecies } from 'pokenode-ts';
+import { NamedAPIResource, Pokedex, Pokedexes, Pokemon, PokemonClient, PokemonSpecies } from 'pokenode-ts';
 import LoadButton from "./LoadButton";
 import PokemonGrid from "./PokemonGrid";
 import SearchBox from "./Searchbox";
@@ -20,6 +20,7 @@ export default function () {
   const [pokemon_list, setPokemonList] = useState<Pokemon[]>()
   const [next_list, setNextList] = useState<Pokemon[]>()
 
+  const [pokedex, setPokedex] = useState<Pokedex>()
   const [dexList, setDexList] = useState<Pokedex[]>([])
 
   const validateIfHasPokemon = (oldList: Pokemon[], res: Pokemon) => {
@@ -77,8 +78,7 @@ export default function () {
 
   useEffect(() => {
     getPokemonDict()
-    console.log(dexList)
-  }, [search, dexList])
+  }, [search])
 
   useEffect(() => {
     getFirstList()
@@ -96,11 +96,17 @@ export default function () {
     <Page>
       <main className="listPage">
         <SearchBox setSearch={setSearch} />
-        
+
         <div>
-          <select>
-            {dexList.map((dex) => (
-              <option key={dex.id}>{dex.names[dex.names.length - 1].name}</option>
+          <select
+            defaultValue={1}
+            onChange={(e) => setPokedex(dexList.filter(d => String(d.id) === e.target.value)[0])}>
+            {dexList.sort((a, b) => a.id < b.id ? -1 : 1).map((dex) => (
+              <option
+                key={dex.id}
+                value={dex.id}>
+                {dex.names[dex.names.length - 1].name}
+              </option>
             ))}
           </select>
         </div>

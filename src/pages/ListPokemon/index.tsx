@@ -23,6 +23,22 @@ export default function () {
   const [pokedex, setPokedex] = useState<Pokedex>()
   const [dexList, setDexList] = useState<Pokedex[]>([])
 
+  const validateIfHasDex = (oldList: Pokedex[], res: Pokedex) => {
+    if (!oldList.find(pokedex => pokedex.id === res.id))
+      return [...oldList, res]
+
+    return [...oldList]
+  }
+
+  const prepareDexList = (
+    setList: React.Dispatch<React.SetStateAction<Pokedex[]>>,
+    res: Pokedex
+  ) => {
+    setList(oldList => (oldList ? validateIfHasDex(oldList, res) : [res])
+      .sort((a, b) => a.id < b.id ? -1 : 1)
+    )
+  }
+
   const validateIfHasPokemon = (oldList: Pokemon[], res: Pokemon) => {
     if (!oldList.find(p => p.id === res.id))
       return [...oldList, res]
@@ -37,6 +53,15 @@ export default function () {
     setList(oldList => (oldList ? validateIfHasPokemon(oldList, res) : [res])
       .sort((a, b) => a.id < b.id ? -1 : 1)
       .filter(a => a.is_default))
+  }
+
+  const getDexList = async () => {
+    await PokedexServices.getList()
+      .then(res => res.data.results.map(
+        (r: NamedAPIResource) =>
+          PokedexServices.get(r.url)
+            .then(dex => prepareDexList(setDexList, dex.data))
+      ))
   }
 
   const getPokemon = async (
@@ -71,10 +96,12 @@ export default function () {
   }
 
   useEffect(() => {
-    setDexList(
-      PokedexServices.prepareList()
-    )
+    getDexList()
   }, [])
+
+  useEffect(() => {
+    console.log(pokedex)
+  }, [pokedex])
 
   useEffect(() => {
     getPokemonDict()
@@ -100,7 +127,8 @@ export default function () {
         <div>
           <select
             defaultValue={1}
-            onChange={(e) => setPokedex(dexList.filter(d => String(d.id) === e.target.value)[0])}>
+            onChange={(e) => setPokedex(dexList.filter(d => String(d.id) === e.target.value)[0])}
+          >
             {dexList.sort((a, b) => a.id < b.id ? -1 : 1).map((dex) => (
               <option
                 key={dex.id}

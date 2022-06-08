@@ -12,28 +12,9 @@ async function get(url : string) {
   return response
 }
 
-function prepareList() {
-  let list: Pokedex[] = []
-
-  const getDexList = async () => {
-    let l : NamedAPIResource[] = []
-
-    await getList().then(res => l = res.data.results)
-
-    l.map(async (a) => 
-      await get(a.url)
-        .then(res => list.push(res.data))
-    )
-  }
-
-  getDexList()
-
-  return list
-}
-
 const PokedexServices = {
   getList,
-  prepareList
+  get
 }
 
 export default PokedexServices

@@ -79,19 +79,22 @@ export default function () {
     return [...oldList]
   }
 
-  const preparePokemonList = async (species: PokemonSpecies) => {
+  const preparePokemonList = async (species: PokemonSpecies, index: number) => {
 
     await pokemonClient.getPokemonByName(species.varieties.find(v => v.is_default === true)?.pokemon.name || '')
       .then(pokemon => setList(oldList =>
-        oldList ? validateIfHas(oldList, { pokemon: pokemon, species: species }) : [{ pokemon: pokemon, species: species }]))
+      (oldList ? validateIfHas(oldList, { index: index, pokemon: pokemon, species: species }) :
+        [{ index: index, pokemon: pokemon, species: species }]
+      ).sort((a,b) => a.index < b.index ? -1 : 1)
+      ))
     // setList(oldList => (oldList ? validateIfHasPokemon(oldList, res) : [res])
     //   .sort((a, b) => a.id < b.id ? -1 : 1)
     //   .filter(a => a.is_default))
   }
 
-  const getPokemon = async (name: string) => {
+  const getPokemon = async (name: string, index: number) => {
     await pokemonClient.getPokemonSpeciesByName(name)
-      .then(res => preparePokemonList(res))
+      .then(res => preparePokemonList(res, index))
   }
 
   // const getPokemonDict = async () => {
@@ -122,7 +125,7 @@ export default function () {
 
     pokedex?.pokemon_entries.filter(p => p.pokemon_species.name.includes(search.toLocaleLowerCase()))
       .map((p, index) => {
-        index < max && getPokemon(p.pokemon_species.name)
+        index < max && getPokemon(p.pokemon_species.name, index)
       })
   }
 
@@ -155,7 +158,7 @@ export default function () {
           </select>
         </div>
 
-        {list.length > 0 ? <PokemonGrid list={list} /> :
+        {pokedex && list.length > 0 ? <PokemonGrid pokedex={pokedex} list={list} /> :
           "There is no Pokémon!"}
         {/* {next_list && next_list.length > 0 && <LoadButton min={min} max={max} setMax={setMax} />} */}
       </main>

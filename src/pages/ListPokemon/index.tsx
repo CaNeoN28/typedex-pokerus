@@ -1,5 +1,5 @@
 import Page from "components/Page";
-import { useEffect, useState } from "react";
+import { useDeferredValue, useEffect, useState } from "react";
 import { GameClient, NamedAPIResource, Pokedex, Pokedexes, Pokemon, PokemonClient, PokemonShapes, PokemonSpecies } from 'pokenode-ts';
 import LoadButton from "./LoadButton";
 import PokemonGrid from "./PokemonGrid";
@@ -119,10 +119,6 @@ export default function () {
   // }
 
   const getList = () => {
-    setMax(min)
-
-    setList([])
-
     pokedex?.pokemon_entries.filter(p => p.pokemon_species.name.includes(search.toLocaleLowerCase()))
       .map((p, index) => {
         index < max && getPokemon(p.pokemon_species.name, index)
@@ -135,9 +131,14 @@ export default function () {
   }, [])
 
   useEffect(() => {
-    // getPokemonList()
+    setMax(min)
+    setList([])
     getList()
   }, [pokedex, search])
+
+  useEffect(() => {
+    getList()
+  }, [max])
 
   return (
     <Page>
@@ -160,7 +161,7 @@ export default function () {
 
         {pokedex && list.length > 0 ? <PokemonGrid pokedex={pokedex} list={list} /> :
           "There is no Pokémon!"}
-        {/* {next_list && next_list.length > 0 && <LoadButton min={min} max={max} setMax={setMax} />} */}
+        {pokedex && max < pokedex.pokemon_entries.length && <LoadButton min={min} max={max} setMax={setMax} />}
       </main>
     </Page>
   )

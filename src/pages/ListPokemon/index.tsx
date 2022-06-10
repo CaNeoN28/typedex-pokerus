@@ -16,12 +16,10 @@ export default function () {
 
   const [search, setSearch] = useState('')
 
-  const [pokemon_list, setPokemonList] = useState<Pokemon[]>()
-  const [next_list, setNextList] = useState<Pokemon[]>()
-
   const [pokedex, setPokedex] = useState<Pokedex>()
   const [dexList, setDexList] = useState<Pokedex[]>([])
 
+  const [pokemon_list, setPokemonList] = useState<Pokemon[]>()
 
   const validateIfHasDex = (oldList: Pokedex[], res: Pokedex) => {
     if (!oldList.find(pokedex => pokedex.id === res.id))
@@ -39,21 +37,34 @@ export default function () {
     )
   }
 
-
-  const filterDict = (pokemon_dict: NamedAPIResource[]) => {
-    let dict = pokemon_dict
-
-    if (pokedex)
-      dict = dict.filter(item =>
-        pokedex.pokemon_entries.find(p =>
-          p.pokemon_species.name === item.name
-        )
-      )
-
-    dict = dict.filter(item => item.name.includes(search.toLowerCase()))
-
-    return dict
+  const getDex = () => {
+    PokedexServices.getById(1)
+      .then(res => setPokedex(res.data))
   }
+
+  const getDexList = async () => {
+    await PokedexServices.getList()
+      .then(res => res.data.results.map(
+        (r: NamedAPIResource) =>
+          PokedexServices.get(r.url)
+            .then(dex => prepareDexList(setDexList, dex.data))
+      ))
+  }
+
+  // const filterDict = (pokemon_dict: NamedAPIResource[]) => {
+  //   let dict = pokemon_dict
+
+  //   if (pokedex)
+  //     dict = dict.filter(item =>
+  //       pokedex.pokemon_entries.find(p =>
+  //         p.pokemon_species.name === item.name
+  //       )
+  //     )
+
+  //   dict = dict.filter(item => item.name.includes(search.toLowerCase()))
+
+  //   return dict
+  // }
 
 
   const validateIfHasPokemon = (oldList: Pokemon[], res: Pokemon) => {
@@ -70,21 +81,6 @@ export default function () {
     setList(oldList => (oldList ? validateIfHasPokemon(oldList, res) : [res])
       .sort((a, b) => a.id < b.id ? -1 : 1)
       .filter(a => a.is_default))
-  }
-
-
-  const getDex = () => {
-    PokedexServices.getById(1)
-      .then(res => setPokedex(res.data))
-  }
-
-  const getDexList = async () => {
-    await PokedexServices.getList()
-      .then(res => res.data.results.map(
-        (r: NamedAPIResource) =>
-          PokedexServices.get(r.url)
-            .then(dex => prepareDexList(setDexList, dex.data))
-      ))
   }
 
   const getPokemon = async (
@@ -109,19 +105,9 @@ export default function () {
   const getFirstList = () => {
     setMax(min)
     setPokemonList([])
-    setNextList([])
 
     pokedex?.pokemon_entries.map((p, index) => {
-      index < max ? getPokemon(p.pokemon_species.name, setPokemonList) :
-        index < max + min && getPokemon(p.pokemon_species.name, setNextList)
-    })
-  }
-
-  const getNextList = () => {
-    setNextList([])
-
-    pokemon_list && pokedex?.pokemon_entries.map((p, index) => {
-      index >= max && index < max + min && getPokemon(p.pokemon_species.name, setNextList)
+      getPokemon(p.pokemon_species.name, setPokemonList)
     })
   }
 
@@ -132,20 +118,9 @@ export default function () {
   }, [])
 
   useEffect(() => {
-  }, [search, pokedex])
-
-  useEffect(() => {
     getFirstList()
   }, [pokedex])
-
-  useEffect(() => {
-    if (next_list && pokemon_list) {
-      setPokemonList([...pokemon_list, ...next_list])
-    }
-
-    getNextList()
-  }, [max])
-
+  
   return (
     <Page>
       <main className="listPage">
@@ -167,7 +142,7 @@ export default function () {
 
         {pokemon_list ? <PokemonGrid pokemon_list={pokemon_list} /> :
           "There is no Pokémon!"}
-        {next_list && next_list.length > 0 && <LoadButton min={min} max={max} setMax={setMax} />}
+        {/* {next_list && next_list.length > 0 && <LoadButton min={min} max={max} setMax={setMax} />} */}
       </main>
     </Page>
   )

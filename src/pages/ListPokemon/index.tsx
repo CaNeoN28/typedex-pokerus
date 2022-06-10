@@ -1,11 +1,13 @@
 import Page from "components/Page";
 import { useEffect, useState } from "react";
-import { GameClient, NamedAPIResource, Pokedex, Pokedexes, Pokemon, PokemonClient, PokemonSpecies } from 'pokenode-ts';
+import { GameClient, NamedAPIResource, Pokedex, Pokedexes, Pokemon, PokemonClient, PokemonShapes, PokemonSpecies } from 'pokenode-ts';
 import LoadButton from "./LoadButton";
 import PokemonGrid from "./PokemonGrid";
 import SearchBox from "./Searchbox";
 import "./ListPokemon.scss"
 import PokedexServices from "services/pokedex";
+import SpeciesAndBaseForm from "types/SpeciesAndForm";
+import { appendFile } from "fs";
 
 export default function () {
   const pokemonClient = new PokemonClient();
@@ -19,7 +21,10 @@ export default function () {
   const [pokedex, setPokedex] = useState<Pokedex>()
   const [dexList, setDexList] = useState<Pokedex[]>([])
 
-  const [pokemon_list, setPokemonList] = useState<Pokemon[]>()
+  const [list, setList] = useState<SpeciesAndBaseForm[]> ([])
+
+  const [speciesList, setSpeciesList] = useState<PokemonSpecies[]>([])
+  const [pokemon_list, setPokemonList] = useState<Pokemon[]>([])
 
   const validateIfHasDex = (oldList: Pokedex[], res: Pokedex) => {
     if (!oldList.find(pokedex => pokedex.id === res.id))
@@ -67,27 +72,26 @@ export default function () {
   // }
 
 
-  const validateIfHasPokemon = (oldList: Pokemon[], res: Pokemon) => {
-    if (!oldList.find(p => p.id === res.id))
+  const validateIfHas = (oldList: SpeciesAndBaseForm[], res: SpeciesAndBaseForm) => {
+    if (!oldList.find(p => p === res))
       return [...oldList, res]
 
     return [...oldList]
   }
 
-  const preparePokemonList = (
-    setList: React.Dispatch<React.SetStateAction<Pokemon[] | undefined>>,
-    res: Pokemon
-  ) => {
-    setList(oldList => (oldList ? validateIfHasPokemon(oldList, res) : [res])
-      .sort((a, b) => a.id < b.id ? -1 : 1)
-      .filter(a => a.is_default))
+  const preparePokemonList = async (species: PokemonSpecies) => {
+
+    await pokemonClient.getPokemonByName(species.varieties.find(v => v.is_default === true)?.pokemon.name || '')
+      .then(pokemon => setList(oldList => 
+        oldList ? validateIfHas(oldList, {pokemon: pokemon, species: species}) : [{pokemon: pokemon, species: species}]))
+    // setList(oldList => (oldList ? validateIfHasPokemon(oldList, res) : [res])
+    //   .sort((a, b) => a.id < b.id ? -1 : 1)
+    //   .filter(a => a.is_default))
   }
 
-  const getPokemon = async (
-    name: string,
-    setList: React.Dispatch<React.SetStateAction<Pokemon[] | undefined>>) => {
-    await pokemonClient.getPokemonByName(name)
-      .then(res => preparePokemonList(setList, res))
+  const getPokemon = async (name: string) => {
+    await pokemonClient.getPokemonSpeciesByName(name)
+      .then(res => preparePokemonList(res))
   }
 
   // const getPokemonDict = async () => {
@@ -102,15 +106,22 @@ export default function () {
   // }
 
 
-  const getFirstList = () => {
+  // const getPokemonList = () => {
+  //   setMax(min)
+  //   setPokemonList([])
+
+  //   pokedex?.pokemon_entries.map((p, index) => {
+  //     getPokemon(p.pokemon_species.name, setPokemonList)
+  //   })
+  // }
+
+  const getList = () => {
     setMax(min)
-    setPokemonList([])
 
     pokedex?.pokemon_entries.map((p, index) => {
-      getPokemon(p.pokemon_species.name, setPokemonList)
+      index < max && getPokemon(p.pokemon_species.name)
     })
   }
-
 
   useEffect(() => {
     getDex()
@@ -118,7 +129,8 @@ export default function () {
   }, [])
 
   useEffect(() => {
-    getFirstList()
+    // getPokemonList()
+    getList()
   }, [pokedex])
   
   return (
@@ -140,7 +152,7 @@ export default function () {
           </select>
         </div>
 
-        {pokemon_list ? <PokemonGrid pokemon_list={pokemon_list} /> :
+        {list ? <PokemonGrid list={list} /> :
           "There is no Pokémon!"}
         {/* {next_list && next_list.length > 0 && <LoadButton min={min} max={max} setMax={setMax} />} */}
       </main>

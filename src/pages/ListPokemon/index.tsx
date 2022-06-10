@@ -16,8 +16,6 @@ export default function () {
 
   const [search, setSearch] = useState('')
 
-  const [pokemon_dict, setPokemonDict] = useState<NamedAPIResource[]>([]);
-
   const [pokemon_list, setPokemonList] = useState<Pokemon[]>()
   const [next_list, setNextList] = useState<Pokemon[]>()
 
@@ -96,16 +94,16 @@ export default function () {
       .then(res => preparePokemonList(setList, res))
   }
 
-  const getPokemonDict = async () => {
-    setMax(min)
-    setPokemonList([])
-    setNextList([])
+  // const getPokemonDict = async () => {
+  //   setMax(min)
+  //   setPokemonList([])
+  //   setNextList([])
 
-    await pokemonClient.listPokemons(0, 10000)
-      .then(res => setPokemonDict(
-        filterDict(res.results)
-      ))
-  }
+  //   await pokemonClient.listPokemons(0, 10000)
+  //     .then(res => setPokemonDict(
+  //       filterDict(res.results)
+  //     ))
+  // }
 
 
   const getFirstList = () => {
@@ -113,17 +111,17 @@ export default function () {
     setPokemonList([])
     setNextList([])
 
-    pokemon_dict.map((p, index) => {
-      index < max ? getPokemon(p.name, setPokemonList) :
-        index < max + min && getPokemon(p.name, setNextList)
+    pokedex?.pokemon_entries.map((p, index) => {
+      index < max ? getPokemon(p.pokemon_species.name, setPokemonList) :
+        index < max + min && getPokemon(p.pokemon_species.name, setNextList)
     })
   }
 
   const getNextList = () => {
     setNextList([])
 
-    pokemon_list && pokemon_dict.map((p, index) => {
-      index >= max && index < max + min && getPokemon(p.name, setNextList)
+    pokemon_list && pokedex?.pokemon_entries.map((p, index) => {
+      index >= max && index < max + min && getPokemon(p.pokemon_species.name, setNextList)
     })
   }
 
@@ -134,12 +132,11 @@ export default function () {
   }, [])
 
   useEffect(() => {
-    getPokemonDict()
   }, [search, pokedex])
 
   useEffect(() => {
     getFirstList()
-  }, [pokemon_dict])
+  }, [pokedex])
 
   useEffect(() => {
     if (next_list && pokemon_list) {
@@ -153,7 +150,6 @@ export default function () {
     <Page>
       <main className="listPage">
         <SearchBox setSearch={setSearch} />
-
         <div>
           <select
             value={pokedex ? pokedex.name : 'national'}
@@ -169,7 +165,7 @@ export default function () {
           </select>
         </div>
 
-        {pokemon_list && pokemon_dict ? <PokemonGrid pokemon_list={pokemon_list} /> :
+        {pokemon_list ? <PokemonGrid pokemon_list={pokemon_list} /> :
           "There is no Pokémon!"}
         {next_list && next_list.length > 0 && <LoadButton min={min} max={max} setMax={setMax} />}
       </main>

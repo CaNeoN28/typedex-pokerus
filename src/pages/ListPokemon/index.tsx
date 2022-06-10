@@ -21,7 +21,7 @@ export default function () {
   const [pokedex, setPokedex] = useState<Pokedex>()
   const [dexList, setDexList] = useState<Pokedex[]>([])
 
-  const [list, setList] = useState<SpeciesAndBaseForm[]> ([])
+  const [list, setList] = useState<SpeciesAndBaseForm[]>([])
 
   const [speciesList, setSpeciesList] = useState<PokemonSpecies[]>([])
   const [pokemon_list, setPokemonList] = useState<Pokemon[]>([])
@@ -73,7 +73,7 @@ export default function () {
 
 
   const validateIfHas = (oldList: SpeciesAndBaseForm[], res: SpeciesAndBaseForm) => {
-    if (!oldList.find(p => p === res))
+    if (!oldList.find(p => p.species.id === res.species.id))
       return [...oldList, res]
 
     return [...oldList]
@@ -82,8 +82,8 @@ export default function () {
   const preparePokemonList = async (species: PokemonSpecies) => {
 
     await pokemonClient.getPokemonByName(species.varieties.find(v => v.is_default === true)?.pokemon.name || '')
-      .then(pokemon => setList(oldList => 
-        oldList ? validateIfHas(oldList, {pokemon: pokemon, species: species}) : [{pokemon: pokemon, species: species}]))
+      .then(pokemon => setList(oldList =>
+        oldList ? validateIfHas(oldList, { pokemon: pokemon, species: species }) : [{ pokemon: pokemon, species: species }]))
     // setList(oldList => (oldList ? validateIfHasPokemon(oldList, res) : [res])
     //   .sort((a, b) => a.id < b.id ? -1 : 1)
     //   .filter(a => a.is_default))
@@ -118,9 +118,12 @@ export default function () {
   const getList = () => {
     setMax(min)
 
-    pokedex?.pokemon_entries.map((p, index) => {
-      index < max && getPokemon(p.pokemon_species.name)
-    })
+    setList([])
+
+    pokedex?.pokemon_entries.filter(p => p.pokemon_species.name.includes(search.toLocaleLowerCase()))
+      .map((p, index) => {
+        index < max && getPokemon(p.pokemon_species.name)
+      })
   }
 
   useEffect(() => {
@@ -131,8 +134,8 @@ export default function () {
   useEffect(() => {
     // getPokemonList()
     getList()
-  }, [pokedex])
-  
+  }, [pokedex, search])
+
   return (
     <Page>
       <main className="listPage">
@@ -152,7 +155,7 @@ export default function () {
           </select>
         </div>
 
-        {list ? <PokemonGrid list={list} /> :
+        {list.length > 0 ? <PokemonGrid list={list} /> :
           "There is no Pokémon!"}
         {/* {next_list && next_list.length > 0 && <LoadButton min={min} max={max} setMax={setMax} />} */}
       </main>

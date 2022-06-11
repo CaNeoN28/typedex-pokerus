@@ -8,6 +8,8 @@
   justify-content: center;
 
   @media(min-width: $med){
+    grid-template-columns: 40% 40%;
+    justify-content: space-between;
     margin: $border-medium 100px;
   }
 }

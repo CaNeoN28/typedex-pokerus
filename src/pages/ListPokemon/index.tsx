@@ -16,6 +16,7 @@ export default function () {
   const [max, setMax] = useState(min)
 
   const [search, setSearch] = useState('')
+  const [order, setOrder] = useState('id')
 
   const [pokedex, setPokedex] = useState<Pokedex>()
   const [dexList, setDexList] = useState<Pokedex[]>([])
@@ -74,7 +75,11 @@ export default function () {
   }
 
   const getList = () => {
-    pokedex?.pokemon_entries.filter(p => p.pokemon_species.name.includes(search.toLocaleLowerCase()))
+    pokedex?.pokemon_entries
+    .sort((a, b) =>
+      order === 'name' ? (a.pokemon_species.name.localeCompare(b.pokemon_species.name)) : 1
+    )
+    .filter(p => p.pokemon_species.name.includes(search.toLocaleLowerCase()))
       .map((p, index) => {
         index < max && getPokemon(p.pokemon_species.name, index)
       })
@@ -88,7 +93,7 @@ export default function () {
     setMax(min)
     setList([])
     getList()
-  }, [pokedex, search])
+  }, [pokedex, search, order])
 
   useEffect(() => {
     getList()
@@ -113,6 +118,18 @@ export default function () {
               ))}
             </select>
           </Select>
+          <Select label={"Order by"}>
+            <select
+              onChange={(e) => setOrder(e.target.value)}>
+              {orderingList.map((o, index) =>
+                <option
+                  key={index}
+                  value={o.value}>
+                  {o.label}
+                </option>
+              )}
+            </select>
+          </Select>
         </SelectMenu>
 
         {pokedex && list.length > 0 ? <PokemonGrid pokedex={pokedex} list={list} /> : search != '' &&
@@ -122,3 +139,14 @@ export default function () {
     </Page>
   )
 }
+
+const orderingList = [
+  {
+    value: 'id',
+    label: 'Number'
+  },
+  {
+    value: 'name',
+    label: 'Name'
+  }
+]

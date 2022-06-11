@@ -23,9 +23,6 @@ export default function () {
 
   const [list, setList] = useState<SpeciesAndBaseForm[]>([])
 
-  const [speciesList, setSpeciesList] = useState<PokemonSpecies[]>([])
-  const [pokemon_list, setPokemonList] = useState<Pokemon[]>([])
-
   const validateIfHasDex = (oldList: Pokedex[], res: Pokedex) => {
     if (!oldList.find(pokedex => pokedex.id === res.id))
       return [...oldList, res]
@@ -56,21 +53,6 @@ export default function () {
       ))
   }
 
-  // const filterDict = (pokemon_dict: NamedAPIResource[]) => {
-  //   let dict = pokemon_dict
-
-  //   if (pokedex)
-  //     dict = dict.filter(item =>
-  //       pokedex.pokemon_entries.find(p =>
-  //         p.pokemon_species.name === item.name
-  //       )
-  //     )
-
-  //   dict = dict.filter(item => item.name.includes(search.toLowerCase()))
-
-  //   return dict
-  // }
-
 
   const validateIfHas = (oldList: SpeciesAndBaseForm[], res: SpeciesAndBaseForm) => {
     if (!oldList.find(p => p.species.id === res.species.id))
@@ -87,36 +69,12 @@ export default function () {
         [{ index: index, pokemon: pokemon, species: species }]
       ).sort((a,b) => a.index < b.index ? -1 : 1)
       ))
-    // setList(oldList => (oldList ? validateIfHasPokemon(oldList, res) : [res])
-    //   .sort((a, b) => a.id < b.id ? -1 : 1)
-    //   .filter(a => a.is_default))
   }
 
   const getPokemon = async (name: string, index: number) => {
     await pokemonClient.getPokemonSpeciesByName(name)
       .then(res => preparePokemonList(res, index))
   }
-
-  // const getPokemonDict = async () => {
-  //   setMax(min)
-  //   setPokemonList([])
-  //   setNextList([])
-
-  //   await pokemonClient.listPokemons(0, 10000)
-  //     .then(res => setPokemonDict(
-  //       filterDict(res.results)
-  //     ))
-  // }
-
-
-  // const getPokemonList = () => {
-  //   setMax(min)
-  //   setPokemonList([])
-
-  //   pokedex?.pokemon_entries.map((p, index) => {
-  //     getPokemon(p.pokemon_species.name, setPokemonList)
-  //   })
-  // }
 
   const getList = () => {
     pokedex?.pokemon_entries.filter(p => p.pokemon_species.name.includes(search.toLocaleLowerCase()))

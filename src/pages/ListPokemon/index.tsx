@@ -1,13 +1,11 @@
 import Page from "components/Page";
-import { useDeferredValue, useEffect, useState } from "react";
-import { GameClient, NamedAPIResource, Pokedex, Pokedexes, Pokemon, PokemonClient, PokemonShapes, PokemonSpecies } from 'pokenode-ts';
+import { useEffect, useState } from "react";
+import { GameClient, Pokedex, PokemonClient, PokemonSpecies } from 'pokenode-ts';
 import LoadButton from "./LoadButton";
 import PokemonGrid from "./PokemonGrid";
 import SearchBox from "./Searchbox";
 import "./ListPokemon.scss"
 import SpeciesAndBaseForm from "types/SpeciesAndForm";
-import { appendFile } from "fs";
-
 export default function () {
   const pokemonClient = new PokemonClient();
   const gameClient = new GameClient()

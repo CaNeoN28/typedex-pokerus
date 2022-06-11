@@ -1,6 +1,6 @@
 import Page from "components/Page";
-import { useEffect, useState } from "react";
-import { GameClient, Pokedex, PokemonClient, PokemonSpecies } from 'pokenode-ts';
+import React, { useEffect, useState } from "react";
+import { GameClient, Pokedex, PokemonClient, PokemonSpecies, Type } from 'pokenode-ts';
 import LoadButton from "./LoadButton";
 import PokemonGrid from "./PokemonGrid";
 import SearchBox from "./Searchbox";
@@ -8,6 +8,8 @@ import "./ListPokemon.scss"
 import SpeciesAndBaseForm from "types/SpeciesAndForm";
 import Select from "./SelectMenu/Select";
 import SelectMenu from "./SelectMenu";
+import { type } from "os";
+import TypeButton from "components/TypeButton";
 export default function () {
   const pokemonClient = new PokemonClient();
   const gameClient = new GameClient()
@@ -17,9 +19,11 @@ export default function () {
 
   const [search, setSearch] = useState('')
   const [order, setOrder] = useState('id')
+  const [type, setType] = useState<Type | ''>('')
 
   const [pokedex, setPokedex] = useState<Pokedex>()
   const [dexList, setDexList] = useState<Pokedex[]>([])
+  const [typeList, setTypeList] = useState<Type[]>([])
 
   const [list, setList] = useState<SpeciesAndBaseForm[]>([])
 
@@ -51,6 +55,25 @@ export default function () {
       ))
   }
 
+  const prepareTypeList = (
+    setList: React.Dispatch<React.SetStateAction<Type[]>>,
+    type: Type
+  ) => {
+    setList(oldList => (
+      oldList ? [...oldList, type] : [type]
+    ).sort((a, b) => a.id < b.id ? -1 : 1))
+  }
+
+  const getTypeList = async () => {
+    await pokemonClient.listTypes(0, 10000)
+      .then(res => res.results.map(
+        r =>
+          pokemonClient.getTypeByName(r.name)
+            .then(type => {
+              prepareTypeList(setTypeList, type)
+            })
+      ))
+  }
 
   const validateIfHas = (oldList: SpeciesAndBaseForm[], res: SpeciesAndBaseForm) => {
     if (!oldList.find(p => p.species.id === res.species.id))
@@ -83,9 +106,9 @@ export default function () {
           ) :
           (
             order === 'id+' ?
-              (a.entry_number < b.entry_number) ? -1 : 1 
-              :(a.entry_number > b.entry_number)
-              ? -1 : 1
+              (a.entry_number < b.entry_number) ? -1 : 1
+              : (a.entry_number > b.entry_number)
+                ? -1 : 1
           )
       )
       .filter(p => p.pokemon_species.name.includes(search.toLocaleLowerCase()))
@@ -96,6 +119,7 @@ export default function () {
 
   useEffect(() => {
     getDexList()
+    getTypeList()
   }, [])
 
   useEffect(() => {
@@ -135,6 +159,15 @@ export default function () {
                   key={index}
                   value={o.value}>
                   {o.label}
+                </option>
+              )}
+            </select>
+          </Select>
+          <Select label={"Type"}>
+            <select>
+              {typeList.map((type) =>
+                <option key={type.id}>
+                  <TypeButton type={type.name} />
                 </option>
               )}
             </select>

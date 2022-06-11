@@ -17,17 +17,17 @@ $size-xl: 250px;
   };
 
   @media (min-width: $med){
-    grid-template-columns: $size-med $size-med;
+    grid-template-columns: 40% 40%;
     justify-content: space-between;
     
-    margin: $border-medium 200px;
-    gap: $border-extra-large;
+    margin: $border-medium 100px;
+    gap: $border-extra-large 0;
 
     @media (min-width: $lg) {
-      grid-template-columns: $size-lg $size-lg $size-lg;
+      grid-template-columns: 30% 30% 30%;
 
       @media (min-width: $xl) {
-        grid-template-columns: $size-xl $size-xl $size-xl $size-xl;
+        grid-template-columns: 20% 20% 20% 20%;
       }
     }
   }

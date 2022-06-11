@@ -5,6 +5,9 @@
   display: grid;
   grid-template-columns: 100%;
 
-  margin: $border-medium 200px;
   justify-content: center;
+
+  @media(min-width: $med){
+    margin: $border-medium 100px;
+  }
 }

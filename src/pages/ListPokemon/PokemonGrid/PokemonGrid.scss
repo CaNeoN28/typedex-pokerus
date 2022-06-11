@@ -18,10 +18,10 @@ $size-xl: 250px;
 
   @media (min-width: $med){
     grid-template-columns: $size-med $size-med;
-    justify-content: center;
+    justify-content: space-between;
     
     margin: $border-medium 200px;
-    gap: $border-large;
+    gap: $border-extra-large;
 
     @media (min-width: $lg) {
       grid-template-columns: $size-lg $size-lg $size-lg;

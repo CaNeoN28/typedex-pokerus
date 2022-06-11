@@ -1,13 +1,29 @@
  @import "styles/theme";
-@import "styles/sizes";
-@import "styles/spacing";
+ @import "styles/sizes";
+ @import "styles/spacing";
 
 
-.select{
-  display: flex;
-  background: $theme;
-  
-  div {
-    padding: $border-extra-small;
-  }
-}
+ .select {
+   display: flex;
+
+   font-size: $font-small;
+
+   text-align: left;
+
+   span {
+     padding: $border-extra-small;
+     width: 100%;
+
+     color: $aux;
+     background: $theme;
+
+     border-radius: $border-radius-inner 0 0 $border-radius-inner;
+   }
+
+   select {
+     width: 100%;
+
+     outline: none;
+     border-radius: 0 $border-radius-inner $border-radius-inner 0;
+   }
+ }

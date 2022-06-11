@@ -7,6 +7,7 @@ import SearchBox from "./Searchbox";
 import "./ListPokemon.scss"
 import SpeciesAndBaseForm from "types/SpeciesAndForm";
 import Select from "./SelectMenu/Select";
+import SelectMenu from "./SelectMenu";
 export default function () {
   const pokemonClient = new PokemonClient();
   const gameClient = new GameClient()
@@ -63,9 +64,9 @@ export default function () {
 
     await pokemonClient.getPokemonByName(species.varieties.find(v => v.is_default === true)?.pokemon.name || '')
       .then(pokemon => setList(oldList =>
-      (oldList ? validateIfHas(oldList, { index: index, pokemon: pokemon, species: species }) :
-        [{ index: index, pokemon: pokemon, species: species }]
-      ).sort((a,b) => a.index < b.index ? -1 : 1)
+        (oldList ? validateIfHas(oldList, { index: index, pokemon: pokemon, species: species }) :
+          [{ index: index, pokemon: pokemon, species: species }]
+        ).sort((a, b) => a.index < b.index ? -1 : 1)
       ))
   }
 
@@ -100,23 +101,22 @@ export default function () {
     <Page>
       <main className="listPage">
         <SearchBox setSearch={setSearch} />
-        <Select>
-          <div>
-            Pokedex:
-          </div>
-          <select
-            value={pokedex ? pokedex.name : 'national'}
-            onChange={(e) => setPokedex(dexList.filter(d => (d.name) === e.target.value)[0])}
-          >
-            {dexList.sort((a, b) => a.id < b.id ? -1 : 1).map((dex) => (
-              <option
-                key={dex.id}
-                value={dex.name}>
-                {dex.names[dex.names.length - 1].name}
-              </option>
-            ))}
-          </select>
-        </Select>
+        <SelectMenu>
+          <Select label={'Pokedex'}>
+            <select
+              value={pokedex ? pokedex.name : 'national'}
+              onChange={(e) => setPokedex(dexList.filter(d => (d.name) === e.target.value)[0])}
+            >
+              {dexList.sort((a, b) => a.id < b.id ? -1 : 1).map((dex) => (
+                <option
+                  key={dex.id}
+                  value={dex.name}>
+                  {dex.names[dex.names.length - 1].name}
+                </option>
+              ))}
+            </select>
+          </Select>
+        </SelectMenu>
 
         {pokedex && list.length > 0 ? <PokemonGrid pokedex={pokedex} list={list} /> : search != '' &&
           "There is no Pokémon!"}

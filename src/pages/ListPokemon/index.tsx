@@ -60,7 +60,7 @@ export default function () {
     type: Type
   ) => {
     setList(oldList => (
-      oldList ? [...oldList, type] : [type]
+      oldList ? validateIfHas(oldList, type) : [type]
     ).sort((a, b) => a.id < b.id ? -1 : 1))
   }
 
@@ -70,7 +70,8 @@ export default function () {
         r =>
           pokemonClient.getTypeByName(r.name)
             .then(type => {
-              prepareTypeList(setTypeList, type)
+              type.id < 10000 &&
+                prepareTypeList(setTypeList, type)
             })
       ))
   }

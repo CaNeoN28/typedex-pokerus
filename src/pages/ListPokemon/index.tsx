@@ -27,8 +27,8 @@ export default function () {
 
   const [list, setList] = useState<SpeciesAndBaseForm[]>([])
 
-  const validateIfHasDex = (oldList: Pokedex[], res: Pokedex) => {
-    if (!oldList.find(pokedex => pokedex.id === res.id))
+  const validateIfHas = (oldList: any[], res: any) => {
+    if (!oldList.find(a => (a.id || a.species.id) === (res.id || res.species.id)))
       return [...oldList, res]
 
     return [...oldList]
@@ -38,7 +38,7 @@ export default function () {
     setList: React.Dispatch<React.SetStateAction<Pokedex[]>>,
     res: Pokedex
   ) => {
-    setList(oldList => (oldList ? validateIfHasDex(oldList, res) : [res])
+    setList(oldList => (oldList ? validateIfHas(oldList, res) : [res])
       .sort((a, b) => a.id < b.id ? -1 : 1)
     )
   }
@@ -73,13 +73,6 @@ export default function () {
               prepareTypeList(setTypeList, type)
             })
       ))
-  }
-
-  const validateIfHas = (oldList: SpeciesAndBaseForm[], res: SpeciesAndBaseForm) => {
-    if (!oldList.find(p => p.species.id === res.species.id))
-      return [...oldList, res]
-
-    return [...oldList]
   }
 
   const preparePokemonList = async (species: PokemonSpecies, index: number) => {

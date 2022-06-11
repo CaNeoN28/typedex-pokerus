@@ -5,7 +5,6 @@ import LoadButton from "./LoadButton";
 import PokemonGrid from "./PokemonGrid";
 import SearchBox from "./Searchbox";
 import "./ListPokemon.scss"
-import PokedexServices from "services/pokedex";
 import SpeciesAndBaseForm from "types/SpeciesAndForm";
 import { appendFile } from "fs";
 
@@ -40,16 +39,16 @@ export default function () {
   }
 
   const getDex = () => {
-    PokedexServices.getById(1)
-      .then(res => setPokedex(res.data))
+    gameClient.getPokedexById(1)
+      .then(res => setPokedex(res))
   }
 
   const getDexList = async () => {
-    await PokedexServices.getList()
-      .then(res => res.data.results.map(
-        (r: NamedAPIResource) =>
-          PokedexServices.get(r.url)
-            .then(dex => prepareDexList(setDexList, dex.data))
+    await gameClient.listPokedexes()
+      .then(res => res.results.map(
+        r =>
+          gameClient.getPokedexByName(r.name)
+            .then(dex => prepareDexList(setDexList, dex))
       ))
   }
 

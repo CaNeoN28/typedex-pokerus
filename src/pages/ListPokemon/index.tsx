@@ -6,6 +6,7 @@ import PokemonGrid from "./PokemonGrid";
 import SearchBox from "./Searchbox";
 import "./ListPokemon.scss"
 import SpeciesAndBaseForm from "types/SpeciesAndForm";
+import Select from "./SelectMenu/Select";
 export default function () {
   const pokemonClient = new PokemonClient();
   const gameClient = new GameClient()
@@ -99,7 +100,10 @@ export default function () {
     <Page>
       <main className="listPage">
         <SearchBox setSearch={setSearch} />
-        <div>
+        <Select>
+          <div>
+            Pokedex:
+          </div>
           <select
             value={pokedex ? pokedex.name : 'national'}
             onChange={(e) => setPokedex(dexList.filter(d => (d.name) === e.target.value)[0])}
@@ -112,9 +116,9 @@ export default function () {
               </option>
             ))}
           </select>
-        </div>
+        </Select>
 
-        {pokedex && list.length > 0 ? <PokemonGrid pokedex={pokedex} list={list} /> :
+        {pokedex && list.length > 0 ? <PokemonGrid pokedex={pokedex} list={list} /> : search != '' &&
           "There is no Pokémon!"}
         {pokedex && max < pokedex.pokemon_entries.length && <LoadButton min={min} max={max} setMax={setMax} />}
       </main>

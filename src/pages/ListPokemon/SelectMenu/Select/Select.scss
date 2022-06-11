@@ -1,0 +1,13 @@
+ @import "styles/theme";
+@import "styles/sizes";
+@import "styles/spacing";
+
+
+.select{
+  display: flex;
+  background: $theme;
+  
+  div {
+    padding: $border-extra-small;
+  }
+}

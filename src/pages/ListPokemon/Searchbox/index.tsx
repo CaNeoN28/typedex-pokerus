@@ -1,6 +1,7 @@
 import { useState } from "react";
 import './SearchBox.scss'
 import { FaSearch } from 'react-icons/fa'
+import { ImCancelCircle } from 'react-icons/im'
 
 interface Props {
   setSearch: React.Dispatch<React.SetStateAction<string>>
@@ -13,15 +14,20 @@ export default function SearchBox({ setSearch }: Props) {
     <form className="search-box" onSubmit={e => {
       e.preventDefault()
       setSearch(input.toLowerCase())
-      setInput('')
     }}>
+      <div className={'input'}>
         <input
-          className="input"
           type="text"
           placeholder="Search pokémon"
           value={input}
           onChange={e => setInput(e.target.value)} />
-        <button className="button"><FaSearch /></button>
+        {input != '' &&
+          <i className="cancel">
+            <ImCancelCircle width={'60px'} />
+          </i>}
+      </div>
+
+      <button className="button"><FaSearch /></button>
     </form>
   )
 }

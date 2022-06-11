@@ -2,48 +2,73 @@
 @import "styles/sizes";
 @import "styles/spacing";
 
-.search-box{
+.search-box {
   height: $box-small;
   margin: $border-small auto;
   display: flex;
   justify-content: center;
 
-  @media (min-width: $lg){
+  @media (min-width: $lg) {
     width: 600px;
   }
 
-  @media (max-width: $lg){
+  @media (max-width: $lg) {
     margin: $border-small 0px;
   }
 
-  .input{
+  .input {
+    position: relative;
     font-size: $font-small;
-    padding-left: 16px;
     width: 100%;
 
-    border: 1px solid black;
-    border-radius:  $border-radius-inner 0 0  $border-radius-inner;
+    input {
+      height: 100%;
+      width: 100%;
+
+      padding: 0;
+      padding-left: $border-small;
+
+      border: 1px solid black;
+      border-radius: $border-radius-inner 0 0 $border-radius-inner;
+      box-sizing: border-box;
+      outline: none;
+      background: $aux;
+    }
+
+    i {
+      position: absolute;
+      padding : 14px;
+      right: 0;
+      top: 0;
+
+      margin: auto;
+      height: 100%;
+
+      svg {
+        font-size: $font-medium;
+      }
+    }
   }
 
-  .button{
+  .button {
     width: 64px;
     font-size: $font-medium;
-  
+
     display: flex;
     align-items: center;
     justify-content: center;
-  
+
     color: $aux;
     background-color: $theme;
-    border: none;
+    border: 1px solid $theme;
 
-    border-radius:  0  $border-radius-inner  $border-radius-inner  0;
+    border-radius: 0 $border-radius-inner $border-radius-inner 0;
 
-    &:hover{
+    &:hover {
       background-color: $dark-theme;
     }
 
-    &:active{
+    &:active {
       box-shadow: $inner-shadow;
     }
   }

@@ -2,6 +2,7 @@ import { useState } from "react";
 import './SearchBox.scss'
 import { FaSearch } from 'react-icons/fa'
 import { ImCancelCircle } from 'react-icons/im'
+import { format } from "path";
 
 interface Props {
   setSearch: React.Dispatch<React.SetStateAction<string>>
@@ -23,7 +24,10 @@ export default function SearchBox({ setSearch }: Props) {
           onChange={e => setInput(e.target.value)} />
         {input != '' &&
           <i className="cancel">
-            <ImCancelCircle width={'60px'} />
+            <ImCancelCircle width={'60px'} onClick={() => {
+              setInput('')
+              setSearch('')
+            }}/>
           </i>}
       </div>
 

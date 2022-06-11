@@ -41,8 +41,8 @@
       right: 0;
       top: 0;
 
-      margin: auto;
-      height: 100%;
+      height: $border-small;
+      width: $border-small;
 
       svg {
         font-size: $font-medium;

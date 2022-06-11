@@ -18,7 +18,7 @@ export default function () {
   const [max, setMax] = useState(min)
 
   const [search, setSearch] = useState('')
-  const [order, setOrder] = useState('id')
+  const [order, setOrder] = useState('id+')
   const [type, setType] = useState<Type | ''>('')
 
   const [pokedex, setPokedex] = useState<Pokedex>()
@@ -165,6 +165,7 @@ export default function () {
           </Select>
           <Select label={"Type"}>
             <select>
+              <option value={'none'}>None</option>
               {typeList.map((type) =>
                 <option key={type.id}>
                   <TypeButton type={type.name} />

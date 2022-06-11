@@ -13,7 +13,7 @@ export default function PokemonGrid({ list, pokedex }: Props) {
 
   return (
     <div className="pokemon-grid">
-      {list.map((l, index) => <PokemonCard key={index} pokemon={l.pokemon} />)}
+      {list.map((l, index) => <PokemonCard key={index} pokemon={l.pokemon} species={l.species} pokedex={pokedex} />)}
     </div>
   )
 }

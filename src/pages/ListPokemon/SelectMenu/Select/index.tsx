@@ -4,9 +4,9 @@ import './Select.scss'
 export default function Select({children, label} : {children ?: React.ReactNode, label: string}){
   return(
     <div className="select">
-      <span>
+      <div>
         {label} : 
-      </span>
+      </div>
       {children}
     </div>
   )

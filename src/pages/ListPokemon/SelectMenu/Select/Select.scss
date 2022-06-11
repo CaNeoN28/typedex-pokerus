@@ -10,9 +10,13 @@
 
    text-align: left;
 
-   span {
-     padding: $border-extra-small;
+   div {
      width: 100%;
+     display: flex;
+
+     height: $box-small;
+     padding-left: $border-small;
+     align-items: center;
 
      color: $aux;
      font-weight: $demi-bold;
@@ -22,6 +26,7 @@
    }
 
    select {
+     padding-left: $border-small;
      width: 100%;
 
      outline: none;

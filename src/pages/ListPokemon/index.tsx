@@ -76,10 +76,19 @@ export default function () {
 
   const getList = () => {
     pokedex?.pokemon_entries
-    .sort((a, b) =>
-      order === 'name' ? (a.pokemon_species.name.localeCompare(b.pokemon_species.name)) : 1
-    )
-    .filter(p => p.pokemon_species.name.includes(search.toLocaleLowerCase()))
+      .sort((a, b) =>
+        order.includes('name') ?
+          (order.includes('+') ? a.pokemon_species.name.localeCompare(b.pokemon_species.name) :
+            b.pokemon_species.name.localeCompare(a.pokemon_species.name)
+          ) :
+          (
+            order === 'id+' ?
+              (a.entry_number < b.entry_number) ? -1 : 1 
+              :(a.entry_number > b.entry_number)
+              ? -1 : 1
+          )
+      )
+      .filter(p => p.pokemon_species.name.includes(search.toLocaleLowerCase()))
       .map((p, index) => {
         index < max && getPokemon(p.pokemon_species.name, index)
       })
@@ -142,11 +151,19 @@ export default function () {
 
 const orderingList = [
   {
-    value: 'id',
-    label: 'Number'
+    value: 'id+',
+    label: 'Number(ascending)'
   },
   {
-    value: 'name',
-    label: 'Name'
+    value: 'id-',
+    label: 'Number(descending)'
+  },
+  {
+    value: 'name+',
+    label: 'Name(ascending)'
+  },
+  {
+    value: 'name-',
+    label: 'Name(descending)'
   }
 ]

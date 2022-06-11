@@ -19,7 +19,7 @@ export default function () {
 
   const [search, setSearch] = useState('')
   const [order, setOrder] = useState('id+')
-  const [type, setType] = useState<Type | ''>('')
+  const [type, setType] = useState<string>('')
 
   const [pokedex, setPokedex] = useState<Pokedex>()
   const [dexList, setDexList] = useState<Pokedex[]>([])
@@ -106,6 +106,7 @@ export default function () {
           )
       )
       .filter(p => p.pokemon_species.name.includes(search.toLocaleLowerCase()))
+      .filter(p => type != '' ? typeList.find(t => t.name === type)?.pokemon.find(pk => pk.pokemon.name.includes(p.pokemon_species.name)) : p)
       .map((p, index) => {
         index < max && getPokemon(p.pokemon_species.name, index)
       })
@@ -120,7 +121,7 @@ export default function () {
     setMax(min)
     setList([])
     getList()
-  }, [pokedex, search, order])
+  }, [pokedex, search, order, type])
 
   useEffect(() => {
     getList()
@@ -158,11 +159,14 @@ export default function () {
             </select>
           </Select>
           <Select label={"Type"}>
-            <select>
-              <option value={'none'}>None</option>
+            <select
+              onChange={(e) => setType(e.target.value)}>
+              <option value={''}>None</option>
               {typeList.map((type) =>
-                <option key={type.id}>
-                  <TypeButton type={type.name} />
+                <option 
+                  key={type.id}
+                  value={type.name}>
+                  {type.name}
                 </option>
               )}
             </select>

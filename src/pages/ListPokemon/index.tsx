@@ -38,17 +38,15 @@ export default function () {
     )
   }
 
-  const getDex = () => {
-    gameClient.getPokedexById(1)
-      .then(res => setPokedex(res))
-  }
-
   const getDexList = async () => {
-    await gameClient.listPokedexes()
+    await gameClient.listPokedexes(0, 10000)
       .then(res => res.results.map(
         r =>
           gameClient.getPokedexByName(r.name)
-            .then(dex => prepareDexList(setDexList, dex))
+            .then(dex => {
+              dex.name === 'national' && setPokedex(dex)
+              prepareDexList(setDexList, dex)
+            })
       ))
   }
 
@@ -83,7 +81,6 @@ export default function () {
   }
 
   useEffect(() => {
-    getDex()
     getDexList()
   }, [])
 

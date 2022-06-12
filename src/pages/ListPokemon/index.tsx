@@ -1,95 +1,231 @@
 import Page from "components/Page";
-import { useEffect, useState } from "react";
-import { NamedAPIResource, Pokemon, PokemonClient, PokemonSpecies } from 'pokenode-ts';
+import React, { useEffect, useState } from "react";
+import { GameClient, Pokedex, PokemonClient, PokemonSpecies, Type } from 'pokenode-ts';
 import LoadButton from "./LoadButton";
 import PokemonGrid from "./PokemonGrid";
 import SearchBox from "./Searchbox";
 import "./ListPokemon.scss"
-
+import SpeciesAndBaseForm from "types/SpeciesAndForm";
+import Select from "./SelectMenu/Select";
+import SelectMenu from "./SelectMenu";
+import { type } from "os";
+import TypeButton from "components/TypeButton";
+import Formatting from "common/utils/string";
 export default function () {
-  const api = new PokemonClient();
+  const pokemonClient = new PokemonClient();
+  const gameClient = new GameClient()
+  const f = Formatting
 
   const min = 12
   const [max, setMax] = useState(min)
+  const [showMax, setShowmax] = useState(0)
+  const [loaded, setLoaded] = useState(true)
 
   const [search, setSearch] = useState('')
+  const [order, setOrder] = useState('id+')
+  const [type, setType] = useState<string>('')
 
-  const [pokemon_dict, setPokemonDict] = useState<NamedAPIResource[]>();
+  const [pokedex, setPokedex] = useState<Pokedex>()
+  const [dexList, setDexList] = useState<Pokedex[]>([])
+  const [typeList, setTypeList] = useState<Type[]>([])
 
-  const [pokemon_list, setPokemonList] = useState<Pokemon[]>()
-  const [next_list, setNextList] = useState<Pokemon[]>()
+  const [list, setList] = useState<SpeciesAndBaseForm[]>([])
 
-  const validateIfHasPokemon = (oldList: Pokemon[], res: Pokemon) => {
-    if (!oldList.find(p => p.id === res.id))
+  const validateIfHas = (oldList: any[], res: any) => {
+    if (!oldList.find(a => (a.id || a.species.id) === (res.id || res.species.id)))
       return [...oldList, res]
 
     return [...oldList]
   }
 
-  const preparePokemonList = (
-    setList: React.Dispatch<React.SetStateAction<Pokemon[] | undefined>>,
-    res: Pokemon
+  const prepareDexList = (
+    setList: React.Dispatch<React.SetStateAction<Pokedex[]>>,
+    res: Pokedex
   ) => {
-    setList(oldList => (oldList ? validateIfHasPokemon(oldList, res) : [res])
+    setList(oldList => (oldList ? validateIfHas(oldList, res) : [res])
       .sort((a, b) => a.id < b.id ? -1 : 1)
-      .filter(a => a.is_default))
+    )
   }
 
-  const getPokemon = async (
-    name: string,
-    setList: React.Dispatch<React.SetStateAction<Pokemon[] | undefined>>) => {
-      await api.getPokemonByName(name)
-        .then(res => preparePokemonList(setList, res))
+  const getDexList = async () => {
+    await gameClient.listPokedexes(0, 10000)
+      .then(res => res.results.map(
+        r =>
+          gameClient.getPokedexByName(r.name)
+            .then(dex => {
+              dex.name === 'national' && setPokedex(dex)
+              prepareDexList(setDexList, dex)
+            })
+      ))
   }
 
-  const getPokemonDict = async () => {
-    await api.listPokemons(0, 10000)
-      .then(res => setPokemonDict(res.results.filter(item => item.name.includes(search))))
+  const prepareTypeList = (
+    setList: React.Dispatch<React.SetStateAction<Type[]>>,
+    type: Type
+  ) => {
+    setList(oldList => (
+      oldList ? validateIfHas(oldList, type) : [type]
+    ).sort((a, b) => a.id < b.id ? -1 : 1))
   }
 
-  const getFirstList = () => {
-    setMax(min)
-    setPokemonList([])
-    setNextList([])
-
-    pokemon_dict && pokemon_dict.map((p, index) => {
-      index < max ? getPokemon(p.name, setPokemonList) :
-        index < max + min && getPokemon(p.name, setNextList)
-    })
+  const getTypeList = async () => {
+    await pokemonClient.listTypes(0, 10000)
+      .then(res => res.results.map(
+        r =>
+          pokemonClient.getTypeByName(r.name)
+            .then(type => {
+              type.id < 10000 &&
+                prepareTypeList(setTypeList, type)
+            })
+      ))
   }
 
-  const getNextList = () => {
-    setNextList([])
+  const preparePokemonList = async (species: PokemonSpecies, index: number) => {
 
-    pokemon_list && pokemon_dict && pokemon_dict.map((p, index) => {
-      index >= max && index < max + min && getPokemon(p.name, setNextList)
-    })
+    await pokemonClient.getPokemonByName(species.varieties.find(v => v.is_default === true)?.pokemon.name || String(species.id))
+      .then(pokemon => {
+        setList(oldList =>
+          (oldList ? validateIfHas(oldList, { index: index, pokemon: pokemon, species: species }) :
+            [{ index: index, pokemon: pokemon, species: species }]
+          ).sort((a, b) => a.index < b.index ? -1 : 1)
+        )
+      })
+
+    
+    setLoaded(true)
   }
 
-  useEffect(() => {
-    getPokemonDict()
-  }, [search])
+  const getPokemon = async (name: string, index: number) => {
+    await pokemonClient.getPokemonSpeciesByName(name)
+      .then(res => preparePokemonList(res, index))
+  }
 
-  useEffect(() => {
-    getFirstList()
-  }, [pokemon_dict])
+  const getList = () => {
+    setLoaded(false)
+    
+    const f_pokemon_entries =
+      pokedex?.pokemon_entries
+        .sort((a, b) =>
+          order.includes('name') ?
+            (order.includes('+') ? a.pokemon_species.name.localeCompare(b.pokemon_species.name) :
+              b.pokemon_species.name.localeCompare(a.pokemon_species.name)
+            ) :
+            (
+              order === 'id+' ?
+                (a.entry_number < b.entry_number) ? -1 : 1
+                : (a.entry_number > b.entry_number)
+                  ? -1 : 1
+            )
+        )
+        .filter(p => p.pokemon_species.name.includes(search.toLocaleLowerCase()))
+        .filter(p =>
+          type != '' ? typeList.find(t =>
+            t.name === type)?.pokemon.find(pk =>
+              pk.pokemon.url.split('/').at(-2) === p.pokemon_species.url.split('/').at(-2)) : p)
 
-  useEffect(() => {
-    if (next_list && pokemon_list) {
-      setPokemonList([...pokemon_list, ...next_list])
+    if (f_pokemon_entries) {
+      setShowmax(f_pokemon_entries.length)
+
+      f_pokemon_entries
+        .map((p, index) => {
+          index < max && getPokemon(p.pokemon_species.name, index)
+        })
     }
+  }
 
-    getNextList()
+  useEffect(() => {
+    getDexList()
+    getTypeList()
+  }, [])
+
+  useEffect(() => {
+    setMax(min)
+    setList([])
+    getList()
+  }, [pokedex, search, order, type])
+
+  useEffect(() => {
+    getList()
   }, [max])
 
   return (
     <Page>
       <main className="listPage">
         <SearchBox setSearch={setSearch} />
-        {pokemon_list && pokemon_dict ? <PokemonGrid pokemon_list={pokemon_list} /> :
+        <SelectMenu>
+          <Select label={'Pokedex'}>
+            <select
+              value={pokedex ? pokedex.name : 'national'}
+              onChange={(e) => (
+                setPokedex(dexList.filter(d => (d.name) === e.target.value)[0]),
+                setMax(min)
+              )}
+            >
+              {dexList.sort((a, b) => a.id < b.id ? -1 : 1).map((dex) => (
+                <option
+                  key={dex.id}
+                  value={dex.name}>
+                  {dex.names[dex.names.length - 1].name}
+                </option>
+              ))}
+            </select>
+          </Select>
+          <Select label={"Order by"}>
+            <select
+              onChange={(e) => (
+                setOrder(e.target.value),
+                setMax(min)
+              )}>
+              {orderingList.map((o, index) =>
+                <option
+                  key={index}
+                  value={o.value}>
+                  {o.label}
+                </option>
+              )}
+            </select>
+          </Select>
+          <Select label={"Type"}>
+            <select
+              onChange={(e) => (
+                setType(e.target.value),
+                setMax(min)
+              )}>
+              <option value={''}>None</option>
+              {typeList.map((type) =>
+                <option
+                  key={type.id}
+                  value={type.name}>
+                  {f.capitalize(type.name)}
+                </option>
+              )}
+            </select>
+          </Select>
+        </SelectMenu>
+
+        {pokedex && list.length > 0 ? <PokemonGrid pokedex={pokedex} list={list} /> : search != '' &&
           "There is no Pokémon!"}
-        {next_list && next_list.length > 0 && <LoadButton min={min} max={max} setMax={setMax} />}
+        {loaded && pokedex && list.length < showMax && <LoadButton min={min} max={max} setMax={setMax} />}
       </main>
     </Page>
   )
 }
+
+const orderingList = [
+  {
+    value: 'id+',
+    label: 'Number <'
+  },
+  {
+    value: 'id-',
+    label: 'Number >'
+  },
+  {
+    value: 'name+',
+    label: 'Alphabetical A→Z'
+  },
+  {
+    value: 'name-',
+    label: 'Alphabetical Z→A'
+  }
+]

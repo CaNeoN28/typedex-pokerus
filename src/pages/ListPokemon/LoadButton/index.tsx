@@ -15,7 +15,7 @@ export default function LoadButton({ min, max, setMax }: Props) {
         onClick={() => {
           setMax(max + min)
         }}>
-        See more
+        Load More
       </button>
     </div>
   )

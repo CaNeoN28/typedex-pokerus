@@ -1,16 +1,19 @@
-import { Pokemon } from "pokenode-ts";
+import { Pokedex, Pokemon } from "pokenode-ts";
 import React from "react";
+import SpeciesAndBaseForm from "types/SpeciesAndForm";
 import PokemonCard from "./PokemonCard";
 import './PokemonGrid.scss'
 
-interface Props{
-  pokemon_list : Pokemon[]
+interface Props {
+  list: SpeciesAndBaseForm[],
+  pokedex: Pokedex
 }
 
-export default function PokemonGrid({pokemon_list} : Props){
-  return(
+export default function PokemonGrid({ list, pokedex }: Props) {
+
+  return (
     <div className="pokemon-grid">
-      {pokemon_list.map(pokemon => <PokemonCard key={pokemon.id} pokemon={pokemon}/>)}
+      {list.map((l, index) => <PokemonCard key={index} pokemon={l.pokemon} species={l.species} pokedex={pokedex} />)}
     </div>
   )
 }

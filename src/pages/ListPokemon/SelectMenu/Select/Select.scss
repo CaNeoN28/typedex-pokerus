@@ -1,0 +1,35 @@
+ @import "styles/theme";
+ @import "styles/sizes";
+ @import "styles/spacing";
+
+
+ .select {
+   display: grid;
+   grid-template-columns: 40% 60%;
+
+   font-size: $font-small;
+
+   text-align: left;
+
+   div {
+     display: flex;
+
+     height: $box-small;
+     align-items: center;
+
+     padding-left: $border-extra-small;
+
+     color: $aux;
+     font-weight: $demi-bold;
+     background: $theme;
+
+     border-radius: $border-radius-inner 0 0 $border-radius-inner;
+   }
+
+   select {
+     padding-left: $border-extra-small;
+
+     outline: none;
+     border-radius: 0 $border-radius-inner $border-radius-inner 0;
+   }
+ }

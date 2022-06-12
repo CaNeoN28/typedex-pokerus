@@ -1,4 +1,4 @@
-import { Pokemon } from "pokenode-ts";
+import { Pokedex, Pokemon, PokemonSpecies } from "pokenode-ts";
 import './PokemonCard.scss'
 import Formatting from "common/utils/string";
 import TypeButton from "components/TypeButton";
@@ -8,9 +8,11 @@ import { ReactComponent as Logo } from "assets/logo.svg";
 
 interface Props {
   pokemon: Pokemon
+  species: PokemonSpecies
+  pokedex: Pokedex
 }
 
-export default function PokemonCard({ pokemon }: Props) {
+export default function PokemonCard({ pokemon, species, pokedex }: Props) {
   const [w_width, setWWitdth] = useState(
     window.innerWidth
   )
@@ -28,23 +30,26 @@ export default function PokemonCard({ pokemon }: Props) {
     })
   }, [w_width])
 
-  const img = pokemon.sprites.other["official-artwork"].front_default || ""
-  const number = String(pokemon.id).padStart(3, '0')
-  const species_name = pokemon.species.name
-  const name = Formatting.formattingSpeciesName(species_name)
+  const img = pokemon.sprites.other.home.front_default || pokemon.sprites.other["official-artwork"].front_default || ''
+
+  const number = String(species.pokedex_numbers
+    .find(n => n.pokedex.name === pokedex.name)?.entry_number || 0)
+    .padStart(3, '0')
+
+  const name = Formatting.formattingSpeciesName(species.name)
 
   const types = pokemon.types
 
   return (
     <div className="card-main">
-      <Link to={`pokemon/${species_name}`}>
-        <div  className="card-space">
+      <Link to={`pokemon/${species.name}`}>
+        <div className="card-space">
           <div className="card-image">
             <div className="dummy" />
-            {!loaded && <Logo />}
+            {!loaded && <i><Logo /></i>}
             <img
               src={img}
-              alt={species_name}
+              alt={species.name}
               hidden={!loaded}
               onLoad={() => setLoaded(true)}
             />

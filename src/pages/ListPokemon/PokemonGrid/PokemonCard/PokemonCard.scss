@@ -36,12 +36,14 @@
         margin-top: 100%;
       }
 
-      svg {
-        margin: auto;
+      i {
         width: 100%;
+        display: flex;
 
-        @media(max-width:  $med){
-          width: 80%;
+        svg{
+          margin: auto;
+          width: 60%;
+          height: 60%;
         }
         
         position: absolute;

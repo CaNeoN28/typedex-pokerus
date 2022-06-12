@@ -46,7 +46,7 @@ export default function PokemonCard({ pokemon, species, pokedex }: Props) {
         <div className="card-space">
           <div className="card-image">
             <div className="dummy" />
-            {!loaded && <Logo />}
+            {!loaded && <i><Logo /></i>}
             <img
               src={img}
               alt={species.name}

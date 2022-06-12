@@ -4,15 +4,11 @@
 
 .search-box {
   height: $box-small;
-  margin: $border-small auto;
+  margin: $border-small 100px;
   display: flex;
   justify-content: center;
 
-  @media (min-width: $lg) {
-    width: 600px;
-  }
-
-  @media (max-width: $lg) {
+  @media (max-width: $med) {
     margin: $border-small 0px;
   }
 

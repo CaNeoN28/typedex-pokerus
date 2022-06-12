@@ -4,19 +4,20 @@
 
 
  .select {
-   display: flex;
+   display: grid;
+   grid-template-columns: 40% 60%;
 
    font-size: $font-small;
 
    text-align: left;
 
    div {
-     width: 100%;
      display: flex;
 
      height: $box-small;
-     padding-left: $border-small;
      align-items: center;
+
+     padding-left: $border-extra-small;
 
      color: $aux;
      font-weight: $demi-bold;
@@ -26,8 +27,7 @@
    }
 
    select {
-     padding-left: $border-small;
-     width: 100%;
+     padding-left: $border-extra-small;
 
      outline: none;
      border-radius: 0 $border-radius-inner $border-radius-inner 0;

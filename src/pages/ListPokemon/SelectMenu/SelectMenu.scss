@@ -1,15 +1,19 @@
 @import "styles/spacing";
 @import "styles/sizes";
 
-.select-menu{
+.select-menu {
   display: grid;
   grid-template-columns: 100%;
 
   justify-content: center;
+  gap: $border-medium;
 
-  @media(min-width: $med){
-    grid-template-columns: 30% 30% 30%;
-    justify-content: space-between;
+  @media(min-width: $med) {
     margin: $border-medium 100px;
+
+    @media(min-width: $lg) {
+      grid-template-columns: 30% 30% 30%;
+      justify-content: space-between;
+    }
   }
 }

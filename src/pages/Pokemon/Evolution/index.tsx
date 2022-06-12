@@ -1,20 +1,34 @@
+import axios from "axios";
 import InfoPage from "components/InfoPage";
-import { EvolutionClient, EvolutionChain, PokemonSpecies } from "pokenode-ts";
-import { useState } from "react";
+import { EvolutionChain, PokemonSpecies } from "pokenode-ts";
+import { useEffect, useState } from "react";
 import './Evolution.scss'
 
-interface Props{
+interface Props {
   species: PokemonSpecies
 }
 
-export default function Evolution({species} : Props){
-  const evoClient = new EvolutionClient()
+export default function Evolution({ species }: Props) {
 
   const [line, setLine] = useState<EvolutionChain>()
 
-  return(
+  const getEvoLine = async () => {
+    axios.get(species.evolution_chain.url)
+      .then(evolution_chain =>
+        setLine(evolution_chain.data)
+      )
+  }
+
+  useEffect(() => {
+    getEvoLine()
+  }, [])
+
+  return (
     <InfoPage>
       <p>Evolutionary Line</p>
+      {line && (
+        <>{line.chain.species.name}</>
+      )}
     </InfoPage>
   )
 }

@@ -1,3 +1,4 @@
+import Formatting from "common/utils/string"
 import TypeButton from "components/TypeButton"
 import { Pokemon, PokemonClient, PokemonSpecies } from "pokenode-ts"
 import { useEffect, useState } from "react"
@@ -10,6 +11,7 @@ interface Props {
 
 export default function Card({ species_name }: Props) {
   const api = new PokemonClient()
+  const f = Formatting
 
   const [form, setForm] = useState<Pokemon>();
   const [species, setSpecies] = useState<PokemonSpecies>();
@@ -44,7 +46,7 @@ export default function Card({ species_name }: Props) {
           </div>
 
           <a href={`/pokemon/${species.name}`}>
-            {species.name}
+            {f.formattingSpeciesName(species.name)}
           </a>
         </div>
 

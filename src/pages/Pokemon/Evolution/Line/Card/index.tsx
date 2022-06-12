@@ -4,6 +4,7 @@ import { ChainLink, EvolutionDetail, Pokemon, PokemonClient, PokemonSpecies } fr
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import './Card.scss'
+import EvolutionDetails from "./EvolutionDetails"
 
 interface Props {
   species_name: string
@@ -41,13 +42,7 @@ export default function Card({ species_name, evo_detail }: Props) {
         {species.evolves_from_species && (
           <div className="evolution-details">
             {evo_detail.map(evo => (
-              <span>
-                {evo.gender && <>Gender: <br/>{`${evo.gender === 1 ? 'Female' : 'Male'}`}</>} <br/>
-                {evo.held_item && <>Held Item: <br/>{`${f.compostName(evo.held_item.name)}`}</>} <br/>
-                {evo.item && <>Use item: <br/>{`${f.compostName(evo.item.name)}`}</>} <br/>
-                {evo.known_move && <>Knows move: <br/>{`${f.compostName(evo.known_move.name)}`}</>}<br/>
-                {evo.min_level && <>Level: <br/>{`${evo.min_level}`}</>}
-              </span>
+              <EvolutionDetails evo_detail={evo}/>
             ))}
           </div>
         )}

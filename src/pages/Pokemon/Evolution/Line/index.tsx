@@ -1,4 +1,5 @@
 import { ChainLink } from "pokenode-ts";
+import Card from "./Card";
 import './Line.scss'
 
 export default function Line({ chain_link }: { chain_link: ChainLink[] }) {
@@ -6,9 +7,7 @@ export default function Line({ chain_link }: { chain_link: ChainLink[] }) {
     <>
       <div className="line">
         {chain_link.map(cl => (
-          <div>
-            {cl.species.name}
-          </div>
+          <Card species_name={cl.species.name}/>
         ))}
       </div>
       {chain_link.map(cl =>

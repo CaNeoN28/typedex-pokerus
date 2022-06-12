@@ -2,53 +2,64 @@
 @import 'styles/spacing';
 @import 'styles/sizes';
 
-.space{
+.space {
   display: flex;
-  flex-direction: column;
-  gap: $border-extra-small;
-  margin: auto;
-  width: 200px;
+  align-items: center;
+  gap: $border-small;
 
-  .card{
+  .evolution-details{
+    font-size: $font-small;
+    color: $theme
+  }
+
+  .step-space {
     display: flex;
     flex-direction: column;
-
-    background-color: $theme;
-
-    border-radius: $border-radius-outer;
-    padding: $border-extra-small;
     gap: $border-extra-small;
+    margin: auto;
+    width: 200px;
 
-    .image{
-      margin: -$border-extra-small;
-      margin-bottom: 0;
-      border-radius: $border-radius-inner;
+    .card {
+      display: flex;
+      flex-direction: column;
 
-      background-color: $dark-aux;
+      background-color: $theme;
 
-      img{
-        width: 100%;
+      border-radius: $border-radius-outer;
+      padding: $border-extra-small;
+      gap: $border-extra-small;
+
+      .image {
+        margin: -$border-extra-small;
+        margin-bottom: 0;
+        border-radius: $border-radius-inner;
+
+        background-color: $dark-aux;
+
+        img {
+          width: 100%;
+        }
+      }
+
+      a {
+        text-align: center;
+
+        font-size: $font-small;
+        font-weight: $demi-bold;
+        text-decoration: none;
+
+        color: $aux;
       }
     }
 
-    a{
-      text-align: center;
+    .type-list {
+      display: flex;
+      justify-content: center;
+      gap: 10%;
 
-      font-size: $font-small;
-      font-weight: $demi-bold;
-      text-decoration: none;
-      
-      color: $aux;
-    }
-  }
-
-  .type-list{
-    display: flex;
-    justify-content: center;
-    gap: 10%;
-
-    .type-button{
-      width: 45%;
+      .type-button {
+        width: 45%;
+      }
     }
   }
 }

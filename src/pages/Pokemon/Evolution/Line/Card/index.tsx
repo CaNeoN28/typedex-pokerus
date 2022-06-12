@@ -1,15 +1,16 @@
 import Formatting from "common/utils/string"
 import TypeButton from "components/TypeButton"
-import { Pokemon, PokemonClient, PokemonSpecies } from "pokenode-ts"
+import { ChainLink, EvolutionDetail, Pokemon, PokemonClient, PokemonSpecies } from "pokenode-ts"
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import './Card.scss'
 
 interface Props {
   species_name: string
+  evo_detail: EvolutionDetail[]
 }
 
-export default function Card({ species_name }: Props) {
+export default function Card({ species_name, evo_detail }: Props) {
   const api = new PokemonClient()
   const f = Formatting
 
@@ -37,23 +38,34 @@ export default function Card({ species_name }: Props) {
 
     return (
       <div className="space">
-        <div className="card">
-          <div className="image">
-            <img
-              src={img}
-              alt={species.name}
-              loading={'lazy'} />
+        {species.evolves_from_species && (
+          <div className="evolution-details">
+            {evo_detail.map(evo => (
+              <span>
+                {evo.min_level && `Level: ${evo.min_level}`}
+              </span>
+            ))}
+          </div>
+        )}
+        <div className="step-space">
+          <div className="card">
+            <div className="image">
+              <img
+                src={img}
+                alt={species.name}
+                loading={'lazy'} />
+            </div>
+
+            <a href={`/pokemon/${species.name}`}>
+              {f.formattingSpeciesName(species.name)}
+            </a>
           </div>
 
-          <a href={`/pokemon/${species.name}`}>
-            {f.formattingSpeciesName(species.name)}
-          </a>
-        </div>
-
-        <div className="type-list">
-          {form.types.map(t => (
-            <TypeButton type={t.type.name}/>
-          ))}
+          <div className="type-list">
+            {form.types.map(t => (
+              <TypeButton type={t.type.name} />
+            ))}
+          </div>
         </div>
       </div>
     )

@@ -7,7 +7,7 @@ export default function Line({ chain_link }: { chain_link: ChainLink[] }) {
     <>
       <div className={`line${chain_link.length > 3 ? ' multiple': ''}`}>
         {chain_link.map(cl => (
-          <Card species_name={cl.species.name}/>
+          <Card species_name={cl.species.name} evo_detail={cl.evolution_details}/>
         ))}
       </div>
       {chain_link.map(cl =>

@@ -12,7 +12,12 @@
 
   .card-space{
     display: flex;
-    align-items: center;
+    justify-content: center;
+    gap: 200px;
+  }
+
+  .eevee{
     flex-direction: column;
+    gap: $box-small;
   }
 }

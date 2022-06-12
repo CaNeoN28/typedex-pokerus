@@ -1,6 +1,12 @@
 .line{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  justify-content: center;
 
   gap: 10px;
+}
+
+.multiple{
+  flex-direction: row;
+  justify-content: space-between;
 }

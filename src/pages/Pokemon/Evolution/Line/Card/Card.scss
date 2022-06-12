@@ -2,36 +2,52 @@
 @import 'styles/spacing';
 @import 'styles/sizes';
 
-.card{
+.space{
   display: flex;
   flex-direction: column;
-
-  background-color: $theme;
-
-  border-radius: $border-radius-outer;
-  padding: $border-extra-small;
   gap: $border-extra-small;
 
-  .image{
-    margin: -$border-extra-small;
-    margin-bottom: 0;
-    border-radius: $border-radius-inner;
-    width: 200px;
+  .card{
+    display: flex;
+    flex-direction: column;
 
-    background-color: $dark-aux;
+    background-color: $theme;
 
-    img{
-      width: 100%;
+    border-radius: $border-radius-outer;
+    padding: $border-extra-small;
+    gap: $border-extra-small;
+
+    .image{
+      margin: -$border-extra-small;
+      margin-bottom: 0;
+      border-radius: $border-radius-inner;
+      width: 200px;
+
+      background-color: $dark-aux;
+
+      img{
+        width: 100%;
+      }
+    }
+
+    a{
+      text-align: center;
+
+      font-size: $font-small;
+      font-weight: $demi-bold;
+      text-decoration: none;
+      
+      color: $aux;
     }
   }
 
-  a{
-    text-align: center;
+  .type-list{
+    display: flex;
+    justify-content: center;
+    gap: 10%;
 
-    font-size: $font-small;
-    font-weight: $demi-bold;
-    text-decoration: none;
-    
-    color: $aux;
+    .type-button{
+      width: 45%;
+    }
   }
 }

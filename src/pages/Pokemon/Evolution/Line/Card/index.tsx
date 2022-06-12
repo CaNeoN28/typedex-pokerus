@@ -1,3 +1,4 @@
+import TypeButton from "components/TypeButton"
 import { Pokemon, PokemonClient, PokemonSpecies } from "pokenode-ts"
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
@@ -33,17 +34,25 @@ export default function Card({ species_name }: Props) {
       ''
 
     return (
-      <div className="card">
-        <div className="image">
-          <img
-            src={img}
-            alt={species.name}
-            loading={'lazy'} />
+      <div className="space">
+        <div className="card">
+          <div className="image">
+            <img
+              src={img}
+              alt={species.name}
+              loading={'lazy'} />
+          </div>
+
+          <a href={`/pokemon/${species.name}`}>
+            {species.name}
+          </a>
         </div>
 
-        <a href={`/pokemon/${species.name}`}>
-          {species.name}
-        </a>
+        <div className="type-list">
+          {form.types.map(t => (
+            <TypeButton type={t.type.name}/>
+          ))}
+        </div>
       </div>
     )
   }

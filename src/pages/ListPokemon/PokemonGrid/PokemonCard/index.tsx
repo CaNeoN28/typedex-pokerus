@@ -30,7 +30,7 @@ export default function PokemonCard({ pokemon, species, pokedex }: Props) {
     })
   }, [w_width])
 
-  const img = pokemon.sprites.other.home.front_default || ''
+  const img = pokemon.sprites.other.home.front_default || pokemon.sprites.other["official-artwork"].front_default || ''
 
   const number = String(species.pokedex_numbers
     .find(n => n.pokedex.name === pokedex.name)?.entry_number || 0)

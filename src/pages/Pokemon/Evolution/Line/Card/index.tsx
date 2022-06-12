@@ -42,9 +42,11 @@ export default function Card({ species_name, evo_detail }: Props) {
           <div className="evolution-details">
             {evo_detail.map(evo => (
               <span>
-                {evo.gender && <>Gender: <br/>{`${evo.gender === 1 ? 'Female' : 'Male'}`}</>}
-                {evo.held_item && <>Held Item: <br/>{`${f.compostName(evo.held_item.name)}`}</>}
-                {evo.min_level && `Level: ${evo.min_level}`}
+                {evo.gender && <>Gender: <br/>{`${evo.gender === 1 ? 'Female' : 'Male'}`}</>} <br/>
+                {evo.held_item && <>Held Item: <br/>{`${f.compostName(evo.held_item.name)}`}</>} <br/>
+                {evo.item && <>Use item: <br/>{`${f.compostName(evo.item.name)}`}</>} <br/>
+                {evo.known_move && <>Knows move: <br/>{`${f.compostName(evo.known_move.name)}`}</>}<br/>
+                {evo.min_level && <>Level: <br/>{`${evo.min_level}`}</>}
               </span>
             ))}
           </div>

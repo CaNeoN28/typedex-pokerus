@@ -8,10 +8,20 @@
   gap: $border-small;
 
   .evolution-details{
-    width: 200px;
+    display: flex;
+    flex-direction: column;
     text-align: center;
+
     font-size: $font-small;
-    color: $theme
+    width: 200px;
+
+    color: $theme;
+
+    ul{
+      margin: auto;
+      list-style-type: none;
+      padding-inline-start: 0;
+    }
   }
 
   .step-space {
@@ -64,4 +74,8 @@
       }
     }
   }
+}
+
+.multiple-card{
+  flex-direction: column;
 }

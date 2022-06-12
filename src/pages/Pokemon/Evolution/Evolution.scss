@@ -11,11 +11,11 @@
   }
 
   .card-space{
-    display: flex;
     justify-content: center;
+    display: flex;
   }
 
-  .eevee{
+  .multiple{
     flex-direction: column;
     gap: $box-small;
   }

@@ -5,9 +5,9 @@ import './Line.scss'
 export default function Line({ chain_link }: { chain_link: ChainLink[] }) {
   return (
     <>
-      <div className={`line${chain_link.length > 3 ? ' multiple': ''}`}>
+      <div className={`line${chain_link.length > 2 ? ' multiple-line': ''}`}>
         {chain_link.map(cl => (
-          <Card species_name={cl.species.name} evo_detail={cl.evolution_details}/>
+          <Card species_name={cl.species.name} evo_chain={cl}/>
         ))}
       </div>
       {chain_link.map(cl =>

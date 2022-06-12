@@ -29,10 +29,9 @@ export default function Evolution({ species }: Props) {
   return (
     <InfoPage>
       <p>Evolutionary Line</p>
-      <div 
-        className={`card-space${species.name === 'eevee'
-        || species.evolves_from_species && species.evolves_from_species.name === 'eevee' ? ' eevee' : ''}`}>
-        {line && <Line chain_link={[line.chain]}/>}
+      <div
+        className={`card-space${line?.id === 47 || line?.id === 67 ? ' multiple' : ''}`}>
+        {line && <Line chain_link={[line.chain]} />}
       </div>
     </InfoPage>
   )

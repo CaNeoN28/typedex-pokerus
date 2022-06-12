@@ -1,12 +1,23 @@
+@import 'styles/spacing';
+
 .line{
   display: flex;
   flex-direction: column;
+  gap: $border-medium;
+  
   justify-content: center;
-
-  gap: 10px;
 }
 
-.multiple{
-  flex-direction: row;
+.multiple-line{
   justify-content: space-between;
+  flex-direction: row;
+  gap: 0;
+
+  .space{
+    flex-direction: column;
+
+    .evolution-details{
+      height: 200px;
+    }
+  }
 }

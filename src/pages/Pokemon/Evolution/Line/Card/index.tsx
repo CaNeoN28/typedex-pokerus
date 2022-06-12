@@ -1,6 +1,6 @@
 import Formatting from "common/utils/string"
 import TypeButton from "components/TypeButton"
-import { ChainLink, EvolutionDetail, Pokemon, PokemonClient, PokemonSpecies } from "pokenode-ts"
+import { ChainLink, EvolutionChain, EvolutionDetail, Pokemon, PokemonClient, PokemonSpecies } from "pokenode-ts"
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import './Card.scss'
@@ -8,11 +8,12 @@ import EvolutionDetails from "./EvolutionDetails"
 
 interface Props {
   species_name: string
-  evo_detail: EvolutionDetail[]
+  evo_chain: ChainLink
 }
 
-export default function Card({ species_name, evo_detail }: Props) {
+export default function Card({ species_name, evo_chain }: Props) {
   const api = new PokemonClient()
+  const evo_detail = evo_chain.evolution_details
   const f = Formatting
 
   const [form, setForm] = useState<Pokemon>();

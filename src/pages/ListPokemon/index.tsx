@@ -18,6 +18,7 @@ export default function () {
 
   const min = 12
   const [max, setMax] = useState(min)
+  const [showMax, setShowmax] = useState(0)
 
   const [search, setSearch] = useState('')
   const [order, setOrder] = useState('id+')
@@ -94,27 +95,34 @@ export default function () {
   }
 
   const getList = () => {
-    pokedex?.pokemon_entries
-      .sort((a, b) =>
-        order.includes('name') ?
-          (order.includes('+') ? a.pokemon_species.name.localeCompare(b.pokemon_species.name) :
-            b.pokemon_species.name.localeCompare(a.pokemon_species.name)
-          ) :
-          (
-            order === 'id+' ?
-              (a.entry_number < b.entry_number) ? -1 : 1
-              : (a.entry_number > b.entry_number)
-                ? -1 : 1
-          )
-      )
-      .filter(p => p.pokemon_species.name.includes(search.toLocaleLowerCase()))
-      .filter(p => 
-        type != '' ? typeList.find(t => 
-          t.name === type)?.pokemon.find(pk => 
-            pk.pokemon.name === p.pokemon_species.name) : p)
-      .map((p, index) => {
-        index < max && getPokemon(p.pokemon_species.name, index)
-      })
+    const f_pokemon_entries =
+      pokedex?.pokemon_entries
+        .sort((a, b) =>
+          order.includes('name') ?
+            (order.includes('+') ? a.pokemon_species.name.localeCompare(b.pokemon_species.name) :
+              b.pokemon_species.name.localeCompare(a.pokemon_species.name)
+            ) :
+            (
+              order === 'id+' ?
+                (a.entry_number < b.entry_number) ? -1 : 1
+                : (a.entry_number > b.entry_number)
+                  ? -1 : 1
+            )
+        )
+        .filter(p => p.pokemon_species.name.includes(search.toLocaleLowerCase()))
+        .filter(p =>
+          type != '' ? typeList.find(t =>
+            t.name === type)?.pokemon.find(pk =>
+              pk.pokemon.name === p.pokemon_species.name) : p)
+
+    if (f_pokemon_entries) {
+      setShowmax(f_pokemon_entries.length)
+
+      f_pokemon_entries
+        .map((p, index) => {
+          index < max && getPokemon(p.pokemon_species.name, index)
+        })
+    }
   }
 
   useEffect(() => {
@@ -168,7 +176,7 @@ export default function () {
               onChange={(e) => setType(e.target.value)}>
               <option value={''}>None</option>
               {typeList.map((type) =>
-                <option 
+                <option
                   key={type.id}
                   value={type.name}>
                   {f.capitalize(type.name)}
@@ -180,7 +188,7 @@ export default function () {
 
         {pokedex && list.length > 0 ? <PokemonGrid pokedex={pokedex} list={list} /> : search != '' &&
           "There is no Pokémon!"}
-        {pokedex && max < pokedex.pokemon_entries.length && <LoadButton min={min} max={max} setMax={setMax} />}
+        {showMax && pokedex && list.length < showMax && <LoadButton min={min} max={max} setMax={setMax} />}
       </main>
     </Page>
   )

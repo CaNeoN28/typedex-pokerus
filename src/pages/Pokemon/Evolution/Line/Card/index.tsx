@@ -1,5 +1,7 @@
 import { Pokemon, PokemonClient, PokemonSpecies } from "pokenode-ts"
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
+import './Card.scss'
 
 interface Props {
   species_name: string
@@ -31,15 +33,17 @@ export default function Card({ species_name }: Props) {
       ''
 
     return (
-      <div>
-        <div>
+      <div className="card">
+        <div className="image">
           <img
             src={img}
             alt={species.name}
             loading={'lazy'} />
         </div>
 
-        {species_name}
+        <a href={`/pokemon/${species.name}`}>
+          {species.name}
+        </a>
       </div>
     )
   }

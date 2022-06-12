@@ -1,0 +1,37 @@
+@import 'styles/theme';
+@import 'styles/spacing';
+@import 'styles/sizes';
+
+.card{
+  display: flex;
+  flex-direction: column;
+
+  background-color: $theme;
+
+  border-radius: $border-radius-outer;
+  padding: $border-extra-small;
+  gap: $border-extra-small;
+
+  .image{
+    margin: -$border-extra-small;
+    margin-bottom: 0;
+    border-radius: $border-radius-inner;
+    width: 200px;
+
+    background-color: $dark-aux;
+
+    img{
+      width: 100%;
+    }
+  }
+
+  a{
+    text-align: center;
+
+    font-size: $font-small;
+    font-weight: $demi-bold;
+    text-decoration: none;
+    
+    color: $aux;
+  }
+}

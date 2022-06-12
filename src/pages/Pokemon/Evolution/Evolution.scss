@@ -9,4 +9,10 @@
     font-weight: bold;
     color: $theme;
   }
+
+  .card-space{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
 }

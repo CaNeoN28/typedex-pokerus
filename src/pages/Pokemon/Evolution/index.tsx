@@ -2,7 +2,7 @@ import axios from "axios";
 import InfoPage from "components/InfoPage";
 import { EvolutionChain, PokemonSpecies } from "pokenode-ts";
 import { useEffect, useState } from "react";
-import Card from "./Card";
+import Line from "./Line";
 import './Evolution.scss'
 
 interface Props {
@@ -30,7 +30,7 @@ export default function Evolution({ species }: Props) {
     <InfoPage>
       <p>Evolutionary Line</p>
       <div className="card-space">
-        {line && <Card chain_link={line.chain}/>}
+        {line && <Line chain_link={[line.chain]}/>}
       </div>
     </InfoPage>
   )

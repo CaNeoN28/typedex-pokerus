@@ -1,0 +1,12 @@
+@import 'styles/sizes';
+@import 'styles/spacing';
+@import 'styles/theme';
+
+
+.info-page{
+  p{
+    font-size: $font-large;
+    font-weight: bold;
+    color: $theme;
+  }
+}

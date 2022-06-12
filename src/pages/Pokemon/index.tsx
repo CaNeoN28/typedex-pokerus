@@ -5,6 +5,7 @@ import Page from "../../components/Page";
 import MainInfo from "./MainInfo";
 import OtherInfo from "./OtherInfo";
 import Formatting from "common/utils/string";
+import Evolution from "./Evolution";
 
 export default function PokemonPage() {
   const { id } = useParams();
@@ -94,6 +95,9 @@ export default function PokemonPage() {
         <OtherInfo
           pokemonForm={form}
           pokemonSpecies={species}
+        />
+        <Evolution
+          species={species}
         />
       </Page>
     )

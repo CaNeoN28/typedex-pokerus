@@ -106,7 +106,10 @@ export default function () {
           )
       )
       .filter(p => p.pokemon_species.name.includes(search.toLocaleLowerCase()))
-      .filter(p => type != '' ? typeList.find(t => t.name === type)?.pokemon.find(pk => pk.pokemon.name.includes(p.pokemon_species.name)) : p)
+      .filter(p => 
+        type != '' ? typeList.find(t => 
+          t.name === type)?.pokemon.find(pk => 
+            pk.pokemon.name === p.pokemon_species.name) : p)
       .map((p, index) => {
         index < max && getPokemon(p.pokemon_species.name, index)
       })

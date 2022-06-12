@@ -214,18 +214,18 @@ export default function () {
 const orderingList = [
   {
     value: 'id+',
-    label: 'Number(ascending)'
+    label: 'Number <'
   },
   {
     value: 'id-',
-    label: 'Number(descending)'
+    label: 'Number >'
   },
   {
     value: 'name+',
-    label: 'Name(ascending)'
+    label: 'Alphabetical A→Z'
   },
   {
     value: 'name-',
-    label: 'Name(descending)'
+    label: 'Alphabetical Z→A'
   }
 ]

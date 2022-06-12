@@ -2,20 +2,25 @@
 @import 'styles/spacing';
 @import 'styles/theme';
 
+.evolution-line {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
-.info-page{
-  p{
+  .title {
     font-size: $font-large;
     font-weight: bold;
     color: $theme;
   }
 
-  .card-space{
-    justify-content: center;
+  .card-space {
     display: flex;
+    justify-content: center;
+    margin: auto;
+    min-height: 600px;
   }
 
-  .multiple{
+  .multiple {
     flex-direction: column;
     gap: $box-small;
   }

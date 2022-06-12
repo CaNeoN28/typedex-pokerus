@@ -34,8 +34,8 @@ export default function Card({ species_name, evo_chain }: Props) {
   }, [])
 
   if (form && species) {
-    const img = form.sprites.other.home.front_default ||
-      form.sprites.other["official-artwork"].front_default ||
+    const img = form.sprites.other["official-artwork"].front_default ||
+    form.sprites.other.home.front_default ||
       ''
 
     return (

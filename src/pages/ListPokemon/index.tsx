@@ -148,7 +148,10 @@ export default function () {
           <Select label={'Pokedex'}>
             <select
               value={pokedex ? pokedex.name : 'national'}
-              onChange={(e) => setPokedex(dexList.filter(d => (d.name) === e.target.value)[0])}
+              onChange={(e) => (
+                setPokedex(dexList.filter(d => (d.name) === e.target.value)[0]),
+                setMax(min)
+              )}
             >
               {dexList.sort((a, b) => a.id < b.id ? -1 : 1).map((dex) => (
                 <option
@@ -161,7 +164,10 @@ export default function () {
           </Select>
           <Select label={"Order by"}>
             <select
-              onChange={(e) => setOrder(e.target.value)}>
+              onChange={(e) => (
+                setOrder(e.target.value),
+                setMax(min)
+              )}>
               {orderingList.map((o, index) =>
                 <option
                   key={index}
@@ -173,7 +179,10 @@ export default function () {
           </Select>
           <Select label={"Type"}>
             <select
-              onChange={(e) => setType(e.target.value)}>
+              onChange={(e) => (
+                setType(e.target.value),
+                setMax(min)
+              )}>
               <option value={''}>None</option>
               {typeList.map((type) =>
                 <option

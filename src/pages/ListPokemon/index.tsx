@@ -81,12 +81,14 @@ export default function () {
 
   const preparePokemonList = async (species: PokemonSpecies, index: number) => {
 
-    await pokemonClient.getPokemonByName(species.varieties.find(v => v.is_default === true)?.pokemon.name || '')
-      .then(pokemon => setList(oldList =>
-        (oldList ? validateIfHas(oldList, { index: index, pokemon: pokemon, species: species }) :
-          [{ index: index, pokemon: pokemon, species: species }]
-        ).sort((a, b) => a.index < b.index ? -1 : 1)
-      ))
+    await pokemonClient.getPokemonByName(species.varieties.find(v => v.is_default === true)?.pokemon.name || String(species.id))
+      .then(pokemon => {
+        setList(oldList =>
+          (oldList ? validateIfHas(oldList, { index: index, pokemon: pokemon, species: species }) :
+            [{ index: index, pokemon: pokemon, species: species }]
+          ).sort((a, b) => a.index < b.index ? -1 : 1)
+        )
+      })
   }
 
   const getPokemon = async (name: string, index: number) => {
@@ -113,7 +115,7 @@ export default function () {
         .filter(p =>
           type != '' ? typeList.find(t =>
             t.name === type)?.pokemon.find(pk =>
-              pk.pokemon.name === p.pokemon_species.name) : p)
+              pk.pokemon.url.split('/').at(-2) === p.pokemon_species.url.split('/').at(-2)) : p)
 
     if (f_pokemon_entries) {
       setShowmax(f_pokemon_entries.length)
@@ -197,7 +199,7 @@ export default function () {
 
         {pokedex && list.length > 0 ? <PokemonGrid pokedex={pokedex} list={list} /> : search != '' &&
           "There is no Pokémon!"}
-        {showMax && pokedex && list.length < showMax && <LoadButton min={min} max={max} setMax={setMax} />}
+        {pokedex && list.length < showMax && <LoadButton min={min} max={max} setMax={setMax} />}
       </main>
     </Page>
   )

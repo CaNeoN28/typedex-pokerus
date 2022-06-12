@@ -10,9 +10,11 @@ import Select from "./SelectMenu/Select";
 import SelectMenu from "./SelectMenu";
 import { type } from "os";
 import TypeButton from "components/TypeButton";
+import Formatting from "common/utils/string";
 export default function () {
   const pokemonClient = new PokemonClient();
   const gameClient = new GameClient()
+  const f = Formatting
 
   const min = 12
   const [max, setMax] = useState(min)
@@ -169,7 +171,7 @@ export default function () {
                 <option 
                   key={type.id}
                   value={type.name}>
-                  {type.name}
+                  {f.capitalize(type.name)}
                 </option>
               )}
             </select>

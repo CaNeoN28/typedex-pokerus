@@ -19,6 +19,7 @@ export default function () {
   const min = 12
   const [max, setMax] = useState(min)
   const [showMax, setShowmax] = useState(0)
+  const [loaded, setLoaded] = useState(true)
 
   const [search, setSearch] = useState('')
   const [order, setOrder] = useState('id+')
@@ -89,6 +90,9 @@ export default function () {
           ).sort((a, b) => a.index < b.index ? -1 : 1)
         )
       })
+
+    
+    setLoaded(true)
   }
 
   const getPokemon = async (name: string, index: number) => {
@@ -97,6 +101,8 @@ export default function () {
   }
 
   const getList = () => {
+    setLoaded(false)
+    
     const f_pokemon_entries =
       pokedex?.pokemon_entries
         .sort((a, b) =>
@@ -199,7 +205,7 @@ export default function () {
 
         {pokedex && list.length > 0 ? <PokemonGrid pokedex={pokedex} list={list} /> : search != '' &&
           "There is no Pokémon!"}
-        {pokedex && list.length < showMax && <LoadButton min={min} max={max} setMax={setMax} />}
+        {loaded && pokedex && list.length < showMax && <LoadButton min={min} max={max} setMax={setMax} />}
       </main>
     </Page>
   )

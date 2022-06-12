@@ -42,7 +42,8 @@ export default function Card({ species_name, evo_detail }: Props) {
           <div className="evolution-details">
             {evo_detail.map(evo => (
               <span>
-                {evo.gender && `Gender: ${evo.gender === 1 ? 'Female' : 'Male'}`}
+                {evo.gender && <>Gender: <br/>{`${evo.gender === 1 ? 'Female' : 'Male'}`}</>}
+                {evo.held_item && <>Held Item: <br/>{`${f.compostName(evo.held_item.name)}`}</>}
                 {evo.min_level && `Level: ${evo.min_level}`}
               </span>
             ))}

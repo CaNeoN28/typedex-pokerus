@@ -57,6 +57,14 @@ function compostString(str: string) {
   return (compostStringToArray(str).join(' '))
 }
 
+function compostName(str: string) {
+  let f_str = compostStringToArray(str)
+  f_str = f_str.map(s => s = capitalize(s))
+  let final = f_str.join(' ')
+
+  return final
+}
+
 function statAbbreviation(str: string) {
   str = str.replace('special', 'sp')
   str = str.replace('speed', 'spe.')
@@ -77,7 +85,8 @@ const Formatting = {
   formattingEggGroup,
   formattingSpeciesName,
   compostString,
-  statAbbreviation
+  statAbbreviation,
+  compostName
 }
 
 export default Formatting

@@ -5,7 +5,7 @@ import './Line.scss'
 export default function Line({ chain_link }: { chain_link: ChainLink[] }) {
   return (
     <>
-      <div className={`line${chain_link.length > 2 ? ' multiple-line': ''}`}>
+      <div className="line">
         {chain_link.map(cl => (
           <Card species_name={cl.species.name} evo_chain={cl}/>
         ))}

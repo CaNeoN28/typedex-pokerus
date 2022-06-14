@@ -30,8 +30,7 @@ export default function Evolution({ species }: Props) {
     <InfoPage>
       <div className="evolution-line">
         <p className="title">Evolutionary Line</p>
-        <div
-          className={`card-space${line?.id === 47 || line?.id === 67 ? ' multiple' : ''}`}>
+        <div className="card-space">
           {line && <Line chain_link={[line.chain]} />}
         </div>
       </div>

@@ -7,17 +7,3 @@
   
   justify-content: center;
 }
-
-.multiple-line{
-  justify-content: space-between;
-  flex-direction: row;
-  gap: 0;
-
-  .space{
-    flex-direction: column;
-
-    .evolution-details{
-      height: 200px;
-    }
-  }
-}

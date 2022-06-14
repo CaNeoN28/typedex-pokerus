@@ -1,9 +1,12 @@
 @import 'styles/spacing';
 
-.line{
+.evolution-line{
   display: flex;
-  flex-direction: column;
   gap: $border-medium;
   
   justify-content: center;
+
+  .evolution-line{
+    padding-inline-start: $border-medium;
+  }
 }

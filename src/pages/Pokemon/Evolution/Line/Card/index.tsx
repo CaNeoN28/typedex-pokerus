@@ -40,13 +40,13 @@ export default function Card({ species_name, evo_chain }: Props) {
 
     return (
       <div className="space">
-        {species.evolves_from_species && (
+        {/* {species.evolves_from_species && (
           <div className="evolution-details">
             {evo_detail.map(evo => (
               <EvolutionDetails evo_detail={evo}/>
             ))}
           </div>
-        )}
+        )} */}
         <div className="step-space">
           <div className="card">
             <div className="image">

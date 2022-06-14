@@ -1,4 +1,5 @@
 @import 'styles/spacing';
+@import 'styles/sizes';
 
 .evolution-line{
   display: flex;
@@ -6,7 +7,9 @@
   
   justify-content: center;
 
-  .evolution-line{
-    padding-inline-start: $border-medium;
+  width: 100%;
+
+  .child{
+    padding-inline-start: $border-small;
   }
 }

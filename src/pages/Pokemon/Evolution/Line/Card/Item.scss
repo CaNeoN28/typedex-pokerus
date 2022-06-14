@@ -1,0 +1,36 @@
+@import 'styles/theme';
+@import 'styles/spacing';
+@import 'styles/sizes';
+
+.item {
+  display: flex;
+  background-color: $theme;
+  border-radius: $border-radius-outer;
+
+  width: 200px;
+
+  .image {
+    margin-bottom: 0;
+    border-radius: $border-radius-inner;
+    width: 30%;
+
+    background-color: $dark-aux;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .text{
+    width: 70%;
+    padding: $border-extra-small;
+    font-size: $font-small;
+
+    color: $aux;
+
+    a{
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+}

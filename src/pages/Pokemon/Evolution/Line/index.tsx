@@ -10,10 +10,12 @@ export default function Line({ chain_link }: { chain_link: ChainLink[] }) {
           <Card species_name={cl.species.name} evo_chain={cl} />
         ))}
 
-        {chain_link.map(cl =>
-          cl.evolves_to.length > 0 &&
-          <Line chain_link={cl.evolves_to} />
-        )}
+        <div className="child">
+          {chain_link.map(cl =>
+            cl.evolves_to.length > 0 &&
+            <Line chain_link={cl.evolves_to} />
+          )}
+        </div>
       </div>
     </>
   )
